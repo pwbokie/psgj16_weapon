@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
+    private AttachmentParent attachmentParent;
+
+    public List<AttachmentEffect> activeEffects;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+
+        attachmentParent = GetComponent<AttachmentParent>();
     }
 
     void Update()
@@ -71,8 +76,9 @@ public class PlayerController : MonoBehaviour
     [ContextMenu("Fire")]
     public void Fire()
     {
-        GameObject fx_go = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
-        fx_go.transform.parent = muzzleFlashSource.transform;
+        GameObject muzzleFlashGO = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
+        muzzleFlashGO.transform.parent = muzzleFlashSource.transform;
+
         rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower, ForceMode2D.Impulse);
 
         GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity);
@@ -81,5 +87,37 @@ public class PlayerController : MonoBehaviour
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.Play();
+    }
+
+    // Stuff for effects.
+    [Header("Gun Effects Params")]
+    public AudioClip silencedGunshot;
+
+    public void AddEffect(AttachmentEffect effect)
+    {
+        if (activeEffects.Contains(effect))
+        {
+            return;
+        }
+
+        activeEffects.Add(effect);
+
+        switch (effect)
+        {
+            case AttachmentEffect.NONE:
+                Debug.LogWarning("Somehow added NONE to active effects on the gun");
+                break;
+            case AttachmentEffect.PERFECT_ACCURACY:
+                // Implement perfect accuracy logic here
+                break;
+            case AttachmentEffect.MORE_FIREPOWER:
+                firepower += 5f;
+                break;
+            case AttachmentEffect.SILENCED:
+                audioSource.clip = Resources.Load<AudioClip>("Sound/SilencedShot");
+                break;
+            default:
+                break;
+        }
     }
 }
