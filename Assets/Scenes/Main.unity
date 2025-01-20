@@ -684,7 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbb9318f6c828d42b06f5835ad9b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTorque: 10
   firepower: 5
   casingEjectionForce: 5
   FX_MuzzleFlash: {fileID: 2606096390965036722, guid: 39d7b74972ef74d45bc170bda6cc8f92, type: 3}
@@ -1095,7 +1094,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a628d776c514a3e42b03f5c964de952a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

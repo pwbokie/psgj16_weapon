@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
-    public float maxTorque = 25f;
+    //public float maxTorque = 25f;
     public float firepower = 5f;
     public float casingEjectionForce = 5f;
 
@@ -26,9 +26,17 @@ public class PlayerController : MonoBehaviour
         {
             Fire();
         }
+        Vector2 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        transform.up = direction;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         // Get cursor position in world space
         Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -50,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddTorque(torque);
         }
-    }
+    }*/
 
     [Header("FX Prefabs")]
     public GameObject FX_MuzzleFlash;
