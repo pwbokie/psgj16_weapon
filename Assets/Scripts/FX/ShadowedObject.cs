@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShadowedObject : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
     private Sprite sprite;
 
     private GameObject shadowsParent;
@@ -11,7 +12,20 @@ public class ShadowedObject : MonoBehaviour
     
     public void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>().sprite;
+        if (GetComponent<SpriteRenderer>() != null) {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        else {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found on the object or its children.");
+            return;
+        }
+
+        sprite = spriteRenderer.sprite;
 
         shadowsParent = GameObject.Find("Shadows");
         shadow = new GameObject("Shadow_" + gameObject.name);
@@ -37,9 +51,9 @@ public class ShadowedObject : MonoBehaviour
 
     public void Update()
     {
-        shadow.transform.position = (Vector2)transform.position + Global.ShadowOffset;
-        shadow.transform.rotation = transform.rotation;
-        shadow.transform.localScale = transform.localScale;
+        shadow.transform.position = (Vector2)spriteRenderer.transform.position + Global.ShadowOffset;
+        shadow.transform.rotation = spriteRenderer.transform.rotation;
+        shadow.transform.localScale = spriteRenderer.transform.localScale;
     }
 
     public void DestroyThisAndItsShadow()

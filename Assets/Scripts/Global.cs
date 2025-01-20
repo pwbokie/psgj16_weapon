@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttachmentType {
+    NONE,
     STOCK,
     UNDERBARREL,
     SCOPE,
