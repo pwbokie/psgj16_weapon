@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public float firepower = 5f;
     public float casingEjectionForce = 5f;
 
+    public Camera mainCamera;
+    public float torqueForce = 1f;
+    public float rotationDamping = 2f;
+    public float stopThreshold = 1f;
+
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
     private AttachmentParent attachmentParent;
@@ -21,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        mainCamera = GetComponentInParent<Camera>();
 
         attachmentParent = GetComponent<AttachmentParent>();
     }
@@ -31,39 +37,50 @@ public class PlayerController : MonoBehaviour
         {
             Fire();
         }
-        Vector2 mousePosition = Input.mousePosition;
+
+        
+        /*Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         transform.up = direction;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/
     }
 
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
-        // Get cursor position in world space
-        Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(rb2d == null) return; 
 
-        // Calculate direction to the cursor
-        Vector2 lookDir = cursorPos - (Vector2)transform.position;
-        // Desired angle towards the cursor
-        float desiredAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        // Get current angle
-        float currentAngle = transform.eulerAngles.z;
-        // Calculate the shortest angle difference
-        float angleDifference = Mathf.DeltaAngle(currentAngle, desiredAngle);
+        
 
-        float torque = angleDifference * 0.1f; // Adjust multiplier for responsiveness
-        torque = Mathf.Clamp(torque, -maxTorque, maxTorque);
+        Vector3 mouseScreenPosition = Input.mousePosition;
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+        Vector2 direction = (mouseWorldPosition - transform.position).normalized;
+
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        float currentAngle = rb2d.rotation;
+
+        float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+
+        if (Mathf.Abs(angleDifference) > stopThreshold)
         {
-            rb.AddTorque(torque);
+            float torque = angleDifference * torqueForce;
+
+            rb2d.AddTorque(torque * rotationDamping);
         }
-    }*/
+        else
+        {
+            rb2d.angularVelocity = 0f;
+            Debug.Log("stop");
+        }
+
+        
+    }
 
     [Header("FX Prefabs")]
     public GameObject FX_MuzzleFlash;
