@@ -7,6 +7,8 @@ public class LootCrate : MonoBehaviour
     private PlayerController playerController;
     private GameObject contents;
 
+    private bool handling = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +17,29 @@ public class LootCrate : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // for some reason I am gaining the same attachment multiple times
+        // oncollisionenter probably happening on multiple threads or something
+        // anyway here's wonderwall
+        if (!handling)
         {
-            if (contents != null && contents.GetComponent<Attachable>() != null)
+            handling = true;
+
+            if (collision.gameObject.CompareTag("Player"))
             {
-                playerController.GetComponent<AttachmentParent>().AddAttachment(contents);
-                gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+                if (contents != null && contents.GetComponent<Attachable>() != null)
+                {   
+                    if (playerController.GetComponent<AttachmentParent>().AddAttachment(contents))
+                    {
+                        gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+                    }
+                }
+                else if (contents == null)
+                {
+                    Debug.LogWarning("LootCrate has no contents assigned!");
+                }
             }
-            else if (contents == null)
-            {
-                Debug.LogWarning("LootCrate has no contents assigned!");
-            }
+
+            handling = false;
         }
     }
 
