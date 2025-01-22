@@ -19,21 +19,25 @@ public class Turret : MonoBehaviour
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(playerPosition);
 
-        Vector2 direction = (transform.position - mouseWorldPosition).normalized;
+        Vector3 turretPosition = Camera.main.ScreenToWorldPoint(turret.transform.position);
+
+        Vector2 direction = (mouseWorldPosition - turretPosition).normalized;
 
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         float currentAngle = turret.rotation;
 
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-        Debug.Log(Mathf.Abs(angleDifference));
+        Debug.DrawLine(transform.position, mouseWorldPosition, Color.black);
         if(Mathf.Abs(angleDifference) > 1f)
         {
             float torque = angleDifference * torqueForce;
 
-            Debug.Log(torque);
-
-            turret.AddTorque(torque * rotationDamping);
+            //Debug.Log(torque * rotationDamping);
+            if(torque * rotationDamping > .3f)
+                turret.AddTorque(0.3f);
+            else
+                turret.AddTorque(torque * rotationDamping);
         }
         else
         {
