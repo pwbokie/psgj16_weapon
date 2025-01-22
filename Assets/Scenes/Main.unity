@@ -2370,7 +2370,7 @@ MonoBehaviour:
   height: 4
   seed: 
   useRandomSeed: 1
-  randomFillPercent: 1
+  randomFillPercent: 0.517
   startPrefab:
   - {fileID: 8208342676218132634, guid: 81b50cb6d9995cf428d233ae8a070395, type: 3}
   - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}

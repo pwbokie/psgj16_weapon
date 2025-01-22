@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 573755190950684410}
   - component: {fileID: 6993469907626383197}
   - component: {fileID: 968413906782383310}
-  m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
+  m_Layer: 7
+  m_Name: Pede
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

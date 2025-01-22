@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
         mainCamera = GetComponentInParent<Camera>();
 
         attachmentParent = GetComponent<AttachmentParent>();
-        detectionLayer = LayerMask.GetMask("Enemy");
+        detectionLayer = LayerMask.GetMask("Shootable");
     }
 
     void Update()
@@ -44,10 +45,8 @@ public class PlayerController : MonoBehaviour
             Fire();
 
             RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, detectionLayer);
-
             if (hit.collider != null)
             {
-                Debug.Log("Die!");
                 HandleHitObject(hit.collider.gameObject);
             }
         }
@@ -65,7 +64,17 @@ public class PlayerController : MonoBehaviour
 
     void HandleHitObject(GameObject hitObject)
     {
-        Debug.Log($"Handling object: {hitObject.name}");
+        if(hitObject.tag == "Enemy")
+        {
+            DieDieDie(hitObject);
+        }
+
+
+    }
+
+    void DieDieDie(GameObject item)
+    {
+        Destroy(item);
     }
 
     void FixedUpdate()
