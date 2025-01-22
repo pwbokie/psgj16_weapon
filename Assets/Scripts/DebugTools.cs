@@ -6,6 +6,7 @@ public class DebugTools : MonoBehaviour
 {
     public GameObject scope;
     public GameObject silencer;
+    public GameObject chicken;
 
     public GameObject attachmentParent;
 
@@ -15,5 +16,9 @@ public class DebugTools : MonoBehaviour
 
     public void AddSilencer() {
         attachmentParent.GetComponent<AttachmentParent>().AddAttachment(silencer);
+    }
+
+    public void AddChicken() {
+        attachmentParent.GetComponent<AttachmentParent>().AddAttachment(chicken);
     }
 }

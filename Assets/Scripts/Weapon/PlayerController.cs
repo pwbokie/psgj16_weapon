@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
     // Stuff for effects.
     [Header("Gun Effects Params")]
     public AudioClip silencedGunshotSound;
+    public AudioClip rubberChickenSound;
 
     public void AddEffect(AttachmentEffect effect)
     {
@@ -147,6 +148,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case AttachmentEffect.SILENCED:
                 audioSource.clip = silencedGunshotSound;
+                break;
+            case AttachmentEffect.RUBBER_CHICKEN:
+                audioSource.clip = rubberChickenSound;
                 break;
             default:
                 break;
