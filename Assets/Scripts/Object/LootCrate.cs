@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LootCrate : MonoBehaviour
 {
+    public CrateType crateType;
+
     private PlayerController playerController;
     private GameObject contents;
 
@@ -26,12 +28,17 @@ public class LootCrate : MonoBehaviour
 
             if (collision.gameObject.CompareTag("Player"))
             {
-                if (contents != null && contents.GetComponent<Attachable>() != null)
+                if (contents != null && crateType == CrateType.ATTACHMENT && contents.GetComponent<Attachable>() != null)
                 {   
                     if (playerController.GetComponent<AttachmentParent>().AddAttachment(contents))
                     {
                         gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
                     }
+                }
+                else if (contents == null && crateType == CrateType.AMMO && playerController.currentAmmo < playerController.maxAmmo)
+                {
+                    playerController.RefillAmmo();
+                    gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
                 }
                 else if (contents == null)
                 {
@@ -47,4 +54,10 @@ public class LootCrate : MonoBehaviour
     {
         contents = newContents;
     }
+}
+
+public enum CrateType
+{
+    ATTACHMENT,
+    AMMO
 }
