@@ -8,31 +8,33 @@ public class AttachmentParent : MonoBehaviour
     public List<AttachmentSlot> slots;
     private PlayerController player;
 
-    public void Start() {
+    public void Awake() {
         slots = new List<AttachmentSlot>(GetComponentsInChildren<AttachmentSlot>());
         player = FindObjectOfType<PlayerController>();
+
+        for (int i = 0; i < slots.Count; i++) {
+            slots[i].parent = this;
+        }
     }
 
-    public void AddAttachment(GameObject attachable_go) {
+    public bool AddAttachment(GameObject attachable_go) {
         bool attached = false;
 
         if (attachable_go.GetComponent<Attachable>() == null) {
             Debug.LogError("The provided GameObject does not have an Attachable component.");
-            return;
+            return false;
         }
 
         Attachable attachable = attachable_go.GetComponent<Attachable>();
 
         for (int i = 0; i < slots.Count; i++) {
             if (!slots[i].Occupied() && slots[i].type == attachable.type) {
-                slots[i].attachment = attachable_go;
-                Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
+                slots[i].attachment = Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
                 attached = true;
                 Debug.Log("Attached " + attachable.type + " onto the " + gameObject.name);
-                break;
             }
-            else if (slots[i].GetComponent<AttachmentParent>() != null) {
-                slots[i].GetComponent<AttachmentParent>().AddAttachment(attachable_go);
+            else if (slots[i].attachment != null && slots[i].attachment.GetComponent<AttachmentParent>() != null) {
+                attached = slots[i].attachment.GetComponent<AttachmentParent>().AddAttachment(attachable_go);
             }
         }
         
@@ -50,5 +52,7 @@ public class AttachmentParent : MonoBehaviour
                     break;
             }
         }
+
+        return attached;
     }
 }

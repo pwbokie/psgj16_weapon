@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ShadowedObject : MonoBehaviour
 {
+    public int overrideLayer = -99;
+
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer shadowRenderer;
     private Sprite sprite;
 
     private GameObject shadowsParent;
@@ -30,7 +33,7 @@ public class ShadowedObject : MonoBehaviour
         shadowsParent = GameObject.Find("Shadows");
         shadow = new GameObject("Shadow_" + gameObject.name);
 
-        SpriteRenderer shadowRenderer = shadow.AddComponent<SpriteRenderer>();
+        shadowRenderer = shadow.AddComponent<SpriteRenderer>();
         shadowRenderer.sprite = sprite;
         shadowRenderer.color = Global.ShadowColor;
 
@@ -46,6 +49,10 @@ public class ShadowedObject : MonoBehaviour
 
         shadow.transform.parent = shadowsParent.transform;
 
+        if (overrideLayer != -99)
+        {
+            shadow.layer = overrideLayer;
+        }
         shadowRenderer.sortingOrder = Global.ShadowLayer;
     }
 
@@ -54,6 +61,8 @@ public class ShadowedObject : MonoBehaviour
         shadow.transform.position = (Vector2)spriteRenderer.transform.position + Global.ShadowOffset;
         shadow.transform.rotation = spriteRenderer.transform.rotation;
         shadow.transform.localScale = spriteRenderer.transform.localScale;
+        // for animations
+        shadowRenderer.sprite = spriteRenderer.sprite;
     }
 
     public void DestroyThisAndItsShadow()
