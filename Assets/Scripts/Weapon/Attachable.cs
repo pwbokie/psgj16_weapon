@@ -20,12 +20,3 @@ public class Attachable : MonoBehaviour
         }
     }
 }
-
-public enum AttachmentEffect
-{
-    NONE,
-    PERFECT_ACCURACY,
-    MORE_FIREPOWER,
-    SILENCED,
-    RUBBER_CHICKEN
-}

@@ -2,24 +2,35 @@ using UnityEngine;
 
 public class ItemBubble : MonoBehaviour
 {
-
     public float contentsRotationSpeed = 1f;
-    public GameObject contentsDisplay;
+    public GameObject contents;
+    private GameObject crate;
+    private Rigidbody2D contentsRb2d;
 
-    public GameObject contentsPrefab;
-
-    public void Awake() {
-        contentsDisplay.GetComponent<SpriteRenderer>().sprite = contentsPrefab.GetComponent<SpriteRenderer>().sprite;
+    public void Start()
+    {    
+        crate = transform.GetChild(0).gameObject;
+        crate.GetComponent<LootCrate>().SetContents(contents);
+        contentsRb2d = crate.GetComponent<Rigidbody2D>();
     }
 
-    public void Update() {
-        contentsDisplay.transform.position = transform.position;
-        contentsDisplay.transform.Rotate(Vector3.forward * contentsRotationSpeed);
+    public void Update()
+    {
+        crate.transform.Rotate(0, 0, contentsRotationSpeed);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(contentsPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Pop();
+        }
+    }
+
+    public void Pop() {
+        crate.transform.parent = null;
+        contentsRb2d.bodyType = RigidbodyType2D.Dynamic;
+
+        gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
     }
 }
