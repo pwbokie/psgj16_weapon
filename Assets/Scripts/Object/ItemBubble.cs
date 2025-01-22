@@ -10,7 +10,7 @@ public class ItemBubble : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private GameObject crate;
-    private Rigidbody2D contentsRb2d;
+    private Rigidbody2D crateRb2d;
 
     public void Start()
     {    
@@ -18,7 +18,7 @@ public class ItemBubble : MonoBehaviour
 
         crate = transform.GetChild(0).gameObject;
         crate.GetComponent<LootCrate>().SetContents(contents);
-        contentsRb2d = crate.GetComponent<Rigidbody2D>();
+        crateRb2d = crate.GetComponent<Rigidbody2D>();
     }
 
     public void Update()
@@ -38,7 +38,9 @@ public class ItemBubble : MonoBehaviour
 
     public void Pop() {
         crate.transform.parent = null;
-        contentsRb2d.simulated = true;
+        crateRb2d.simulated = true;
+        crateRb2d.velocity = rb2d.velocity;
+        crateRb2d.angularVelocity = rb2d.angularVelocity;
 
         gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
     }

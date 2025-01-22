@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
         attachmentParent = GetComponent<AttachmentParent>();
         detectionLayer = LayerMask.GetMask("Shootable");
+
+        UpdateAmmoCount();
     }
 
     void Update()
