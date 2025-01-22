@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -125,7 +127,6 @@ public class PlayerController : MonoBehaviour
         if (currentAmmo > 0)
         {
             Fire();
-            currentAmmo--;
         }
         else
         {
@@ -136,6 +137,9 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
+        currentAmmo--;
+        UpdateAmmoCount();
+
         GameObject muzzleFlashGO = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
         muzzleFlashGO.transform.parent = muzzleFlashSource.transform;
 
@@ -153,6 +157,19 @@ public class PlayerController : MonoBehaviour
         {
             HandleHitObject(hit.collider.gameObject);
         }
+    }
+
+    public void RefillAmmo()
+    {
+        currentAmmo = maxAmmo;
+        UpdateAmmoCount();
+    }
+
+    public TextMeshProUGUI ammoText;
+
+    public void UpdateAmmoCount()
+    {
+        ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
     }
 
     // Stuff for effects.
