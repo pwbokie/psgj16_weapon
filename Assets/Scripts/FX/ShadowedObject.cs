@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShadowedObject : MonoBehaviour
 {
-    public int overrideLayer = -99;
-
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer shadowRenderer;
     private Sprite sprite;
@@ -49,10 +47,6 @@ public class ShadowedObject : MonoBehaviour
 
         shadow.transform.parent = shadowsParent.transform;
 
-        if (overrideLayer != -99)
-        {
-            shadow.layer = overrideLayer;
-        }
         shadowRenderer.sortingOrder = Global.ShadowLayer;
     }
 

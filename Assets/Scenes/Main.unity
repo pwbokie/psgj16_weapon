@@ -308,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d43032d69247468801d896e0a85a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideLayer: -99
 --- !u!58 &387635771
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -858,7 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d43032d69247468801d896e0a85a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideLayer: 4
 --- !u!1 &952308888
 GameObject:
   m_ObjectHideFlags: 3
@@ -1552,7 +1550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: {fileID: 2427203133086952156, guid: 0c92f207ab3b30a479784106f181def2, type: 3}
   silencer: {fileID: 2427203133086952156, guid: 4587095e974612748866d55cfd86f3d7, type: 3}
-  chicken: {fileID: 0}
+  chicken: {fileID: 2427203133086952156, guid: 78c78c867c52cd04db1a851fa6801c17, type: 3}
   attachmentParent: {fileID: 1460620240}
 --- !u!4 &1438266843
 Transform:
@@ -1769,7 +1767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d43032d69247468801d896e0a85a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideLayer: -99
 --- !u!114 &1460620242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,7 +1807,7 @@ MonoBehaviour:
   muzzleFlashSource: {fileID: 1137848094}
   casingEjectionSource: {fileID: 1439714572}
   silencedGunshotSound: {fileID: 8300000, guid: a265b8e0ad6cc0748bcb4ce42bef7081, type: 3}
-  rubberChickenSound: {fileID: 0}
+  rubberChickenSound: {fileID: 8300000, guid: 245ee2c38d1e0c54587de43a5657036c, type: 3}
 --- !u!212 &1460620244
 SpriteRenderer:
   m_ObjectHideFlags: 0
