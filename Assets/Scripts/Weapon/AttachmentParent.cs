@@ -26,7 +26,7 @@ public class AttachmentParent : MonoBehaviour
         for (int i = 0; i < slots.Count; i++) {
             if (!slots[i].Occupied() && slots[i].type == attachable.type) {
                 slots[i].attachment = attachable_go;
-                Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, slots[i].transform);
+                Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
                 attached = true;
                 Debug.Log("Attached " + attachable.type + " onto the " + gameObject.name);
                 break;
@@ -39,14 +39,16 @@ public class AttachmentParent : MonoBehaviour
         if (!attached) {
             Debug.LogWarning("No available slot for attachment: " + attachable.type);
         }
-
-        switch(attachable.type) {
-            case AttachmentType.MUZZLE:
-                player.muzzleFlashSource = attachable_go.transform.Find("MuzzleFlashSource").gameObject;
-                if (player.muzzleFlashSource == null) {
-                    Debug.LogError("Muzzle flash source not found on the new muzzle. Make sure the muzzle has a child with the exact name MuzzleFlashSource.");
-                }
-                break;
+        // Additional logic for specific attachment types added here
+        else {
+            switch(attachable.type) {
+                case AttachmentType.MUZZLE:
+                    player.muzzleFlashSource.transform.localPosition = player.muzzleFlashSource.transform.localPosition + attachable_go.transform.Find("MuzzleFlashSource").localPosition;
+                    if (player.muzzleFlashSource == null) {
+                        Debug.LogError("Muzzle flash source not found on the new muzzle. Make sure the muzzle has a child with the exact name MuzzleFlashSource.");
+                    }
+                    break;
+            }
         }
     }
 }

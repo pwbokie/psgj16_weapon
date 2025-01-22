@@ -363,7 +363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -657, y: 442}
+  m_AnchoredPosition: {x: -657, y: 315}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675922516
@@ -1706,7 +1706,7 @@ MonoBehaviour:
   FX_Casing: {fileID: 758577167624835058, guid: f11ad5911d022df4e90da1824e467c89, type: 3}
   muzzleFlashSource: {fileID: 1137848094}
   casingEjectionSource: {fileID: 1439714572}
-  silencedGunshot: {fileID: 0}
+  silencedGunshotSound: {fileID: 8300000, guid: a265b8e0ad6cc0748bcb4ce42bef7081, type: 3}
 --- !u!212 &1460620244
 SpriteRenderer:
   m_ObjectHideFlags: 0

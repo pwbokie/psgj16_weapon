@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5092394085189370184}
   - component: {fileID: 8372826738800118994}
-  - component: {fileID: 7417171936655486902}
+  - component: {fileID: 863081188764582219}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7417171936655486902
+--- !u!60 &863081188764582219
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,10 +160,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.65625, y: 0.125}
-      - {x: -0.65625, y: -0.125}
-      - {x: 0.65625, y: -0.125}
-      - {x: 0.65625, y: 0.125}
+    - - {x: -0.265625, y: 0.125}
+      - {x: -0.265625, y: 0}
+      - {x: 0.265625, y: 0}
+      - {x: 0.265625, y: 0.125}
   m_UseDelaunayMesh: 0
 --- !u!1001 &4690313416573926836
 PrefabInstance:

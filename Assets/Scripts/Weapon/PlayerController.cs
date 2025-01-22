@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     // Stuff for effects.
     [Header("Gun Effects Params")]
-    public AudioClip silencedGunshot;
+    public AudioClip silencedGunshotSound;
 
     public void AddEffect(AttachmentEffect effect)
     {
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 firepower += 5f;
                 break;
             case AttachmentEffect.SILENCED:
-                audioSource.clip = Resources.Load<AudioClip>("Sound/SilencedShot");
+                audioSource.clip = silencedGunshotSound;
                 break;
             default:
                 break;
