@@ -69,6 +69,11 @@ public class PlayerController : MonoBehaviour
             DieDieDie(hitObject);
         }
 
+        if(hitObject.tag == "Bubble")
+        {
+            hitObject.SendMessage("Pop");
+        }
+
 
     }
 
