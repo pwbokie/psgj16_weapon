@@ -1004,7 +1004,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.8490566, g: 0.66082233, b: 0.66082233, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1440,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbb9318f6c828d42b06f5835ad9b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firepower: 5
+  firepower: 8
   casingEjectionForce: 5
   mainCamera: {fileID: 0}
   torqueForce: 10
@@ -1539,10 +1539,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.8
+  m_Mass: 1
   m_LinearDrag: 2.5
   m_AngularDrag: 20
-  m_GravityScale: 1
+  m_GravityScale: 2.4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1935,7 +1935,7 @@ Transform:
   m_GameObject: {fileID: 1625737005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.69, y: -5.63, z: -0.11781913}
+  m_LocalPosition: {x: 8.4, y: -5.05, z: -0.11781913}
   m_LocalScale: {x: 3.2539074, y: 3.3804266, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2208,7 +2208,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862843690}
-  - component: {fileID: 1862843691}
   m_Layer: 0
   m_Name: StartArea
   m_TagString: Untagged
@@ -2233,21 +2232,6 @@ Transform:
   - {fileID: 1625737006}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1862843691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862843689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b63390845ecae447bc159b4edd7a0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 20
-  height: 20
-  randomFillPercent: 37
 --- !u!1 &2067610415
 GameObject:
   m_ObjectHideFlags: 0
