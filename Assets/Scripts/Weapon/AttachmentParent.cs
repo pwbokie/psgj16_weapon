@@ -40,6 +40,7 @@ public class AttachmentParent : MonoBehaviour
         
         if (!attached) {
             Debug.LogWarning("No available slot for attachment: " + attachable.type);
+            return false;
         }
         // Additional logic for specific attachment types added here
         else {
