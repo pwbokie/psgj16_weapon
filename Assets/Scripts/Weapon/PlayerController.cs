@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public float rotationDamping = 2f;
     public float stopThreshold = 1f;
 
+    public int maxAmmo = 6;
+    public int currentAmmo = 6;
+
+    public AudioClip gunEmptyClickSound;
+
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
     private AttachmentParent attachmentParent;
@@ -23,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public List<AttachmentEffect> activeEffects;
 
     public LayerMask detectionLayer;
+
+    private Vector3 mouseWorldPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -37,18 +44,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 mouseScreenPosition = Input.mousePosition;
-
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         if (Input.GetMouseButtonDown(0))
         {
-            Fire();
-
-            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, detectionLayer);
-            if (hit.collider != null)
-            {
-                HandleHitObject(hit.collider.gameObject);
-            }
+            TryFire();
         }
     
         
@@ -119,7 +119,21 @@ public class PlayerController : MonoBehaviour
     public GameObject muzzleFlashSource;
     public GameObject casingEjectionSource;
 
-    [ContextMenu("Fire")]
+    public void TryFire()
+    {
+        
+        if (currentAmmo > 0)
+        {
+            Fire();
+            currentAmmo--;
+        }
+        else
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(gunEmptyClickSound);
+        }
+    }
+
     public void Fire()
     {
         GameObject muzzleFlashGO = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
@@ -133,6 +147,12 @@ public class PlayerController : MonoBehaviour
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.Play();
+
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, detectionLayer);
+        if (hit.collider != null)
+        {
+            HandleHitObject(hit.collider.gameObject);
+        }
     }
 
     // Stuff for effects.

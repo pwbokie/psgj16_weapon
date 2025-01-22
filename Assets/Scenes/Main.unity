@@ -1024,6 +1024,9 @@ MonoBehaviour:
   torqueForce: 10
   rotationDamping: 0.5
   stopThreshold: 1
+  maxAmmo: 6
+  currentAmmo: 6
+  gunEmptyClickSound: {fileID: 8300000, guid: 1f95e2bbc45fb3b4d8320642f8f1bc8b, type: 3}
   activeEffects: 
   detectionLayer:
     serializedVersion: 2
