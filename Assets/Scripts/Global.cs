@@ -18,3 +18,12 @@ public static class Global
     public static readonly Vector2 ShadowOffset = new Vector2(0.15f, -0.15f);
     public static readonly int ShadowLayer = -2;
 }
+
+public enum AttachmentEffect
+{
+    NONE,
+    PERFECT_ACCURACY,
+    MORE_FIREPOWER,
+    SILENCED,
+    RUBBER_CHICKEN
+}
