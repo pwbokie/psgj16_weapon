@@ -301,7 +301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -657, y: 315}
+  m_AnchoredPosition: {x: -657, y: 387}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675922516
@@ -740,7 +740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -657, y: 372}
+  m_AnchoredPosition: {x: -657, y: 318}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023272633
@@ -873,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -658, y: 260}
+  m_AnchoredPosition: {x: -657, y: 257}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060625498
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: {fileID: 2427203133086952156, guid: 0c92f207ab3b30a479784106f181def2, type: 3}
   silencer: {fileID: 2427203133086952156, guid: 4587095e974612748866d55cfd86f3d7, type: 3}
-  chicken: {fileID: 2427203133086952156, guid: 78c78c867c52cd04db1a851fa6801c17, type: 3}
+  chicken: {fileID: 0}
   attachmentParent: {fileID: 1460620240}
 --- !u!4 &1438266843
 Transform:
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   muzzleFlashSource: {fileID: 1137848094}
   casingEjectionSource: {fileID: 1439714572}
   silencedGunshotSound: {fileID: 8300000, guid: a265b8e0ad6cc0748bcb4ce42bef7081, type: 3}
-  rubberChickenSound: {fileID: 8300000, guid: 245ee2c38d1e0c54587de43a5657036c, type: 3}
+  rubberChickenSound: {fileID: 0}
 --- !u!212 &1460620244
 SpriteRenderer:
   m_ObjectHideFlags: 0
