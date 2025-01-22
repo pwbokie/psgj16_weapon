@@ -10,14 +10,17 @@ public class DebugTools : MonoBehaviour
 
     public GameObject attachmentParent;
 
+    [ContextMenu("Add Scope")]
     public void AddScope() {
         attachmentParent.GetComponent<AttachmentParent>().AddAttachment(scope);
     }
 
+    [ContextMenu("Add Silencer")]
     public void AddSilencer() {
         attachmentParent.GetComponent<AttachmentParent>().AddAttachment(silencer);
     }
 
+    [ContextMenu("Add Chicken")]
     public void AddChicken() {
         attachmentParent.GetComponent<AttachmentParent>().AddAttachment(chicken);
     }
