@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.Play();
 
-        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, detectionLayer);
+        RaycastHit2D hit = Physics2D.Raycast(rb2d.position, rb2d.transform.right, Mathf.Infinity, detectionLayer);
         if (hit.collider != null)
         {
             HandleHitObject(hit.collider.gameObject);

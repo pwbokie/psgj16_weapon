@@ -7,6 +7,8 @@ public class Turret : MonoBehaviour
     private Rigidbody2D turret;
     private float rotationDamping = 2f;
     private float torqueForce = 1f;
+
+    private float maxRotationSpeed = 0.3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +30,13 @@ public class Turret : MonoBehaviour
         float currentAngle = turret.rotation;
 
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-        Debug.DrawLine(transform.position, mouseWorldPosition, Color.black);
         if(Mathf.Abs(angleDifference) > 1f)
         {
             float torque = angleDifference * torqueForce;
 
             //Debug.Log(torque * rotationDamping);
-            if(torque * rotationDamping > .3f)
-                turret.AddTorque(0.3f);
+            if(torque * rotationDamping > maxRotationSpeed)
+                turret.AddTorque(maxRotationSpeed);
             else
                 turret.AddTorque(torque * rotationDamping);
         }
