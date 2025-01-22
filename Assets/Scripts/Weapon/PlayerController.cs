@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public List<AttachmentEffect> activeEffects;
 
+    public LayerMask detectionLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +31,27 @@ public class PlayerController : MonoBehaviour
         mainCamera = GetComponentInParent<Camera>();
 
         attachmentParent = GetComponent<AttachmentParent>();
+        detectionLayer = LayerMask.GetMask("Enemy");
     }
 
     void Update()
     {
+        Vector3 mouseScreenPosition = Input.mousePosition;
+
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
-        }
 
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, Mathf.Infinity, detectionLayer);
+
+            if (hit.collider != null)
+            {
+                Debug.Log("Die!");
+                HandleHitObject(hit.collider.gameObject);
+            }
+        }
+    
         
         /*Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -49,15 +63,17 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/
     }
 
+    void HandleHitObject(GameObject hitObject)
+    {
+        Debug.Log($"Handling object: {hitObject.name}");
+    }
+
     void FixedUpdate()
     {
-        if(rb2d == null) return; 
-
-        
-
         Vector3 mouseScreenPosition = Input.mousePosition;
 
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        if(rb2d == null) return; 
 
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
 
@@ -76,7 +92,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb2d.angularVelocity = 0f;
-            Debug.Log("stop");
         }
 
         

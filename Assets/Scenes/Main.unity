@@ -363,7 +363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -649.12, y: 440.92}
+  m_AnchoredPosition: {x: -657, y: 442}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675922516
@@ -871,7 +871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -649.12, y: 379.3}
+  m_AnchoredPosition: {x: -657, y: 372}
   m_SizeDelta: {x: 169.56, y: 48.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023272633
@@ -1197,9 +1197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c253a205c5a8d4baa0860278cd9903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: {fileID: 0}
-  silencer: {fileID: 0}
-  attachmentParent: {fileID: 0}
+  scope: {fileID: 2427203133086952156, guid: 0c92f207ab3b30a479784106f181def2, type: 3}
+  silencer: {fileID: 2427203133086952156, guid: 4587095e974612748866d55cfd86f3d7, type: 3}
+  attachmentParent: {fileID: 1460620240}
 --- !u!4 &1438266843
 Transform:
   m_ObjectHideFlags: 0
@@ -1447,6 +1447,9 @@ MonoBehaviour:
   rotationDamping: 0.5
   stopThreshold: 1
   activeEffects: 
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   FX_MuzzleFlash: {fileID: 2606096390965036722, guid: 39d7b74972ef74d45bc170bda6cc8f92, type: 3}
   FX_Casing: {fileID: 758577167624835058, guid: f11ad5911d022df4e90da1824e467c89, type: 3}
   muzzleFlashSource: {fileID: 1137848094}
@@ -1536,8 +1539,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 4
+  m_Mass: 0.8
+  m_LinearDrag: 2.5
   m_AngularDrag: 20
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -1758,7 +1761,7 @@ GameObject:
   - component: {fileID: 1581790173}
   - component: {fileID: 1581790172}
   - component: {fileID: 1581790171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1774,7 +1777,7 @@ Transform:
   m_GameObject: {fileID: 1581790169}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2802334, y: -7.2549667, z: -0.11781913}
+  m_LocalPosition: {x: 4.92, y: -7.25, z: -0.11781913}
   m_LocalScale: {x: 14.667292, y: 1.0491738, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2205,6 +2208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862843690}
+  - component: {fileID: 1862843691}
   m_Layer: 0
   m_Name: StartArea
   m_TagString: Untagged
@@ -2229,6 +2233,21 @@ Transform:
   - {fileID: 1625737006}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862843691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862843689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b63390845ecae447bc159b4edd7a0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 20
+  height: 20
+  randomFillPercent: 37
 --- !u!1 &2067610415
 GameObject:
   m_ObjectHideFlags: 0

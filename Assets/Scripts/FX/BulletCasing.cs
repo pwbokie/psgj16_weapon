@@ -27,7 +27,7 @@ public class BulletCasing : MonoBehaviour
         // Check if the sound has already played the maximum number of times and is not on cooldown
         if (playCount < maxPlays && !isOnCooldown && audioSource != null)
         {
-            UnityEngine.Debug.Log("Playing casing sound");
+            //UnityEngine.Debug.Log("Playing casing sound");
             audioSource.pitch = Random.Range(0.7f, 1.3f);
             audioSource.Play();
             playCount++; // Increment the play count
