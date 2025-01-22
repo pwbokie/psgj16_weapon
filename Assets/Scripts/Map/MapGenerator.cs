@@ -12,8 +12,8 @@ public class MapGenerator : MonoBehaviour
     public string seed;
     public bool useRandomSeed;
 
-    [Range(0,100)]
-    public int randomFillPercent;
+    [Range(0,1)]
+    public float randomFillPercent;
 
     private bool[,] worldGrid;
 
@@ -41,14 +41,15 @@ public class MapGenerator : MonoBehaviour
         {
             seed = System.DateTime.Today.ToString();
         }
+        UnityEngine.Random.InitState(47329);
         System.Random rnd = new System.Random(seed.GetHashCode());
         worldGrid = new bool[width, height];
         for(int x = 0; x < width; x++)
         {
             for(int y = 0; y < height; y++)
             {
-                Debug.Log(rnd.GetHashCode().ToString());
-                worldGrid[x, y] = true;
+                Debug.Log(UnityEngine.Random.value);
+                worldGrid[x, y] = UnityEngine.Random.value < randomFillPercent;
             }
         }
     }
