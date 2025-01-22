@@ -21,10 +21,10 @@ public class ItemBubble : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        /*if (collision.gameObject.CompareTag("Player"))
         {
             Pop();
-        }
+        }*/
     }
 
     public void Pop() {
