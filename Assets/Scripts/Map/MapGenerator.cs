@@ -9,11 +9,8 @@ public class MapGenerator : MonoBehaviour
 
     public string seed;
     public bool useRandomSeed;
+    
 
-    [Range(0,100)]
-    public int randomFillPercent;
-
-    int[,] map;
 
     // Start is called before the first frame update
     void Start()
