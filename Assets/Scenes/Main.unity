@@ -123,6 +123,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &107043957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107043958}
+  - component: {fileID: 107043959}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107043958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107043957}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.847968, y: -2.3766701, z: -202.37094}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2100513382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &107043959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107043957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4c03db0c6f3914780ab5d35ec2d510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  driftSpeedX: 0.4
+  driftSpeedY: 0.2
+  tilesWidth: 8
+  tilesHeight: 4
+  cam: {fileID: 1108321574}
+  tilePrefab: {fileID: -2253911629886400664, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
+  sprite: {fileID: 4866971261063098208, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
+  foregroundColor: {r: 0.23584908, g: 0.052287295, b: 0.052287295, a: 1}
 --- !u!1 &141526654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4c03db0c6f3914780ab5d35ec2d510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  driftSpeedX: 0.1
+  driftSpeedX: 0.4
   driftSpeedY: 0.2
   tilesWidth: 8
   tilesHeight: 4
@@ -2728,7 +2780,8 @@ Transform:
   m_LocalPosition: {x: 2.847968, y: 2.3766701, z: 202.37094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 107043958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121676453

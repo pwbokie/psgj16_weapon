@@ -16,19 +16,24 @@ public class Background : MonoBehaviour
     public Sprite sprite;
     public Color foregroundColor;
 
-    public void Start() {
-        drift = new Vector2(driftSpeedX, driftSpeedY);
-        // Spawn tiles to fill the visible background
-        float spriteWidth = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x;
-        float spriteHeight = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+    private bool instantiated = false;
 
-        for (int i=-(tilesWidth/2); i < tilesWidth/2; i++) {
-            for (int j=-(tilesHeight/2); j < tilesHeight/2; j++) {
-                GameObject tile = Instantiate(tilePrefab, new Vector2(spriteWidth * i, spriteHeight * j), Quaternion.identity);
-                tile.transform.parent = transform;
-                tile.GetComponent<SpriteRenderer>().sprite = sprite;
-                tile.GetComponent<SpriteRenderer>().color = foregroundColor;
-                tile.GetComponent<SpriteRenderer>().sortingOrder = -10;
+    public void Awake() {
+        if (!instantiated) {
+            instantiated = true;
+            drift = new Vector2(driftSpeedX, driftSpeedY);
+            // Spawn tiles to fill the visible background
+            float spriteWidth = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x;
+            float spriteHeight = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+
+            for (int i=-(tilesWidth/2); i < tilesWidth/2; i++) {
+                for (int j=-(tilesHeight/2); j < tilesHeight/2; j++) {
+                    GameObject tile = Instantiate(tilePrefab, new Vector2(spriteWidth * i, spriteHeight * j), Quaternion.identity);
+                    tile.transform.parent = transform;
+                    tile.GetComponent<SpriteRenderer>().sprite = sprite;
+                    tile.GetComponent<SpriteRenderer>().color = foregroundColor;
+                    tile.GetComponent<SpriteRenderer>().sortingOrder = -10;
+                }
             }
         }
     }
