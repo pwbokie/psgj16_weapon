@@ -55,12 +55,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            modModeManager.ToggleModMode();
-        }
-        else if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             TryFire();
         }
@@ -86,8 +81,6 @@ public class PlayerController : MonoBehaviour
         {
             hitObject.SendMessage("Pop");
         }
-
-
     }
 
     void DieDieDie(GameObject item)
@@ -120,8 +113,6 @@ public class PlayerController : MonoBehaviour
         {
             rb2d.angularVelocity = 0f;
         }
-
-        
     }
 
     [Header("FX Prefabs")]

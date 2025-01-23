@@ -9,8 +9,6 @@ public class LootCrate : MonoBehaviour
     private PlayerController playerController;
     private GameObject contents;
 
-    private bool handling = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,34 +17,24 @@ public class LootCrate : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        // for some reason I am gaining the same attachment multiple times
-        // oncollisionenter probably happening on multiple threads or something
-        // anyway here's wonderwall
-        if (!handling)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            handling = true;
-
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                if (contents != null && crateType == CrateType.ATTACHMENT && contents.GetComponent<Attachable>() != null)
-                {   
-                    if (playerController.GetComponent<AttachmentParent>().AddAttachment(contents))
-                    {
-                        gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
-                    }
-                }
-                else if (contents == null && crateType == CrateType.AMMO && playerController.currentAmmo < playerController.maxAmmo)
+            if (contents != null && crateType == CrateType.ATTACHMENT && contents.GetComponent<Attachable>() != null)
+            {   
+                if (playerController.GetComponent<AttachmentParent>().AddAttachment(contents))
                 {
-                    playerController.RefillAmmo();
                     gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
                 }
-                else if (contents == null)
-                {
-                    Debug.LogWarning("LootCrate has no contents assigned!");
-                }
             }
-
-            handling = false;
+            else if (contents == null && crateType == CrateType.AMMO && playerController.currentAmmo < playerController.maxAmmo)
+            {
+                playerController.RefillAmmo();
+                gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+            }
+            else if (contents == null)
+            {
+                Debug.LogWarning("LootCrate has no contents assigned!");
+            }
         }
     }
 

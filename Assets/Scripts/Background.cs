@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    public static float driftSpeedX = 0.1f;
-    public static float driftSpeedY = 0.2f;
-    private static Vector2 drift = new Vector2(driftSpeedX, driftSpeedY);
+    public float driftSpeedX = 0.1f;
+    public float driftSpeedY = 0.2f;
+    private Vector2 drift;
 
     public int tilesWidth = 6;
     public int tilesHeight = 4;
@@ -17,6 +17,7 @@ public class Background : MonoBehaviour
     public Color foregroundColor;
 
     public void Start() {
+        drift = new Vector2(driftSpeedX, driftSpeedY);
         // Spawn tiles to fill the visible background
         float spriteWidth = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.x;
         float spriteHeight = tilePrefab.GetComponent<SpriteRenderer>().bounds.size.y;
@@ -27,10 +28,9 @@ public class Background : MonoBehaviour
                 tile.transform.parent = transform;
                 tile.GetComponent<SpriteRenderer>().sprite = sprite;
                 tile.GetComponent<SpriteRenderer>().color = foregroundColor;
+                tile.GetComponent<SpriteRenderer>().sortingOrder = -10;
             }
         }
-
-        drift = new Vector2(driftSpeedX, driftSpeedY);
     }
 
     private Vector2 currentOffset;
