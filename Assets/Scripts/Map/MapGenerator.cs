@@ -26,6 +26,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dungeonParent = GameObject.Find("PlayMode").transform;
        GenerateDungeon();
     }
 
