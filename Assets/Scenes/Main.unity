@@ -163,6 +163,7 @@ Transform:
   - {fileID: 1969566039}
   - {fileID: 1045900751}
   - {fileID: 1018614164}
+  - {fileID: 1424557509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141627757
@@ -2009,6 +2010,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9953c95a4d283c438b0b75415c126eb, type: 3}
+--- !u!1 &1424557508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424557509}
+  m_Layer: 0
+  m_Name: World
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424557509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424557508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 141526655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438266841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,8 +2714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b696074cdcccc4c48b5b83abbd84c63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playMode: {fileID: 141526654}
-  modMode: {fileID: 2100513381}
+  playMode: {fileID: 0}
+  modMode: {fileID: 0}
   isModModeActive: 0
 --- !u!4 &2012241212
 Transform:
