@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -94,7 +95,8 @@ public class MapGenerator : MonoBehaviour
     {
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
-            int rnd = Random.Range(1, 2);
+            Debug.Log(entry.Value);
+            int rnd = Random.Range(1, 3);
             Vector3 roomPosition = new Vector3(entry.Key.x * 80, entry.Key.y * 80, 0);
             GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? startPrefab[0] : startPrefab[rnd];
             Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
