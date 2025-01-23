@@ -34,7 +34,7 @@ public class AttachmentText : MonoBehaviour
         StartCoroutine("HideText", 7f);
     }
 
-    IEnumerable HideText(float delay)
+    IEnumerator HideText(float delay)
     {
         yield return new WaitForSeconds(delay);
         animator.SetBool("textShown", false);
