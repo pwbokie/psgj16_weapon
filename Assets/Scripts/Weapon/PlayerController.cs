@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float casingEjectionForce = 5f;
 
     public Camera mainCamera;
+    public GameObject casingParent;
     public float torqueForce = 1f;
     public float rotationDamping = 2f;
     public float stopThreshold = 1f;
@@ -157,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
         rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower, ForceMode2D.Impulse);
 
-        GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity);
+        GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
 

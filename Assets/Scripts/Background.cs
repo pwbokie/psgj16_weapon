@@ -16,6 +16,7 @@ public class Background : MonoBehaviour
     public Sprite sprite;
     public Color foregroundColor;
 
+    public bool deactivateAfterInstantiating = false;
     private bool instantiated = false;
 
     public void Awake() {
@@ -36,9 +37,11 @@ public class Background : MonoBehaviour
                 }
             }
         }
-    }
 
-    private Vector2 currentOffset;
+        if (deactivateAfterInstantiating) {
+            gameObject.SetActive(false);
+        }
+    }
 
     public void Update() {
         Vector2 newPosition = (Vector2)transform.position + drift * Time.deltaTime;
