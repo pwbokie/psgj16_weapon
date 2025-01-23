@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 mouseWorldPosition;
 
     private AchievementManager achievementManager;
+    private ModModeManager modModeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         detectionLayer = LayerMask.GetMask("Shootable");
 
         achievementManager = FindObjectOfType<AchievementManager>();
+        modModeManager = FindObjectOfType<ModModeManager>();
 
         UpdateAmmoCount();
     }
@@ -54,11 +56,14 @@ public class PlayerController : MonoBehaviour
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            modModeManager.ToggleModMode();
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             TryFire();
         }
-    
         
         /*Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);

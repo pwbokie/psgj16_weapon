@@ -2579,6 +2579,51 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1804189100}
   m_SourcePrefab: {fileID: 100100000, guid: 44a0823fa1ba1b445bc523fd06265830, type: 3}
+--- !u!1 &2012241210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2012241212}
+  - component: {fileID: 2012241211}
+  m_Layer: 0
+  m_Name: ModModeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2012241211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012241210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b696074cdcccc4c48b5b83abbd84c63e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 1067120939}
+--- !u!4 &2012241212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012241210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.030753655, y: 2.4725246, z: 122.45421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121676453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,12 +2905,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1108321577}
+  - {fileID: 1067120940}
   - {fileID: 1460620245}
   - {fileID: 1308148436}
   - {fileID: 751730708}
   - {fileID: 740958719}
   - {fileID: 1438266843}
-  - {fileID: 1067120940}
   - {fileID: 2121676455}
   - {fileID: 660346618}
   - {fileID: 1960268464}
@@ -2875,3 +2920,4 @@ SceneRoots:
   - {fileID: 221901365}
   - {fileID: 1594320554}
   - {fileID: 1609284955}
+  - {fileID: 2012241212}
