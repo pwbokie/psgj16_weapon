@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 mouseWorldPosition;
 
+    private AchievementManager achievementManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
         attachmentParent = GetComponent<AttachmentParent>();
         detectionLayer = LayerMask.GetMask("Shootable");
+
+        achievementManager = FindObjectOfType<AchievementManager>();
 
         UpdateAmmoCount();
     }
@@ -123,17 +127,27 @@ public class PlayerController : MonoBehaviour
     public GameObject muzzleFlashSource;
     public GameObject casingEjectionSource;
 
+    // for funny achievement
+    private int dryFireConsecutiveCount = 0;
+
     public void TryFire()
     {
         
         if (currentAmmo > 0)
         {
             Fire();
+            dryFireConsecutiveCount = 0;
         }
         else
         {
             audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.PlayOneShot(gunEmptyClickSound);
+            dryFireConsecutiveCount++;
+
+            if (dryFireConsecutiveCount == 50)
+            {
+                achievementManager.UnlockAchievement("I think it's empty");
+            }
         }
     }
 
