@@ -9,8 +9,8 @@ public class ModModeManager : MonoBehaviour
     private float normalTimeScale = 1f;
     private float slowdownTimeScale = 0.01f;
     private float freezeTimeScale = 0f; // Completely frozen
-    private float transitionSpeed = 3f; // Speed of the slowdown
-    private float cameraZoomSpeed = 1.5f; // Speed of the camera zoom
+    private float transitionSpeed = 5f; // Speed of the slowdown
+    private float cameraZoomSpeed = 4f; // Speed of the camera zoom
     private bool isModModeActive = false;
 
     public void ToggleModMode()
@@ -67,25 +67,29 @@ public class ModModeManager : MonoBehaviour
     {
         float currentScale = Time.timeScale;
 
-        // Speed up back to normal
-        while (Time.timeScale < normalTimeScale)
+        // Gradually speed up back to normal time scale
+        while (Time.timeScale < normalTimeScale - 0.01f) // Use an epsilon to avoid infinite looping
         {
             currentScale = Mathf.Lerp(currentScale, normalTimeScale, transitionSpeed * Time.unscaledDeltaTime);
-            Time.timeScale = Mathf.Min(currentScale, normalTimeScale); // Clamp to avoid overshooting
+            Time.timeScale = Mathf.Clamp(currentScale, slowdownTimeScale, normalTimeScale); // Clamp to stay within range
             Time.fixedDeltaTime = 0.02f * Time.timeScale; // Update physics time step
             yield return null;
         }
+
+        // Ensure final values are exact
+        Time.timeScale = normalTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 
     private IEnumerator SmoothCameraZoom(float targetZoom)
     {
         float currentZoom = virtualCamera.m_Lens.OrthographicSize;
 
-        while (!Mathf.Approximately(currentZoom, targetZoom))
+        while (Mathf.Abs(currentZoom - targetZoom) > 0.01f) // Check for a small difference to avoid infinite looping
         {
-            currentZoom = Mathf.Lerp(currentZoom, targetZoom, cameraZoomSpeed * Time.unscaledDeltaTime);
+            currentZoom = Mathf.MoveTowards(currentZoom, targetZoom, cameraZoomSpeed * Time.unscaledDeltaTime);
             virtualCamera.m_Lens.OrthographicSize = currentZoom;
-            yield return null;
+            yield return null; // Wait for the next frame
         }
 
         virtualCamera.m_Lens.OrthographicSize = targetZoom; // Ensure exact final value
