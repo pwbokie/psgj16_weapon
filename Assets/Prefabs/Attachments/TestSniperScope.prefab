@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   attachment: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!1001 &4690313416573926836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,6 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d54769c9ba904f92907e1b309818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachmentName: Long Scope
+  description: You'll never miss again. If you do, skill issue.
   type: 3
   effects: 0200000001000000
 --- !u!114 &8184629659036983219

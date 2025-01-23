@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d54769c9ba904f92907e1b309818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachmentName: Silencer
+  description: Silent but deadly.
   type: 4
   effects: 03000000
 --- !u!114 &8184629659036983219

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Attachable : MonoBehaviour
 {
+    public string attachmentName;
+    public string description;
+    
     public AttachmentType type;
     public List<AttachmentEffect> effects;
 

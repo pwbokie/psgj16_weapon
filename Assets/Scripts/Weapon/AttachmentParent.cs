@@ -31,6 +31,10 @@ public class AttachmentParent : MonoBehaviour
             if (!slots[i].Occupied() && slots[i].type == attachable.type) {
                 slots[i].attachment = Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
                 attached = true;
+
+                AttachmentText attachmentText = FindObjectOfType<AttachmentText>();
+                attachmentText.ShowDetails(attachable);
+
                 Debug.Log("Attached " + attachable.type + " onto the " + gameObject.name);
             }
             else if (slots[i].attachment != null && slots[i].attachment.GetComponent<AttachmentParent>() != null) {
