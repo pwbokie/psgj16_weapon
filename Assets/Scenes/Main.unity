@@ -173,8 +173,9 @@ MonoBehaviour:
   tilesHeight: 4
   cam: {fileID: 1108321574}
   tilePrefab: {fileID: -2253911629886400664, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
-  sprite: {fileID: 4866971261063098208, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
-  foregroundColor: {r: 0.23584908, g: 0.052287295, b: 0.052287295, a: 1}
+  sprite: {fileID: -368517498808276280, guid: 3fe6a24cdf9be5647b5a5837e3cdcdd6, type: 3}
+  foregroundColor: {r: 0.6509434, g: 0.31191036, b: 0, a: 1}
+  deactivateAfterInstantiating: 0
 --- !u!1 &141526654
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,18 +205,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1067120940}
   - {fileID: 1460620245}
   - {fileID: 1308148436}
   - {fileID: 2121676455}
   - {fileID: 660346618}
-  - {fileID: 1804189106}
-  - {fileID: 1873973422}
-  - {fileID: 1286771435}
-  - {fileID: 1969566039}
-  - {fileID: 1045900751}
-  - {fileID: 1018614164}
   - {fileID: 1424557509}
+  - {fileID: 848160375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141627757
@@ -318,7 +313,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 4890681538597874096, guid: 8bf213f1f7860f04fbb0381d38e4167c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,7 +504,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 4890681538597874096, guid: 8bf213f1f7860f04fbb0381d38e4167c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1157,6 +1152,7 @@ MonoBehaviour:
   tilePrefab: {fileID: -2253911629886400664, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
   sprite: {fileID: 4866971261063098208, guid: 68b3395be098a804b8a98be7aba1f128, type: 3}
   foregroundColor: {r: 0.23584908, g: 0.052287295, b: 0.052287295, a: 1}
+  deactivateAfterInstantiating: 0
 --- !u!4 &660346618
 Transform:
   m_ObjectHideFlags: 0
@@ -1391,6 +1387,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &848160374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848160375}
+  m_Layer: 0
+  m_Name: Casings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &848160375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848160374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 141526655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952308888
 GameObject:
   m_ObjectHideFlags: 3
@@ -1554,12 +1581,12 @@ Transform:
   m_GameObject: {fileID: 1067120938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3790271, y: -0.64271307, z: -300.98816}
+  m_LocalPosition: {x: -0.0039999485, y: 1.51, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 952308889}
-  m_Father: {fileID: 141526655}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1107139501
 PrefabInstance:
@@ -1567,7 +1594,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 3965625864704114161, guid: bbb94c8e98190f341b750273b5f6b452, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2011,7 +2038,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 7136069975616893841, guid: a9953c95a4d283c438b0b75415c126eb, type: 3}
       propertyPath: m_Name
@@ -2090,7 +2117,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1804189106}
+  - {fileID: 1873973422}
+  - {fileID: 1286771435}
+  - {fileID: 1969566039}
+  - {fileID: 1045900751}
+  - {fileID: 1018614164}
   m_Father: {fileID: 141526655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438266841
@@ -2235,6 +2268,7 @@ MonoBehaviour:
   firepower: 8
   casingEjectionForce: 5
   mainCamera: {fileID: 0}
+  casingParent: {fileID: 848160374}
   torqueForce: 10
   rotationDamping: 0.5
   stopThreshold: 1
@@ -2519,7 +2553,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 4890681538597874096, guid: 8bf213f1f7860f04fbb0381d38e4167c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2662,7 +2696,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 141526655}
+    m_TransformParent: {fileID: 1424557509}
     m_Modifications:
     - target: {fileID: 1562435036135632378, guid: 44a0823fa1ba1b445bc523fd06265830, type: 3}
       propertyPath: contents
@@ -2766,8 +2800,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b696074cdcccc4c48b5b83abbd84c63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playMode: {fileID: 0}
-  modMode: {fileID: 0}
+  playMode: {fileID: 141526654}
+  modMode: {fileID: 2100513381}
+  playModeBackground: {fileID: 660346616}
+  mainCamera: {fileID: 1108321576}
+  cinemachineCamera: {fileID: 1067120939}
+  playModeColor: {r: 0.20784314, g: 0.039215688, b: 0.039215688, a: 1}
+  modModeColor: {r: 0.5377358, g: 0.25914982, b: 0, a: 1}
+  gunTransform: {fileID: 1460620245}
+  targetCameraZoom: 2.5
+  cameraLerpSpeed: 1.5
   isModModeActive: 0
 --- !u!4 &2012241212
 Transform:
@@ -2799,7 +2841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2100513382
 Transform:
   m_ObjectHideFlags: 0
@@ -3100,6 +3142,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1108321577}
+  - {fileID: 1067120940}
   - {fileID: 141526655}
   - {fileID: 2100513382}
   - {fileID: 740958719}
