@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
+using Unity.Services.Analytics;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,7 +30,8 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         dungeonParent = GameObject.Find("World").transform;
-       GenerateDungeon();
+        GenerateDungeon();
+        EmptyRooms();
     }
 
     // Update is called once per frame
@@ -80,6 +83,7 @@ public class MapGenerator : MonoBehaviour
                     if(roomsGenerated >= roomCount)
                         break;
                 }
+                
             }
 
             //Remove the current room from the queue if it has no more valid neighbors
@@ -95,11 +99,35 @@ public class MapGenerator : MonoBehaviour
     {
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
-            Debug.Log(entry.Value);
             int rnd = Random.Range(1, 3);
             Vector3 roomPosition = new Vector3(entry.Key.x * 80, entry.Key.y * 80, 0);
             GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? startPrefab[0] : startPrefab[rnd];
             Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
+        }
+    }
+
+    void EmptyRooms()
+    {
+        Vector2Int[] directions = {Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right, 
+            new Vector2Int(-1, 1), new Vector2Int(1, 1), 
+            new Vector2Int(-1, -1), new Vector2Int(1, -1)};
+
+        List<Vector2Int> occupiedPositions = new List<Vector2Int>(dungeonMap.Keys);
+
+        foreach(Vector2Int roomPosition in occupiedPositions)
+        {
+            foreach(Vector2Int direction in directions)
+            {
+                Vector2Int adjacentPosition = roomPosition + direction;
+
+                if(!dungeonMap.ContainsKey(adjacentPosition))
+                {
+                    dungeonMap[adjacentPosition] = false;
+
+                    Vector3 position = new Vector3(adjacentPosition.x * 80, adjacentPosition.y * 80, 0);
+                    Instantiate(emptyPrefab, position, quaternion.identity, dungeonParent);
+                }
+            }
         }
     }
 
