@@ -8,6 +8,8 @@ public class ModModeManager : MonoBehaviour
     public GameObject playMode;
     public GameObject modMode;
 
+    public AudioSource music;
+
     public GameObject playModeBackground;
 
     public Camera mainCamera;
@@ -19,6 +21,9 @@ public class ModModeManager : MonoBehaviour
     public Transform gunTransform; // Reference to the gun's Transform
     public float targetCameraZoom = 2f;
     public float cameraLerpSpeed = 3f; // Speed for zooming and rotation lerp
+
+    public float modModeMusicPitch = 0.8f;
+    public float modModePitchChangeSpeed = 0.1f;
 
     public bool isModModeActive = false;
 
@@ -62,6 +67,7 @@ public class ModModeManager : MonoBehaviour
         isModModeActive = true;
 
         PausePhysics();
+        StartCoroutine(ChangeMusicPitch(modModeMusicPitch));
 
         // Start lerping the camera to the target zoom and rotation
         StartCoroutine(LerpCamera(targetCameraZoom, Quaternion.LookRotation(Vector3.forward, gunTransform.up)));
@@ -70,12 +76,15 @@ public class ModModeManager : MonoBehaviour
     [ContextMenu("Exit Mod Mode")]
     public void DisableModMode()
     {
+        StopAllCoroutines();
+        
         modMode.SetActive(false);
         mainCamera.backgroundColor = playModeColor;
         playModeBackground.SetActive(true);
         isModModeActive = false;
 
         ResumePhysics();
+        StartCoroutine(ChangeMusicPitch(1f));
 
         // Start lerping the camera back to its original zoom and rotation
         StartCoroutine(LerpCamera(originalCameraZoom, originalCameraRotation));
@@ -129,5 +138,17 @@ public class ModModeManager : MonoBehaviour
 
         cinemachineCamera.m_Lens.OrthographicSize = targetZoom;
         cinemachineCamera.transform.rotation = targetRotation;
+    }
+
+    private IEnumerator ChangeMusicPitch(float targetPitch)
+    {
+        while (Mathf.Abs(music.pitch - targetPitch) > 0.01f)
+        {
+            music.pitch = Mathf.Lerp(music.pitch, targetPitch, modModePitchChangeSpeed * Time.unscaledDeltaTime);
+            yield return null;
+        }
+
+        // Ensure the pitch is set exactly to the target
+        music.pitch = targetPitch;
     }
 }
