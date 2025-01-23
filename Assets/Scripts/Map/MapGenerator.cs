@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -15,17 +16,17 @@ public class MapGenerator : MonoBehaviour
     [Range(0,1)]
     public float randomFillPercent;
 
-    private bool[,] worldGrid;
-
     public List<GameObject> startPrefab;
     public GameObject emptyPrefab;
+
+    public int roomCount = 5;
+    private Dictionary<Vector2Int, bool> dungeonMap = new Dictionary<Vector2Int, bool>();
+    public Transform dungeonParent;
 
     // Start is called before the first frame update
     void Start()
     {
-        GenerateWorldGrid();
-        CheckConnected();
-        BuildGrid();
+       GenerateDungeon();
     }
 
     // Update is called once per frame
@@ -34,126 +35,80 @@ public class MapGenerator : MonoBehaviour
         
     }
 
-    void GenerateWorldGrid()
+    void GenerateDungeon()
     {
-        
-        if(useRandomSeed || seed == null)
+        Vector2Int startRoom = Vector2Int.zero;
+        dungeonMap[startRoom] = true;
+
+        // List for room place for connectivity
+        List<Vector2Int> roomList = new List<Vector2Int>();
+        roomList.Add(startRoom);
+
+        //Directions for room placement
+        Vector2Int[] directions = {Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right};
+
+        //Generate Rooms
+        int roomsGenerated = 1;
+        while(roomsGenerated < roomCount && roomList.Count > 0)
         {
-            seed = System.DateTime.Today.ToString();
-        }
-        UnityEngine.Random.InitState(47329);
-        System.Random rnd = new System.Random(seed.GetHashCode());
-        worldGrid = new bool[width, height];
-        for(int x = 0; x < width; x++)
-        {
-            for(int y = 0; y < height; y++)
+            //Randomly pick a room from the queue to expand
+            int randomIndex = Random.Range(0, roomList.Count);
+            Vector2Int currentRoom = roomList[randomIndex];
+
+            //Randomize the number of directions to explore (1 to all directions)
+            int directionsToExplore = Random.Range(1, directions.Length + 1);
+
+            //Shuffle directions to randomize generation
+            directions = ShuffleArray(directions);
+
+            for(int x = 0; x < directionsToExplore; x++)
             {
-                Debug.Log(UnityEngine.Random.value);
-                worldGrid[x, y] = UnityEngine.Random.value < randomFillPercent;
+                Vector2Int newRoom = currentRoom + directions[x];
+
+                //Check if the room is within bounds and hasn't been placed yet
+                if(!dungeonMap.ContainsKey(newRoom) && Mathf.Abs(newRoom.x) < width / 2 &&
+                    Mathf.Abs(newRoom.y) < height / 2)
+                {
+                    //Place the room
+                    dungeonMap[newRoom] = true;
+                    roomList.Add(newRoom);
+                    roomsGenerated++;
+
+                    //Break if we reach the desired room count
+                    if(roomsGenerated >= roomCount)
+                        break;
+                }
             }
+
+            //Remove the current room from the queue if it has no more valid neighbors
+            if(roomList.Count > 1 && Random.value > 0.5f)
+                roomList.RemoveAt(randomIndex); // Randomly remove rooms to increase random
+        }
+
+        //Instantiate rooms in the scene
+        InstantiateDungeon();
+    }
+
+    void InstantiateDungeon()
+    {
+        foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
+        {
+            int rnd = Random.Range(1, 2);
+            Vector3 roomPosition = new Vector3(entry.Key.x * 80, entry.Key.y * 80, 0);
+            GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? startPrefab[0] : startPrefab[rnd];
+            Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
         }
     }
 
-    void CheckConnected()
+    Vector2Int[] ShuffleArray(Vector2Int[] array)
     {
-        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
-        Vector2Int start = Vector2Int.zero;
-
-        FloodFill(start, visited);
-
-        //Ensure all rooms are reachable
-        for(int x = 0; x < width; x++)
+        for(int x = 0; x < array.Length; x++)
         {
-            for(int y = 0; y < height; y++)
-            {
-                if(worldGrid[x,y] && !visited.Contains(new Vector2Int(x,y)))
-                {
-                    ConnectRoomToVisited(new Vector2Int(x, y), visited);
-                }
-            }
+            int randomIndex = Random.Range(0, array.Length);
+            Vector2Int temp = array[x];
+            array[x] = array[randomIndex];
+            array[randomIndex] = temp;
         }
-    }
-
-    void FloodFill(Vector2Int position, HashSet<Vector2Int> visited)
-    {
-        Stack<Vector2Int> stack = new Stack<Vector2Int>();
-        stack.Push(position);
-
-        while(stack.Count > 0)
-        {
-            Vector2Int current = stack.Pop();
-            if(visited.Contains(current)) continue;
-
-            visited.Add(current);
-
-            //Check neighbors (up, down, left, right)
-            foreach(Vector2Int neighbor in GetNeighbors(current))
-            {
-                if(worldGrid[neighbor.x, neighbor.y] && !visited.Contains(neighbor))
-                {
-                    stack.Push(neighbor);
-                }
-            }
-        }
-    }
-
-    void ConnectRoomToVisited(Vector2Int position, HashSet<Vector2Int> visited)
-    {
-        //Find a visited neighbor
-        foreach (Vector2Int neighbor in GetNeighbors(position))
-        {
-            if(visited.Contains(neighbor))
-            {
-                worldGrid[position.x, position.y] = true;
-                visited.Add(position);
-                return;
-            }
-        }
-    }
-
-    List<Vector2Int> GetNeighbors(Vector2Int position)
-    {
-        List<Vector2Int> neighbors = new List<Vector2Int>();
-
-        Vector2Int[] directions = {
-            Vector2Int.up,
-            Vector2Int.down,
-            Vector2Int.left,
-            Vector2Int.right
-        };
-
-        foreach(Vector2Int direction in directions)
-        {
-            Vector2Int neighbor = position + direction;
-            if(neighbor.x >=0 && neighbor.x < width && neighbor.y >= 0 && neighbor.y < height)
-            {
-                neighbors.Add(neighbor);
-            }
-        }
-
-        return neighbors;
-    }
-
-    void BuildGrid()
-    {
-        for(int x = 0; x < width; x++)
-        {
-            for(int y = 0; y < height; y++)
-            {
-                Vector2 worldPosition = new Vector2(x * 80, y * 80);
-                if(worldPosition == Vector2.zero)
-                {
-                    Instantiate(startPrefab[0], worldPosition, quaternion.identity);
-                }
-                else if(worldGrid[x,y])
-                {
-                    Instantiate(startPrefab[1], worldPosition, quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(emptyPrefab, worldPosition, quaternion.identity);
-                }
-            }
-        }
+        return array;
     }
 }
