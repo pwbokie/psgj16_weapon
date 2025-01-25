@@ -35,6 +35,8 @@ public class AttachmentParent : MonoBehaviour
                 AttachmentText attachmentText = FindObjectOfType<AttachmentText>();
                 attachmentText.ShowDetails(attachable);
 
+                player.allAttachments.Add(slots[i].attachment);
+
                 Debug.Log("Attached " + attachable.type + " onto the " + gameObject.name);
             }
             else if (slots[i].attachment != null && slots[i].attachment.GetComponent<AttachmentParent>() != null) {

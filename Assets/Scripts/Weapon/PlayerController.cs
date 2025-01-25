@@ -31,11 +31,14 @@ public class PlayerController : MonoBehaviour
     public List<AttachmentEffect> activeEffects;
 
     public LayerMask detectionLayer;
+    public LayerMask attachmentLayer;
 
     private Vector3 mouseWorldPosition;
 
     private AchievementManager achievementManager;
     private ModModeManager modModeManager;
+
+    public List<GameObject> allAttachments;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +54,43 @@ public class PlayerController : MonoBehaviour
         modModeManager = FindObjectOfType<ModModeManager>();
 
         UpdateAmmoCount();
+
+        allAttachments = new List<GameObject>();
     }
+
+    private GameObject hoveredAttachment;
 
     void Update()
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
+        mouseWorldPosition.z = 0;
+
+        if (!modModeManager.isModModeActive)
         {
-            TryFire();
+            // play mode logic
+            if (Input.GetMouseButtonDown(0))
+            {
+                TryFire();
+            }
+        }
+        else 
+        {
+            Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
+            if (hit != null && hit.gameObject != hoveredAttachment)
+            {  
+                if (hoveredAttachment != null)
+                {
+                    hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+
+                hoveredAttachment = hit.gameObject;
+                hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+            }
+            else if (hit == null && hoveredAttachment != null)
+            {
+                hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                hoveredAttachment = null;
+            }
         }
         
         /*Vector2 mousePosition = Input.mousePosition;

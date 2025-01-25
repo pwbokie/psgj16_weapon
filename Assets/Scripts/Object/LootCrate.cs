@@ -17,7 +17,7 @@ public class LootCrate : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Attachment"))
         {
             if (contents != null && crateType == CrateType.ATTACHMENT && contents.GetComponent<Attachable>() != null)
             {   

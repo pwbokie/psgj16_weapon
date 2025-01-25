@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ModModeManager : MonoBehaviour
 {
+    private PlayerController player;
+    public GameObject attachmentsHolder;
+
     public GameObject playMode;
     public GameObject modMode;
 
@@ -34,6 +37,8 @@ public class ModModeManager : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+
         originalCameraZoom = cinemachineCamera.m_Lens.OrthographicSize;
         originalCameraRotation = cinemachineCamera.transform.rotation;
     }
@@ -69,6 +74,8 @@ public class ModModeManager : MonoBehaviour
         PausePhysics();
         StartCoroutine(ChangeMusicPitch(modModeMusicPitch));
 
+        TakeAllAttachments();
+
         // Start lerping the camera to the target zoom and rotation
         StartCoroutine(LerpCamera(targetCameraZoom, Quaternion.LookRotation(Vector3.forward, gunTransform.up)));
     }
@@ -77,8 +84,9 @@ public class ModModeManager : MonoBehaviour
     public void DisableModMode()
     {
         StopAllCoroutines();
-        
+
         modMode.SetActive(false);
+        ReturnAllAttachments();
         mainCamera.backgroundColor = playModeColor;
         playModeBackground.SetActive(true);
         isModModeActive = false;
@@ -150,5 +158,30 @@ public class ModModeManager : MonoBehaviour
 
         // Ensure the pitch is set exactly to the target
         music.pitch = targetPitch;
+    }
+
+    public void TrySelectAttachment(GameObject attachment)
+    {
+        if (attachment != null)
+        {
+            attachment.GetComponent<Attachable>();
+        }
+    }
+
+    public void TakeAllAttachments()
+    {
+        foreach (GameObject attachment in player.allAttachments)
+        {
+            attachment.transform.SetParent(attachmentsHolder.transform);
+        }
+    }
+
+    public void ReturnAllAttachments()
+    {
+        foreach (Transform child in attachmentsHolder.transform)
+        {
+            child.GetComponent<SpriteRenderer>().color = Color.white;
+            child.SetParent(player.transform);
+        }
     }
 }
