@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Enemy
 {
     private Rigidbody2D turret;
     private float rotationDamping = 2f;
@@ -11,6 +12,8 @@ public class Turret : MonoBehaviour
     public bool debug = false;
 
     private float maxRotationSpeed = 30f;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,4 +56,5 @@ public class Turret : MonoBehaviour
         }
         
     }
+
 }
