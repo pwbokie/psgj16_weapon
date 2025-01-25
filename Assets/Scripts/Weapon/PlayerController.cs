@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject casingParent;
     public float torqueForce = 1f;
     public float rotationDamping = 2f;
-    public float stopThreshold = 1f;
+    public float stopThreshold = 0.2f;
 
     public int maxAmmo = 6;
     public int currentAmmo = 6;
@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
                 hoveredAttachment = null;
             }
         }
+        Vector3 right = new Vector3(1, 20, 0);
+        Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
         
         /*Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -118,7 +120,8 @@ public class PlayerController : MonoBehaviour
 
     void DieDieDie(GameObject item)
     {
-        Destroy(item);
+        item.GetComponent<Turret>().TakeDamage();
+
     }
 
     void FixedUpdate()
