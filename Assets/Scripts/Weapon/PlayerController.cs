@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
-            if (hit != null && hit.gameObject != hoveredAttachment)
+            if (hit != null && hit.gameObject != hoveredAttachment && hit.gameObject.tag == "Attachment")
             {  
                 if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
                 {
