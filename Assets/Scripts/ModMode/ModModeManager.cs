@@ -189,6 +189,8 @@ public class ModModeManager : MonoBehaviour
             borrowedAttachments.Add(attachment);
             attachment.transform.SetParent(attachmentsHolder.transform);
         }
+
+        Debug.Log("Found " + borrowedAttachments.Count + " attachments");
     }
 
     public void ReturnAllAttachments()
@@ -198,6 +200,10 @@ public class ModModeManager : MonoBehaviour
             attachment.GetComponent<SpriteRenderer>().color = Color.white;
             attachment.transform.SetParent(player.transform);
         }
+
+        Debug.Log("Returned " + borrowedAttachments.Count + " attachments");
+
+        borrowedAttachments.Clear();
     }
 
     // this code's getting messy
@@ -225,6 +231,8 @@ public class ModModeManager : MonoBehaviour
         {
             player.allAttachments.Remove(selectedAttachment);
             player.SetMoney(player.money + selectedAttachment.GetComponent<Attachable>().GetSellValue());
+            
+            borrowedAttachments.Remove(selectedAttachment);
             selectedAttachment.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
             
             player.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);

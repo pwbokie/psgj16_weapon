@@ -234,7 +234,18 @@ public class PlayerController : MonoBehaviour
         ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
     }
 
-    // Stuff for effects.
+    public void SetMoney(int amount)
+    {
+        money = amount;
+        UpdateMoneyDisplay();
+    }
+
+    public void UpdateMoneyDisplay()
+    {
+        moneyText.text = "$" + money.ToString();
+    }
+
+    // Stuff for attachment effects.
     [Header("Gun Effects Params")]
     public AudioClip silencedGunshotSound;
     public AudioClip rubberChickenSound;
@@ -268,16 +279,5 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public void SetMoney(int amount)
-    {
-        money = amount;
-        UpdateMoneyDisplay();
-    }
-
-    public void UpdateMoneyDisplay()
-    {
-        moneyText.text = "$" + money.ToString();
     }
 }
