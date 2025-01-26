@@ -21,7 +21,7 @@ public class VendingMachine : MonoBehaviour
     public void Awake()
     {
         player = FindObjectOfType<PlayerController>();
-        helpText.text = "[E] -$" + price.ToString();
+        helpText.text = "[E] <color=#6AE034>$" + price.ToString() + "</color>";
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -61,6 +61,7 @@ public class VendingMachine : MonoBehaviour
             }
             else if (player.money < price)
             {
+                StopAllCoroutines();
                 StartCoroutine(ShowNotEnoughMoneyMessage());
             }
         }
@@ -68,7 +69,7 @@ public class VendingMachine : MonoBehaviour
 
     private IEnumerator ShowNotEnoughMoneyMessage()
     {
-        string originalText = helpText.text;
+        string originalText = "[E] <color=#6AE034>$" + price.ToString() + "</color>";
         helpText.text = "not enough money!";
         yield return new WaitForSeconds(2);
         helpText.text = originalText;
