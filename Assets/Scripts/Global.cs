@@ -25,5 +25,7 @@ public enum AttachmentEffect
     PERFECT_ACCURACY,
     MORE_FIREPOWER,
     SILENCED,
-    RUBBER_CHICKEN
+    RUBBER_CHICKEN,
+    SUBMARINE,
+    
 }

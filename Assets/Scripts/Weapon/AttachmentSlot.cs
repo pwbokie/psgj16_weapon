@@ -6,7 +6,6 @@ public class AttachmentSlot : MonoBehaviour
 {
     public AttachmentType type;
     public GameObject attachment;
-    public AttachmentParent parent;
 
     private bool renamed = false;
     public void Awake()

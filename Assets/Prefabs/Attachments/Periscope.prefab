@@ -152,7 +152,7 @@ MonoBehaviour:
   description: Ping... (Use WASD to move.)
   value: 20
   type: 3
-  effects: 00000000
+  effects: 05000000
 --- !u!114 &8184629659036983219
 MonoBehaviour:
   m_ObjectHideFlags: 0

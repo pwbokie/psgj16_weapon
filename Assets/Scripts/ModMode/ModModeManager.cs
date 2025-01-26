@@ -233,7 +233,12 @@ public class ModModeManager : MonoBehaviour
             player.SetMoney(player.money + selectedAttachment.GetComponent<Attachable>().GetSellValue());
             
             borrowedAttachments.Remove(selectedAttachment);
-            selectedAttachment.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+
+            foreach (AttachmentEffect effect in selectedAttachment.GetComponent<Attachable>().effects){
+                player.RemoveEffect(effect);
+            }
+
+            selectedAttachment.GetComponent<Attachable>().RemoveAttachment();
             
             player.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
             player.GetComponent<AudioSource>().PlayOneShot(sellSound);

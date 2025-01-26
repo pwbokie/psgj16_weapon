@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -70,15 +71,16 @@ public class PlayerController : MonoBehaviour
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
 
+        // play mode logic
         if (!modModeManager.isModModeActive)
         {
-            // play mode logic
             if (Input.GetMouseButtonDown(0))
             {
                 TryFire();
             }
         }
-        else 
+        // mod mode logic
+        else
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
             if (hit != null && hit.gameObject != hoveredAttachment)
@@ -138,30 +140,55 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float submarineModeMaxMovement = 5f;
+    
     void FixedUpdate()
     {
-        Vector3 mouseScreenPosition = Input.mousePosition;
-
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-        if(rb2d == null) return; 
-
-        Vector2 direction = (mouseWorldPosition - transform.position).normalized;
-
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        float currentAngle = rb2d.rotation;
-
-        float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-
-        if (Mathf.Abs(angleDifference) > stopThreshold)
+        if (!submarineModeActive)
         {
-            float torque = angleDifference * torqueForce;
+            Vector3 mouseScreenPosition = Input.mousePosition;
 
-            rb2d.AddTorque(torque * rotationDamping);
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            if(rb2d == null) return; 
+
+            Vector2 direction = (mouseWorldPosition - transform.position).normalized;
+
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            float currentAngle = rb2d.rotation;
+
+            float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+
+            if (Mathf.Abs(angleDifference) > stopThreshold)
+            {
+                float torque = angleDifference * torqueForce;
+
+                rb2d.AddTorque(torque * rotationDamping);
+            }
+            else
+            {
+                rb2d.angularVelocity = 0f;
+            }
         }
-        else
-        {
-            rb2d.angularVelocity = 0f;
+        else {
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb2d.AddForce(transform.up, ForceMode2D.Impulse);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb2d.AddForce(-transform.up, ForceMode2D.Impulse);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb2d.AddForce(-transform.right, ForceMode2D.Impulse);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb2d.AddForce(transform.right, ForceMode2D.Impulse);
+            }
+
+            rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, submarineModeMaxMovement);
         }
     }
 
@@ -250,13 +277,11 @@ public class PlayerController : MonoBehaviour
     public AudioClip silencedGunshotSound;
     public AudioClip rubberChickenSound;
 
+    private bool perfectAccuracyActive = false;
+    private bool submarineModeActive = false;
+
     public void AddEffect(AttachmentEffect effect)
     {
-        if (activeEffects.Contains(effect))
-        {
-            return;
-        }
-
         activeEffects.Add(effect);
 
         switch (effect)
@@ -265,7 +290,7 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("Somehow added NONE to active effects on the gun");
                 break;
             case AttachmentEffect.PERFECT_ACCURACY:
-                // Implement perfect accuracy logic here
+                perfectAccuracyActive = true;
                 break;
             case AttachmentEffect.MORE_FIREPOWER:
                 firepower += 5f;
@@ -276,8 +301,66 @@ public class PlayerController : MonoBehaviour
             case AttachmentEffect.RUBBER_CHICKEN:
                 audioSource.clip = rubberChickenSound;
                 break;
+            case AttachmentEffect.SUBMARINE:
+                submarineModeActive = true;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                rb2d.angularVelocity = 0;
+                rb2d.velocity = Vector2.zero;
+                rb2d.freezeRotation = true;
+                rb2d.gravityScale = 0;
+                break;
             default:
                 break;
+        }
+    }
+
+    public void RemoveEffect(AttachmentEffect effect)
+    {
+        if (!activeEffects.Contains(effect))
+        {
+            Debug.LogWarning("Tried to remove an effect that wasn't active on the gun");
+            return;
+        }
+
+        activeEffects.Remove(effect);
+
+        // These effects are ones that stack, so we need to remove them multiple times.
+        switch (effect)
+        {
+            case AttachmentEffect.NONE:
+                Debug.LogWarning("Somehow removed NONE from active effects on the gun");
+                break;
+            case AttachmentEffect.MORE_FIREPOWER:
+                firepower -= 5f;
+                break;
+            default:
+                break;
+        }
+
+        // Some effects only go away once every instance of the effect is removed.
+        if (!activeEffects.Contains(effect) && !activeEffects.Any(e => e == effect)) {
+            switch (effect)
+            {
+                case AttachmentEffect.NONE:
+                    Debug.LogWarning("Somehow removed NONE from active effects on the gun");
+                    break;
+                case AttachmentEffect.PERFECT_ACCURACY:
+                    perfectAccuracyActive = false;
+                    break;
+                case AttachmentEffect.SILENCED:
+                    audioSource.clip = null;
+                    break;
+                case AttachmentEffect.RUBBER_CHICKEN:
+                    audioSource.clip = null;
+                    break;
+                case AttachmentEffect.SUBMARINE:
+                    submarineModeActive = false;
+                    rb2d.freezeRotation = false;
+                    rb2d.gravityScale = 2.4f;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
