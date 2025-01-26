@@ -2965,6 +2965,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   allAttachments: []
+  maxRotationalVelocity: 1000
   submarineModeMaxMovement: 5
   FX_MuzzleFlash: {fileID: 2606096390965036722, guid: 39d7b74972ef74d45bc170bda6cc8f92, type: 3}
   FX_Casing: {fileID: 758577167624835058, guid: f11ad5911d022df4e90da1824e467c89, type: 3}

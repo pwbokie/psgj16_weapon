@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float maxRotationalVelocity = 10f;
     public float submarineModeMaxMovement = 5f;
     
     void FixedUpdate()
@@ -169,6 +170,9 @@ public class PlayerController : MonoBehaviour
             {
                 rb2d.angularVelocity = 0f;
             }
+
+            // clamp angular velocity so we aren't clipping through objects and stuff
+            rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxRotationalVelocity, maxRotationalVelocity);
         }
         else {
             if (Input.GetKey(KeyCode.W))
