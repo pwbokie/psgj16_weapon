@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public float rotationDamping = 2f;
     public float stopThreshold = 0.2f;
 
+    public int money;
+    public TextMeshProUGUI moneyText;
+
     public int maxAmmo = 6;
     public int currentAmmo = 6;
 
@@ -31,12 +34,14 @@ public class PlayerController : MonoBehaviour
     public List<AttachmentEffect> activeEffects;
 
     public LayerMask detectionLayer;
+    public LayerMask attachmentLayer;
 
     private Vector3 mouseWorldPosition;
 
     private AchievementManager achievementManager;
     private ModModeManager modModeManager;
 
+    public List<GameObject> allAttachments;
 
     // Start is called before the first frame update
     void Start()
@@ -52,14 +57,54 @@ public class PlayerController : MonoBehaviour
         modModeManager = FindObjectOfType<ModModeManager>();
 
         UpdateAmmoCount();
+
+        allAttachments = new List<GameObject>();
+
+        UpdateMoneyDisplay();
     }
+
+    private GameObject hoveredAttachment;
 
     void Update()
     {
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
+        mouseWorldPosition.z = 0;
+
+        if (!modModeManager.isModModeActive)
         {
-            TryFire();
+            // play mode logic
+            if (Input.GetMouseButtonDown(0))
+            {
+                TryFire();
+            }
+        }
+        else 
+        {
+            Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
+            if (hit != null && hit.gameObject != hoveredAttachment)
+            {  
+                if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
+                {
+                    hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+
+                hoveredAttachment = hit.gameObject;
+                
+                if (modModeManager.selectedAttachment == null)
+                {
+                    hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+                }
+            }
+            else if (hit == null && hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
+            {
+                hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                hoveredAttachment = null;
+            }
+
+            if (Input.GetMouseButtonDown(0) && hoveredAttachment != null)
+            {
+                modModeManager.SelectAttachment(hoveredAttachment);
+            }
         }
         Vector3 right = new Vector3(1, 20, 0);
         Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
@@ -223,6 +268,17 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetMoney(int amount)
+    {
+        money = amount;
+        UpdateMoneyDisplay();
+    }
+
+    public void UpdateMoneyDisplay()
+    {
+        moneyText.text = "$" + money.ToString();
     }
 
     [Header("HealthBar")]

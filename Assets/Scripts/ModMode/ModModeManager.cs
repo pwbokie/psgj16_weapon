@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 public class ModModeManager : MonoBehaviour
 {
+    private PlayerController player;
+    public GameObject attachmentsHolder;
+
     public GameObject playMode;
     public GameObject modMode;
 
@@ -32,8 +36,15 @@ public class ModModeManager : MonoBehaviour
 
     private List<Rigidbody2D> pausedRigidbodies = new List<Rigidbody2D>();
 
+    public GameObject sellButton;
+    public TextMeshProUGUI sellButtonText;
+
+    public AudioClip sellSound;
+
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>();
+
         originalCameraZoom = cinemachineCamera.m_Lens.OrthographicSize;
         originalCameraRotation = cinemachineCamera.transform.rotation;
     }
@@ -61,12 +72,16 @@ public class ModModeManager : MonoBehaviour
     [ContextMenu("Mod Mode")]
     public void EnableModMode()
     {
+        StopAllCoroutines();
+
+        TakeAllAttachments();
         modMode.SetActive(true);
+        PausePhysics();
+
         mainCamera.backgroundColor = modModeColor;
         playModeBackground.SetActive(false);
         isModModeActive = true;
 
-        PausePhysics();
         StartCoroutine(ChangeMusicPitch(modModeMusicPitch));
 
         // Start lerping the camera to the target zoom and rotation
@@ -77,13 +92,16 @@ public class ModModeManager : MonoBehaviour
     public void DisableModMode()
     {
         StopAllCoroutines();
-        
+
+        ResumePhysics();
         modMode.SetActive(false);
+        sellButton.SetActive(false);
+        ReturnAllAttachments();
+
         mainCamera.backgroundColor = playModeColor;
         playModeBackground.SetActive(true);
         isModModeActive = false;
 
-        ResumePhysics();
         StartCoroutine(ChangeMusicPitch(1f));
 
         // Start lerping the camera back to its original zoom and rotation
@@ -150,5 +168,69 @@ public class ModModeManager : MonoBehaviour
 
         // Ensure the pitch is set exactly to the target
         music.pitch = targetPitch;
+    }
+
+    public GameObject selectedAttachment;
+
+    public void TrySelectAttachment(GameObject attachment)
+    {
+        if (attachment != null)
+        {
+            selectedAttachment = attachment;
+        }
+    }
+
+    private List<GameObject> borrowedAttachments = new List<GameObject>();
+
+    public void TakeAllAttachments()
+    {
+        foreach (GameObject attachment in player.allAttachments)
+        {
+            borrowedAttachments.Add(attachment);
+            attachment.transform.SetParent(attachmentsHolder.transform);
+        }
+    }
+
+    public void ReturnAllAttachments()
+    {
+        foreach (GameObject attachment in borrowedAttachments)
+        {
+            attachment.GetComponent<SpriteRenderer>().color = Color.white;
+            attachment.transform.SetParent(player.transform);
+        }
+    }
+
+    // this code's getting messy
+    // ... but was I ever the master of my own destiny?
+    public void SelectAttachment(GameObject attachment)
+    {
+        if (attachment != null)
+        {
+            if (selectedAttachment != null)
+            {
+                selectedAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+            selectedAttachment = attachment;
+            selectedAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+            sellButton.SetActive(true);
+            sellButtonText.text = "Sell " + selectedAttachment.GetComponent<Attachable>().attachmentName + ": $" + selectedAttachment.GetComponent<Attachable>().GetSellValue();
+        }
+    }
+
+    public void SellSelectedAttachment()
+    {
+        if (selectedAttachment != null)
+        {
+            player.allAttachments.Remove(selectedAttachment);
+            player.SetMoney(player.money + selectedAttachment.GetComponent<Attachable>().GetSellValue());
+            selectedAttachment.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+            
+            player.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+            player.GetComponent<AudioSource>().PlayOneShot(sellSound);
+
+            sellButton.SetActive(false);
+        }
     }
 }
