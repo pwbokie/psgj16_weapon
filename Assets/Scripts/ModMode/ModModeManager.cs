@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 public class ModModeManager : MonoBehaviour
@@ -34,6 +35,11 @@ public class ModModeManager : MonoBehaviour
     private Quaternion originalCameraRotation;
 
     private List<Rigidbody2D> pausedRigidbodies = new List<Rigidbody2D>();
+
+    public GameObject sellButton;
+    public TextMeshProUGUI sellButtonText;
+
+    public AudioClip sellSound;
 
     private void Start()
     {
@@ -89,6 +95,7 @@ public class ModModeManager : MonoBehaviour
 
         ResumePhysics();
         modMode.SetActive(false);
+        sellButton.SetActive(false);
         ReturnAllAttachments();
 
         mainCamera.backgroundColor = playModeColor;
@@ -206,6 +213,24 @@ public class ModModeManager : MonoBehaviour
 
             selectedAttachment = attachment;
             selectedAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+            sellButton.SetActive(true);
+            sellButtonText.text = "Sell " + selectedAttachment.GetComponent<Attachable>().attachmentName + ": $" + selectedAttachment.GetComponent<Attachable>().GetSellValue();
+        }
+    }
+
+    public void SellSelectedAttachment()
+    {
+        if (selectedAttachment != null)
+        {
+            player.allAttachments.Remove(selectedAttachment);
+            player.SetMoney(player.money + selectedAttachment.GetComponent<Attachable>().GetSellValue());
+            selectedAttachment.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+            
+            player.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+            player.GetComponent<AudioSource>().PlayOneShot(sellSound);
+
+            sellButton.SetActive(false);
         }
     }
 }

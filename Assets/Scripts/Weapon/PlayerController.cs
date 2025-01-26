@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public float rotationDamping = 2f;
     public float stopThreshold = 0.2f;
 
+    public int money;
+    public TextMeshProUGUI moneyText;
+
     public int maxAmmo = 6;
     public int currentAmmo = 6;
 
@@ -56,6 +59,8 @@ public class PlayerController : MonoBehaviour
         UpdateAmmoCount();
 
         allAttachments = new List<GameObject>();
+
+        UpdateMoneyDisplay();
     }
 
     private GameObject hoveredAttachment;
@@ -76,15 +81,19 @@ public class PlayerController : MonoBehaviour
         else 
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
-            if (hit != null && hit.gameObject != hoveredAttachment && modModeManager.selectedAttachment == null)
+            if (hit != null && hit.gameObject != hoveredAttachment)
             {  
-                if (hoveredAttachment != null)
+                if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
                 {
                     hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
                 }
 
                 hoveredAttachment = hit.gameObject;
-                hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+                
+                if (modModeManager.selectedAttachment == null)
+                {
+                    hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+                }
             }
             else if (hit == null && hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
             {
@@ -259,5 +268,16 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetMoney(int amount)
+    {
+        money = amount;
+        UpdateMoneyDisplay();
+    }
+
+    public void UpdateMoneyDisplay()
+    {
+        moneyText.text = "$" + money.ToString();
     }
 }

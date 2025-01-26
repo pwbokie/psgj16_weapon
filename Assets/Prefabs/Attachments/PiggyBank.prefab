@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentName: Piggy Bank
   description: It'll help you save. Don't break it!
+  value: 4
   type: 1
   effects: 00000000
 --- !u!114 &8184629659036983219

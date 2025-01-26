@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentName: Long Scope
   description: You'll never miss again. If you do, skill issue.
+  value: 10
   type: 3
   effects: 0200000001000000
 --- !u!114 &8184629659036983219

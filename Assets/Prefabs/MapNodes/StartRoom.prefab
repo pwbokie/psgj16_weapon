@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2893137248468062974}
   - component: {fileID: 573755190950684410}
   - component: {fileID: 6993469907626383197}
-  - component: {fileID: 968413906782383310}
+  - component: {fileID: 7566947642422297374}
   m_Layer: 7
   m_Name: Pede
   m_TagString: Enemy
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &968413906782383310
-PolygonCollider2D:
+--- !u!61 &7566947642422297374
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,7 +145,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0057406723, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -155,34 +155,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.81930995, y: -0.8250387}
-      - {x: 0.80927515, y: -0.5774784}
-      - {x: 0.56930995, y: -0.30511713}
-      - {x: 0.5613543, y: 0.722908}
-      - {x: 0.5608389, y: 0.83496034}
-      - {x: 0.7123003, y: 0.95341134}
-      - {x: 0.71495223, y: 1}
-      - {x: -0.722908, y: 1}
-      - {x: -0.7202561, y: 0.9401518}
-      - {x: -0.6601817, y: 0.9391813}
-      - {x: -0.65906805, y: 0.87850404}
-      - {x: -0.57045734, y: 0.8450084}
-      - {x: -0.5693099, y: 0.8422439}
-      - {x: -0.5613542, y: -0.3024652}
-      - {x: -0.5732554, y: -0.29902792}
-      - {x: -0.80605054, y: -0.57575965}
-      - {x: -0.80550474, y: -0.8212931}
-      - {x: -0.8743092, y: -0.8132801}
-      - {x: -0.87385416, y: -0.9344876}
-      - {x: -0.79960084, y: -0.9268925}
-      - {x: -0.80074656, y: -0.99469614}
-      - {x: 0.8113543, y: -0.99469614}
-      - {x: 0.8155122, y: -0.9295442}
-      - {x: 0.8685503, y: -0.92918396}
-      - {x: 0.8643923, y: -0.8216016}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1235979, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &2634173506042345694
 GameObject:
   m_ObjectHideFlags: 0

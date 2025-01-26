@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentName: Rubber Chicken
   description: SQUAWK!
+  value: 2
   type: 6
   effects: 04000000
 --- !u!114 &8184629659036983219

@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentName: Silencer
   description: Silent but deadly.
+  value: 2
   type: 4
   effects: 03000000
 --- !u!114 &8184629659036983219
