@@ -12,7 +12,6 @@ public class Turret : Enemy
     public bool debug = false;
 
     private float maxRotationSpeed = 30f;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +52,11 @@ public class Turret : Enemy
         else
         {
             turret.angularVelocity = 0f;
+        }
+
+        if(CurrentHealth != MaxHealth)
+        {
+
         }
         
     }

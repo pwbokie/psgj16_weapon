@@ -87,7 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4e027594cd7f44e8619be9c96b20f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
+  CurrentHealth: 5
+  MaxHealth: 5
+  HealthBar: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
   debug: 0
 --- !u!58 &8038491766872512454
 CircleCollider2D:

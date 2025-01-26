@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private AchievementManager achievementManager;
     private ModModeManager modModeManager;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     void DieDieDie(GameObject item)
     {
-        item.GetComponent<Turret>().TakeDamage();
+        item.GetComponent<Enemy>().TakeDamage();
 
     }
 
@@ -223,4 +224,8 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
+    [Header("HealthBar")]
+    public GameObject HealthBar;
+    
 }
