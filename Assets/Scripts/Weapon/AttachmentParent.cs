@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,12 +10,13 @@ public class AttachmentParent : MonoBehaviour
     private PlayerController player;
 
     public void Awake() {
-        slots = new List<AttachmentSlot>(GetComponentsInChildren<AttachmentSlot>());
+        UpdateSlots();
         player = FindObjectOfType<PlayerController>();
+    }
 
-        for (int i = 0; i < slots.Count; i++) {
-            slots[i].parent = this;
-        }
+    public void UpdateSlots()
+    {
+        slots = new List<AttachmentSlot>(GetComponentsInChildren<AttachmentSlot>());
     }
 
     public bool AddAttachment(GameObject attachable_go) {
@@ -31,6 +33,7 @@ public class AttachmentParent : MonoBehaviour
             if (!slots[i].Occupied() && slots[i].type == attachable.type) {
                 slots[i].attachment = Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
                 attached = true;
+                slots[i].attachment.GetComponent<Attachable>().slot = slots[i];
 
                 AttachmentText attachmentText = FindObjectOfType<AttachmentText>();
                 attachmentText.ShowDetails(attachable);

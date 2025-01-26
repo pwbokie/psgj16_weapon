@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4abe97606817a0543a4dd886444e14de
+guid: 5bc6a61eba41ec244a36f421a581b72f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 4
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -87,7 +87,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 4
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638734833965651882
+  platformSettingsDirtyTick: 638734838360684009
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: silencer
+  - name: Periscope
     originalName: 
-    pivot: {x: 0, y: 0.5}
+    pivot: {x: 0.2857143, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 17
-      height: 4
-    spriteID: b90c8ccc12a60054791a4b0083dca153
+      width: 14
+      height: 21
+    spriteID: 28307c0b88e791c4c9972da70c75d048
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1931834517
-    name: silencer
+    guid: -779737824
+    name: Periscope
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: silencer
+    - name: Periscope
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 12
         y: 0
-        width: 17
-        height: 4
-      spriteId: b90c8ccc12a60054791a4b0083dca153
+        width: 14
+        height: 21
+      spriteId: 28307c0b88e791c4c9972da70c75d048
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -197,4 +197,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 17, y: 4}
+  canvasSize: {x: 32, y: 32}
