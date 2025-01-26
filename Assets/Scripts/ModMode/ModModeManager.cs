@@ -66,15 +66,17 @@ public class ModModeManager : MonoBehaviour
     [ContextMenu("Mod Mode")]
     public void EnableModMode()
     {
+        StopAllCoroutines();
+
+        TakeAllAttachments();
         modMode.SetActive(true);
+        PausePhysics();
+
         mainCamera.backgroundColor = modModeColor;
         playModeBackground.SetActive(false);
         isModModeActive = true;
 
-        PausePhysics();
         StartCoroutine(ChangeMusicPitch(modModeMusicPitch));
-
-        TakeAllAttachments();
 
         // Start lerping the camera to the target zoom and rotation
         StartCoroutine(LerpCamera(targetCameraZoom, Quaternion.LookRotation(Vector3.forward, gunTransform.up)));
@@ -85,13 +87,14 @@ public class ModModeManager : MonoBehaviour
     {
         StopAllCoroutines();
 
+        ResumePhysics();
         modMode.SetActive(false);
         ReturnAllAttachments();
+
         mainCamera.backgroundColor = playModeColor;
         playModeBackground.SetActive(true);
         isModModeActive = false;
 
-        ResumePhysics();
         StartCoroutine(ChangeMusicPitch(1f));
 
         // Start lerping the camera back to its original zoom and rotation
@@ -160,28 +163,49 @@ public class ModModeManager : MonoBehaviour
         music.pitch = targetPitch;
     }
 
+    public GameObject selectedAttachment;
+
     public void TrySelectAttachment(GameObject attachment)
     {
         if (attachment != null)
         {
-            attachment.GetComponent<Attachable>();
+            selectedAttachment = attachment;
         }
     }
+
+    private List<GameObject> borrowedAttachments = new List<GameObject>();
 
     public void TakeAllAttachments()
     {
         foreach (GameObject attachment in player.allAttachments)
         {
+            borrowedAttachments.Add(attachment);
             attachment.transform.SetParent(attachmentsHolder.transform);
         }
     }
 
     public void ReturnAllAttachments()
     {
-        foreach (Transform child in attachmentsHolder.transform)
+        foreach (GameObject attachment in borrowedAttachments)
         {
-            child.GetComponent<SpriteRenderer>().color = Color.white;
-            child.SetParent(player.transform);
+            attachment.GetComponent<SpriteRenderer>().color = Color.white;
+            attachment.transform.SetParent(player.transform);
+        }
+    }
+
+    // this code's getting messy
+    // ... but was I ever the master of my own destiny?
+    public void SelectAttachment(GameObject attachment)
+    {
+        if (attachment != null)
+        {
+            if (selectedAttachment != null)
+            {
+                selectedAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+            selectedAttachment = attachment;
+            selectedAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
 }

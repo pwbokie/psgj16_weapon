@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         else 
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
-            if (hit != null && hit.gameObject != hoveredAttachment)
+            if (hit != null && hit.gameObject != hoveredAttachment && modModeManager.selectedAttachment == null)
             {  
                 if (hoveredAttachment != null)
                 {
@@ -86,10 +86,15 @@ public class PlayerController : MonoBehaviour
                 hoveredAttachment = hit.gameObject;
                 hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
             }
-            else if (hit == null && hoveredAttachment != null)
+            else if (hit == null && hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
             {
                 hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
                 hoveredAttachment = null;
+            }
+
+            if (Input.GetMouseButtonDown(0) && hoveredAttachment != null)
+            {
+                modModeManager.SelectAttachment(hoveredAttachment);
             }
         }
         Vector3 right = new Vector3(1, 20, 0);
