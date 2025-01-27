@@ -11,6 +11,8 @@ public class VendingMachine : MonoBehaviour
 
     public TextMeshProUGUI helpText;
 
+    public VendorType vendorType;
+
     public GameObject vendedItem;
 
     public GameObject vendPreview;
@@ -54,7 +56,16 @@ public class VendingMachine : MonoBehaviour
             {
                 stock--;
                 player.SetMoney(player.money - totalPrice);
-                Instantiate(vendedItem, transform.position + new Vector3(0, -1f, 0), Quaternion.identity, transform.Find("/PlayMode"));
+
+                if (vendorType == VendorType.Ammo)
+                {
+                    player.SetMagazines(player.magazines + 1);
+                }
+                else if (vendorType == VendorType.Attachment)
+                {
+                    Instantiate(vendedItem, transform.position + new Vector3(0, -1f, 0), Quaternion.identity, transform.Find("/PlayMode"));
+                }
+
                 GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
                 GetComponent<AudioSource>().Play();
                 if (stock <= 0)

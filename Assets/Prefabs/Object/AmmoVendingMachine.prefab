@@ -429,10 +429,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePrice: 1
-  totalPrice: 0
   stock: 3
   helpText: {fileID: 895387128227839056}
-  vendedItem: {fileID: 7634259132486933861, guid: 8bf213f1f7860f04fbb0381d38e4167c, type: 3}
+  vendorType: 1
+  vendedItem: {fileID: 0}
   vendPreview: {fileID: 5822850526386846506}
 --- !u!58 &598385964015962650
 CircleCollider2D:

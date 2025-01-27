@@ -26,9 +26,9 @@ public class LootCrate : MonoBehaviour
                     gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
                 }
             }
-            else if (contents == null && crateType == CrateType.AMMO && playerController.currentAmmo < playerController.maxAmmo)
+            else if (crateType == CrateType.AMMO && playerController.magazines < playerController.maxMagazines)
             {
-                playerController.RefillAmmo();
+                playerController.SetMagazines(playerController.magazines + 1);
                 gameObject.GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
             }
             else if (contents == null)
