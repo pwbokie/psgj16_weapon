@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
         {
             if (attachment.GetComponent<Attachment_D6>() != null)
             {
-                tempPowerMod += 0.2f * attachment.GetComponent<Attachment_D6>().DoRoll();
+                tempPowerMod += 0.3f * attachment.GetComponent<Attachment_D6>().DoRoll();
             }
         }
 
