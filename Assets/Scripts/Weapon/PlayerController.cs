@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
     [Header("FX Prefabs")]
     public GameObject FX_MuzzleFlash;
     public GameObject FX_Casing;
+    public GameObject FX_Pea;
 
     [Header("FX Spawn Sources")]
     public GameObject muzzleFlashSource;
@@ -251,7 +252,16 @@ public class PlayerController : MonoBehaviour
 
         rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower * tempPowerMod, ForceMode2D.Impulse);
 
-        GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
+        GameObject casing_go;
+
+        if (peashooterActive)
+        {
+            casing_go = Instantiate(FX_Pea, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
+        }
+        else
+        {
+            casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
+        }
         casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
         if (submarineModeActive)
@@ -304,6 +314,7 @@ public class PlayerController : MonoBehaviour
     private bool perfectAccuracyActive = false;
     private bool submarineModeActive = false;
     public bool hasCounterfeitCoin = false;
+    private bool peashooterActive = false;
 
     public void AddEffect(AttachmentEffect effect, float ammo = 0f)
     {
@@ -340,6 +351,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case AttachmentEffect.COUNTERFEIT_COIN:
                 hasCounterfeitCoin = true;
+                break;
+            case AttachmentEffect.PEASHOOTER:
+                peashooterActive = true;
                 break;
             default:
                 break;
@@ -396,6 +410,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 case AttachmentEffect.COUNTERFEIT_COIN:
                     hasCounterfeitCoin = false;
+                    break;
+                case AttachmentEffect.PEASHOOTER:
+                    peashooterActive = false;
                     break;
                 default:
                     break;
