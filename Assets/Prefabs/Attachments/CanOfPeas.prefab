@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1719953785524959413
+--- !u!1 &4753957924772797980
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8068809693048001413}
-  m_Layer: 3
-  m_Name: MuzzleFlashSource
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8068809693048001413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719953785524959413}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.271, y: 0.063, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3189343398647251641}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7939801443878314428
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8567219611988141265}
-  - component: {fileID: 420440276431071475}
+  - component: {fileID: 329867933857142867}
+  - component: {fileID: 6212607350568576284}
   m_Layer: 3
   m_Name: AttachmentSlot
   m_TagString: Untagged
@@ -48,34 +17,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8567219611988141265
+--- !u!4 &329867933857142867
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939801443878314428}
+  m_GameObject: {fileID: 4753957924772797980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.531, y: -0.005, z: 0}
+  m_LocalPosition: {x: 0.001, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3189343398647251641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &420440276431071475
+--- !u!114 &6212607350568576284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939801443878314428}
+  m_GameObject: {fileID: 4753957924772797980}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1993f8f4e19be044ac416c29e72a0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 5
   attachment: {fileID: 0}
 --- !u!1001 &4690313416573926836
 PrefabInstance:
@@ -87,7 +56,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       propertyPath: m_Name
-      value: Silencer
+      value: CanOfPeas
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       propertyPath: m_Layer
@@ -99,11 +68,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.238
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       propertyPath: m_LocalPosition.z
@@ -143,10 +112,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8567219611988141265}
-    - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8068809693048001413}
+      addedObject: {fileID: 329867933857142867}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
@@ -156,10 +122,13 @@ PrefabInstance:
       addedObject: {fileID: 8184629659036983219}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4985073933693512244}
+      addedObject: {fileID: 7139240197118592899}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4318619161143033914}
+      addedObject: {fileID: 4075016728696337444}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 802639783938612533}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
 --- !u!1 &2427203133086952156 stripped
 GameObject:
@@ -178,13 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d54769c9ba904f92907e1b309818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachmentName: Silencer
-  description: Silent but deadly.
-  value: 2
-  ammo: 0
+  attachmentName: Can of Peas
+  description: If you see a little pea on the floor... it was probably me.
+  value: 4
+  ammo: 30
   kills: 0
-  type: 4
-  effects: 03000000
+  type: 5
+  effects: 0600000009000000
   slot: {fileID: 0}
 --- !u!114 &8184629659036983219
 MonoBehaviour:
@@ -198,7 +167,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037d43032d69247468801d896e0a85a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &4985073933693512244
+--- !u!114 &7139240197118592899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427203133086952156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524a9d25e25890a488388008081cd94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: []
+--- !u!212 &4075016728696337444
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,7 +221,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5910374844591431699, guid: 4abe97606817a0543a4dd886444e14de, type: 3}
+  m_Sprite: {fileID: 677679302590838145, guid: d14741fda877dc845bba6ff074521238, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,7 +232,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4318619161143033914
+--- !u!61 &802639783938612533
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,18 +264,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.265625, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.5}
-    oldSize: {x: 0.53125, y: 0.125}
+    pivot: {x: 0.5, y: 1}
+    oldSize: {x: 0.375, y: 0.5}
     newSize: {x: 1.3125, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.53125, y: 0.125}
+  m_Size: {x: 0.375, y: 0.5}
   m_EdgeRadius: 0
 --- !u!4 &3189343398647251641 stripped
 Transform:
