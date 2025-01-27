@@ -19,6 +19,9 @@ public class MapGenerator : MonoBehaviour
     [Range(0,1)]
     public float randomFillPercent;
 
+    public int roomWidth = 80;
+    public int roomHeight = 80;
+
     public List<GameObject> startPrefab;
     public GameObject emptyPrefab;
 
@@ -100,7 +103,7 @@ public class MapGenerator : MonoBehaviour
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
             int rnd = Random.Range(1, 3);
-            Vector3 roomPosition = new Vector3(entry.Key.x * 80, entry.Key.y * 80, 0);
+            Vector3 roomPosition = new Vector3(entry.Key.x * roomWidth, entry.Key.y * roomHeight, 0);
             GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? startPrefab[0] : startPrefab[rnd];
             Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
         }
@@ -124,7 +127,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     dungeonMap[adjacentPosition] = false;
 
-                    Vector3 position = new Vector3(adjacentPosition.x * 80, adjacentPosition.y * 80, 0);
+                    Vector3 position = new Vector3(adjacentPosition.x * roomWidth, adjacentPosition.y * roomHeight, 0);
                     Instantiate(emptyPrefab, position, quaternion.identity, dungeonParent);
                 }
             }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using JetBrains.Annotations;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,31 +15,41 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer healthBarRenderer;
     private Sprite sprite;
-    public GameObject HealthBar;
+    public GameObject HealthBarPrefab;
     private GameObject parent;
+
+    private GameObject HealthBar;
+    private float parentHeight;
     
     public void Awake()
     {
-        parent = new GameObject();
-        float parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
-        parent = gameObject;
-        parent.transform.position = new Vector3(parent.transform.position.x, parentHeight + parent.transform.position.y + 10f, 0f);
-        _ = Instantiate<GameObject>(HealthBar, parent.transform); 
+        parent = GameObject.Find("HealthBars");
+        parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2f * gameObject.transform.localScale.y;
+        Debug.Log(parentHeight);
+        HealthBar = Instantiate<GameObject>(HealthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), Quaternion.identity);
+        HealthBar.transform.localScale = gameObject.transform.localScale;
+
     }
 
-    public void Update()
+    public void UpdateEnemy()
     {
-        /*HealthBar.transform.position = (Vector2)spriteRenderer.transform.position + Vector2.one;
+        HealthBar.transform.position = new Vector3(transform.position.x, parentHeight + transform.position.y + .3f, 0f);
         HealthBar.transform.rotation = quaternion.identity;
-        HealthBar.transform.localScale = spriteRenderer.transform.localScale;
-        */
+
+        HealthBar.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3((float)CurrentHealth/(float)MaxHealth * 2f, 1f, 1f);
+        if(CurrentHealth == 0)
+            Destroy(HealthBar);
     }
 
     public void TakeDamage()
     {
         CurrentHealth -= 1;
         if(CurrentHealth == 0)
+        {
             Destroy(gameObject);
+            Destroy(HealthBar);
+        }
+            
     }
 
     

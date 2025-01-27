@@ -10,6 +10,7 @@ public class Turret : Enemy
     private float rotationDamping = 2f;
     private float torqueForce = 1f;
     public bool debug = false;
+    private Enemy enemy;
 
     private float maxRotationSpeed = 30f;
 
@@ -54,10 +55,7 @@ public class Turret : Enemy
             turret.angularVelocity = 0f;
         }
 
-        if(CurrentHealth != MaxHealth)
-        {
-
-        }
+        UpdateEnemy();    
         
     }
 
