@@ -269,7 +269,8 @@ public class PlayerController : MonoBehaviour
         {
             casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         }
-        casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
+        casing_go.GetComponent<Rigidbody2D>().AddForce((transform.up + -transform.right) * casingEjectionForce, ForceMode2D.Impulse);
+        casing_go.GetComponent<Rigidbody2D>().AddForce(rb2d.velocity * 0.3f, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
         if (submarineModeActive)
         {

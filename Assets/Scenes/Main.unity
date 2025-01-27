@@ -3196,7 +3196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firepower: 8
-  casingEjectionForce: 5
+  casingEjectionForce: 4
   mainCamera: {fileID: 0}
   casingParent: {fileID: 848160374}
   torqueForce: 10
