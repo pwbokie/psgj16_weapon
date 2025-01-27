@@ -254,6 +254,10 @@ public class PlayerController : MonoBehaviour
         GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
+        if (submarineModeActive)
+        {
+            casing_go.GetComponent<Rigidbody2D>().gravityScale = -casing_go.GetComponent<Rigidbody2D>().gravityScale * 0.1f;
+        }
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.Play();
@@ -276,6 +280,8 @@ public class PlayerController : MonoBehaviour
     public void UpdateAmmoCount()
     {
         if (currentAmmo < 0) currentAmmo = 0;
+        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+
         ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
     }
 
@@ -323,7 +329,6 @@ public class PlayerController : MonoBehaviour
                 submarineModeActive = true;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 rb2d.angularVelocity = 0;
-                rb2d.velocity = Vector2.zero;
                 rb2d.freezeRotation = true;
                 rb2d.gravityScale = 0;
                 break;
@@ -383,7 +388,6 @@ public class PlayerController : MonoBehaviour
                     break;
                 case AttachmentEffect.MORE_AMMO:
                     maxAmmo -= (int)ammo;
-                    currentAmmo -= (int)ammo;
                     UpdateAmmoCount();
                     break;
                 default:
