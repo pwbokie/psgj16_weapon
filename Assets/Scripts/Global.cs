@@ -28,5 +28,6 @@ public enum AttachmentEffect
     RUBBER_CHICKEN,
     SUBMARINE,
     MORE_AMMO,
-    PIGGY_BANK
+    PIGGY_BANK,
+    COUNTERFEIT_COIN
 }

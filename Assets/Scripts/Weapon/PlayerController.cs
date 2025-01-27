@@ -303,6 +303,7 @@ public class PlayerController : MonoBehaviour
 
     private bool perfectAccuracyActive = false;
     private bool submarineModeActive = false;
+    public bool hasCounterfeitCoin = false;
 
     public void AddEffect(AttachmentEffect effect, float ammo = 0f)
     {
@@ -336,6 +337,9 @@ public class PlayerController : MonoBehaviour
                 maxAmmo += (int)ammo;
                 currentAmmo += (int)ammo;
                 UpdateAmmoCount();
+                break;
+            case AttachmentEffect.COUNTERFEIT_COIN:
+                hasCounterfeitCoin = true;
                 break;
             default:
                 break;
@@ -389,6 +393,9 @@ public class PlayerController : MonoBehaviour
                 case AttachmentEffect.MORE_AMMO:
                     maxAmmo -= (int)ammo;
                     UpdateAmmoCount();
+                    break;
+                case AttachmentEffect.COUNTERFEIT_COIN:
+                    hasCounterfeitCoin = false;
                     break;
                 default:
                     break;

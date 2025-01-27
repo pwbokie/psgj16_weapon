@@ -51,7 +51,8 @@ public class AttachmentParent : MonoBehaviour
 
                 return true;
             }
-            else if (slots[i].attachment != null && slots[i].attachment.GetComponent<AttachmentParent>() != null) {
+            // if the matching slot is taken, can we attach to an attachment instead?
+            else if (slots[i].type == attachable.type && slots[i].Occupied() == true && slots[i].attachment.GetComponent<AttachmentParent>() != null) {
                 return slots[i].attachment.GetComponent<AttachmentParent>().AddAttachment(attachable_go);
             }
         }

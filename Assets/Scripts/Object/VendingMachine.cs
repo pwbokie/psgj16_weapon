@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class VendingMachine : MonoBehaviour
 {
-    public int price;
+    public int basePrice;
+    private int totalPrice;
     public int stock = 3;
 
     public TextMeshProUGUI helpText;
@@ -21,7 +22,8 @@ public class VendingMachine : MonoBehaviour
     public void Awake()
     {
         player = FindObjectOfType<PlayerController>();
-        helpText.text = "[E] <color=#6AE034>$" + price.ToString() + "</color>";
+
+        UpdatePrice();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +32,8 @@ public class VendingMachine : MonoBehaviour
         {
             helpText.gameObject.SetActive(true);
             canVend = true;
+
+            UpdatePrice();
         }
     }
 
@@ -46,10 +50,10 @@ public class VendingMachine : MonoBehaviour
     {
         if (canVend && Input.GetKeyDown(KeyCode.E))
         {
-            if (stock > 0 && player.money >= price)
+            if (stock > 0 && player.money >= totalPrice)
             {
                 stock--;
-                player.SetMoney(player.money - price);
+                player.SetMoney(player.money - totalPrice);
                 Instantiate(vendedItem, transform.position + new Vector3(0, -1f, 0), Quaternion.identity, transform.Find("/PlayMode"));
                 GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
                 GetComponent<AudioSource>().Play();
@@ -59,7 +63,7 @@ public class VendingMachine : MonoBehaviour
                     helpText.text = "out of stock!";
                 }
             }
-            else if (player.money < price)
+            else if (player.money < totalPrice)
             {
                 StopAllCoroutines();
                 StartCoroutine(ShowNotEnoughMoneyMessage());
@@ -69,10 +73,23 @@ public class VendingMachine : MonoBehaviour
 
     private IEnumerator ShowNotEnoughMoneyMessage()
     {
-        string originalText = "[E] <color=#6AE034>$" + price.ToString() + "</color>";
         helpText.text = "not enough money!";
         yield return new WaitForSeconds(2);
-        helpText.text = originalText;
+        UpdatePrice();
+    }
+
+    public void UpdatePrice()
+    {
+        totalPrice = basePrice;
+        if (player.hasCounterfeitCoin)
+        {
+            totalPrice = basePrice - 1;
+            if (totalPrice < 0)
+            {
+                totalPrice = 0;
+            }
+        }
+        helpText.text = "[E] <color=#6AE034>$" + totalPrice.ToString() + "</color>";
     }
 }
 
