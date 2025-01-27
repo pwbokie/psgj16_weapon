@@ -89,7 +89,10 @@ public class VendingMachine : MonoBehaviour
                 totalPrice = 0;
             }
         }
-        helpText.text = "[E] <color=#6AE034>$" + totalPrice.ToString() + "</color>";
+        if (stock > 0)
+            helpText.text = "[E] <color=#6AE034>$" + totalPrice.ToString() + "</color>";
+        else 
+            helpText.text = "out of stock!";
     }
 }
 
