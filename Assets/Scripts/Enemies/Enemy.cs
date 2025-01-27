@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
     {
         parent = GameObject.Find("HealthBars");
         parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2f * gameObject.transform.localScale.y;
-        Debug.Log(parentHeight);
         HealthBar = Instantiate<GameObject>(HealthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), Quaternion.identity);
         HealthBar.transform.localScale = gameObject.transform.localScale;
 
@@ -37,8 +36,6 @@ public class Enemy : MonoBehaviour
         HealthBar.transform.rotation = quaternion.identity;
 
         HealthBar.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3((float)CurrentHealth/(float)MaxHealth * 2f, 1f, 1f);
-        if(CurrentHealth == 0)
-            Destroy(HealthBar);
     }
 
     public void TakeDamage()
@@ -52,6 +49,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        Destroy(gameObject);
+        Destroy(HealthBar);
         FindAnyObjectByType<PlayerController>().KilledSomething();
         GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
     }
