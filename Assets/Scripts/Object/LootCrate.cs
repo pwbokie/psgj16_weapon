@@ -7,7 +7,7 @@ public class LootCrate : MonoBehaviour
     public CrateType crateType;
 
     private PlayerController playerController;
-    private GameObject contents;
+    public GameObject contents;
 
     // Start is called before the first frame update
     void Start()

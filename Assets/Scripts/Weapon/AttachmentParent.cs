@@ -20,8 +20,6 @@ public class AttachmentParent : MonoBehaviour
     }
 
     public bool AddAttachment(GameObject attachable_go) {
-        bool attached = false;
-
         if (attachable_go.GetComponent<Attachable>() == null) {
             Debug.LogError("The provided GameObject does not have an Attachable component.");
             return false;
@@ -32,7 +30,6 @@ public class AttachmentParent : MonoBehaviour
         for (int i = 0; i < slots.Count; i++) {
             if (!slots[i].Occupied() && slots[i].type == attachable.type) {
                 slots[i].attachment = Instantiate(attachable_go, slots[i].transform.position, slots[i].transform.rotation, player.transform);
-                attached = true;
                 slots[i].attachment.GetComponent<Attachable>().slot = slots[i];
 
                 AttachmentText attachmentText = FindObjectOfType<AttachmentText>();
@@ -41,28 +38,23 @@ public class AttachmentParent : MonoBehaviour
                 player.allAttachments.Add(slots[i].attachment);
 
                 Debug.Log("Attached " + attachable.type + " onto the " + gameObject.name);
+                
+                // non-player-centric logic, just logistical stuff
+                switch(attachable.type) {
+                    case AttachmentType.MUZZLE:
+                        player.muzzleFlashSource.transform.localPosition = player.muzzleFlashSource.transform.localPosition + attachable_go.transform.Find("MuzzleFlashSource").localPosition;
+                        if (player.muzzleFlashSource == null) {
+                            Debug.LogError("Muzzle flash source not found on the new muzzle. Make sure the muzzle has a child with the exact name MuzzleFlashSource.");
+                        }
+                        break;
+                }
+
+                return true;
             }
             else if (slots[i].attachment != null && slots[i].attachment.GetComponent<AttachmentParent>() != null) {
-                attached = slots[i].attachment.GetComponent<AttachmentParent>().AddAttachment(attachable_go);
+                return slots[i].attachment.GetComponent<AttachmentParent>().AddAttachment(attachable_go);
             }
         }
-        
-        if (!attached) {
-            Debug.LogWarning("No available slot for attachment: " + attachable.type);
-            return false;
-        }
-        // Additional logic for specific attachment types added here
-        else {
-            switch(attachable.type) {
-                case AttachmentType.MUZZLE:
-                    player.muzzleFlashSource.transform.localPosition = player.muzzleFlashSource.transform.localPosition + attachable_go.transform.Find("MuzzleFlashSource").localPosition;
-                    if (player.muzzleFlashSource == null) {
-                        Debug.LogError("Muzzle flash source not found on the new muzzle. Make sure the muzzle has a child with the exact name MuzzleFlashSource.");
-                    }
-                    break;
-            }
-        }
-
-        return attached;
+        return false;
     }
 }

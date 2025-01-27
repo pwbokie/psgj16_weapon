@@ -46,13 +46,13 @@ public class Enemy : MonoBehaviour
         CurrentHealth -= 1;
         if(CurrentHealth == 0)
         {
-            Destroy(gameObject);
-            Destroy(HealthBar);
+            Die();
         }
-            
     }
 
-    
-
-
+    public void Die()
+    {
+        FindAnyObjectByType<PlayerController>().KilledSomething();
+        GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+    }
 }

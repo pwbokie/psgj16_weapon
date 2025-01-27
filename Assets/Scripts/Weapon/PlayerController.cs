@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
-            if (hit != null && hit.gameObject != hoveredAttachment)
+            if (hit != null && hit.gameObject != hoveredAttachment && hit.gameObject.tag == "Attachment")
             {  
                 if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
                 {
@@ -209,7 +209,6 @@ public class PlayerController : MonoBehaviour
 
     public void TryFire()
     {
-        
         if (currentAmmo > 0)
         {
             Fire();
@@ -228,19 +227,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private float tempPowerMod = 1f;
+
     public void Fire()
     {
+        // additional multiplier which is affected by attachments and stuff
+        tempPowerMod = 1f;
+        
+        // d6 logic
+        foreach (GameObject attachment in allAttachments)
+        {
+            if (attachment.GetComponent<Attachment_D6>() != null)
+            {
+                tempPowerMod += 0.3f * attachment.GetComponent<Attachment_D6>().DoRoll();
+            }
+        }
+
         currentAmmo--;
         UpdateAmmoCount();
 
         GameObject muzzleFlashGO = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
         muzzleFlashGO.transform.parent = muzzleFlashSource.transform;
 
-        rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower, ForceMode2D.Impulse);
+        rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower * tempPowerMod, ForceMode2D.Impulse);
 
         GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
+        if (submarineModeActive)
+        {
+            casing_go.GetComponent<Rigidbody2D>().gravityScale = -casing_go.GetComponent<Rigidbody2D>().gravityScale * 0.1f;
+        }
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.Play();
@@ -262,6 +279,9 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateAmmoCount()
     {
+        if (currentAmmo < 0) currentAmmo = 0;
+        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+
         ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
     }
 
@@ -284,7 +304,7 @@ public class PlayerController : MonoBehaviour
     private bool perfectAccuracyActive = false;
     private bool submarineModeActive = false;
 
-    public void AddEffect(AttachmentEffect effect)
+    public void AddEffect(AttachmentEffect effect, float ammo = 0f)
     {
         activeEffects.Add(effect);
 
@@ -309,16 +329,20 @@ public class PlayerController : MonoBehaviour
                 submarineModeActive = true;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 rb2d.angularVelocity = 0;
-                rb2d.velocity = Vector2.zero;
                 rb2d.freezeRotation = true;
                 rb2d.gravityScale = 0;
+                break;
+            case AttachmentEffect.MORE_AMMO:
+                maxAmmo += (int)ammo;
+                currentAmmo += (int)ammo;
+                UpdateAmmoCount();
                 break;
             default:
                 break;
         }
     }
 
-    public void RemoveEffect(AttachmentEffect effect)
+    public void RemoveEffect(AttachmentEffect effect, float ammo = 0f)
     {
         if (!activeEffects.Contains(effect))
         {
@@ -362,9 +386,21 @@ public class PlayerController : MonoBehaviour
                     rb2d.freezeRotation = false;
                     rb2d.gravityScale = 2.4f;
                     break;
+                case AttachmentEffect.MORE_AMMO:
+                    maxAmmo -= (int)ammo;
+                    UpdateAmmoCount();
+                    break;
                 default:
                     break;
             }
+        }
+    }
+
+    public void KilledSomething()
+    {
+        foreach (GameObject attachment in allAttachments)
+        {
+            attachment.GetComponent<Attachable>().kills++;
         }
     }
 
