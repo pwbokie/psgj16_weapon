@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour
 {
-    public int width = 4;
-    public int height = 4;
+    public int width = 20;
+    public int height = 20;
 
     public string seed;
     public bool useRandomSeed;
@@ -25,7 +25,7 @@ public class MapGenerator : MonoBehaviour
     public List<GameObject> startPrefab;
     public GameObject emptyPrefab;
 
-    public int roomCount = 5;
+    public int roomCount = 40;
     private Dictionary<Vector2Int, bool> dungeonMap = new Dictionary<Vector2Int, bool>();
     public Transform dungeonParent;
 
