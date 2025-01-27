@@ -26,11 +26,13 @@ public class PlayerController : MonoBehaviour
     public int maxAmmo = 6;
     public int currentAmmo = 6;
 
+    public int magazines = 0;
+    public int maxMagazines = 5;
+
     public AudioClip gunEmptyClickSound;
 
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
-    private AttachmentParent attachmentParent;
 
     public List<AttachmentEffect> activeEffects;
 
@@ -51,7 +53,6 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         mainCamera = GetComponentInParent<Camera>();
 
-        attachmentParent = GetComponent<AttachmentParent>();
         detectionLayer = LayerMask.GetMask("Shootable");
 
         achievementManager = FindObjectOfType<AchievementManager>();
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour
         allAttachments = new List<GameObject>();
 
         UpdateMoneyDisplay();
+
+        SetMagazines(0);
     }
 
     private GameObject hoveredAttachment;
@@ -77,6 +80,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 TryFire();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReloadFromMag();
             }
         }
         // mod mode logic
@@ -262,7 +269,8 @@ public class PlayerController : MonoBehaviour
         {
             casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         }
-        casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);
+        casing_go.GetComponent<Rigidbody2D>().AddForce((transform.up + -transform.right) * casingEjectionForce, ForceMode2D.Impulse);
+        casing_go.GetComponent<Rigidbody2D>().AddForce(rb2d.velocity * 0.3f, ForceMode2D.Impulse);
         casing_go.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
         if (submarineModeActive)
         {
@@ -276,6 +284,17 @@ public class PlayerController : MonoBehaviour
         if (hit.collider != null)
         {
             HandleHitObject(hit.collider.gameObject);
+        }
+    }
+
+    public void ReloadFromMag()
+    {
+        if (magazines > 0 && currentAmmo < maxAmmo)
+        {
+            currentAmmo = maxAmmo;
+            UpdateAmmoCount();
+            magazines--;
+            SetMagazines(magazines);
         }
     }
 
@@ -425,6 +444,33 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject attachment in allAttachments)
         {
             attachment.GetComponent<Attachable>().kills++;
+        }
+    }
+
+    public GameObject magazineDisplayPrefab;
+    public GameObject magazineDisplayParent;
+
+    public void SetMagazines(int amount)
+    {
+        magazines = amount;
+
+        if (magazines > maxMagazines)
+        {
+            magazines = maxMagazines;
+        }
+        if (magazines < 0)
+        {
+            magazines = 0;
+        }
+
+        foreach (Transform child in magazineDisplayParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < magazines; i++)
+        {
+            Instantiate(magazineDisplayPrefab, magazineDisplayParent.transform);
         }
     }
 
