@@ -209,7 +209,6 @@ public class PlayerController : MonoBehaviour
 
     public void TryFire()
     {
-        
         if (currentAmmo > 0)
         {
             Fire();
@@ -228,15 +227,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private float tempPowerMod = 1f;
+
     public void Fire()
     {
+        // additional multiplier which is affected by attachments and stuff
+        tempPowerMod = 1f;
+        
+        // d6 logic
+        foreach (GameObject attachment in allAttachments)
+        {
+            if (attachment.GetComponent<Attachment_D6>() != null)
+            {
+                tempPowerMod += 0.2f * attachment.GetComponent<Attachment_D6>().DoRoll();
+            }
+        }
+
         currentAmmo--;
         UpdateAmmoCount();
 
         GameObject muzzleFlashGO = Instantiate(FX_MuzzleFlash, muzzleFlashSource.transform.position, Quaternion.identity);
         muzzleFlashGO.transform.parent = muzzleFlashSource.transform;
 
-        rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower, ForceMode2D.Impulse);
+        rb2d.AddForce(((transform.up * 0.1f) + -transform.right) * firepower * tempPowerMod, ForceMode2D.Impulse);
 
         GameObject casing_go = Instantiate(FX_Casing, casingEjectionSource.transform.position, Quaternion.identity, casingParent.transform);
         casing_go.GetComponent<Rigidbody2D>().AddForce((casing_go.transform.up + -casing_go.transform.right) * casingEjectionForce, ForceMode2D.Impulse);

@@ -27,5 +27,5 @@ public enum AttachmentEffect
     SILENCED,
     RUBBER_CHICKEN,
     SUBMARINE,
-    
+    D6,
 }
