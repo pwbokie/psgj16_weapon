@@ -235,7 +235,7 @@ public class ModModeManager : MonoBehaviour
             borrowedAttachments.Remove(selectedAttachment);
 
             foreach (AttachmentEffect effect in selectedAttachment.GetComponent<Attachable>().effects){
-                player.RemoveEffect(effect);
+                player.RemoveEffect(effect, selectedAttachment.GetComponent<Attachable>().ammo);
             }
 
             selectedAttachment.GetComponent<Attachable>().RemoveAttachment();

@@ -275,6 +275,7 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateAmmoCount()
     {
+        if (currentAmmo < 0) currentAmmo = 0;
         ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
     }
 
@@ -297,7 +298,7 @@ public class PlayerController : MonoBehaviour
     private bool perfectAccuracyActive = false;
     private bool submarineModeActive = false;
 
-    public void AddEffect(AttachmentEffect effect)
+    public void AddEffect(AttachmentEffect effect, float ammo = 0f)
     {
         activeEffects.Add(effect);
 
@@ -326,12 +327,17 @@ public class PlayerController : MonoBehaviour
                 rb2d.freezeRotation = true;
                 rb2d.gravityScale = 0;
                 break;
+            case AttachmentEffect.MORE_AMMO:
+                maxAmmo += (int)ammo;
+                currentAmmo += (int)ammo;
+                UpdateAmmoCount();
+                break;
             default:
                 break;
         }
     }
 
-    public void RemoveEffect(AttachmentEffect effect)
+    public void RemoveEffect(AttachmentEffect effect, float ammo = 0f)
     {
         if (!activeEffects.Contains(effect))
         {
@@ -374,6 +380,11 @@ public class PlayerController : MonoBehaviour
                     submarineModeActive = false;
                     rb2d.freezeRotation = false;
                     rb2d.gravityScale = 2.4f;
+                    break;
+                case AttachmentEffect.MORE_AMMO:
+                    maxAmmo -= (int)ammo;
+                    currentAmmo -= (int)ammo;
+                    UpdateAmmoCount();
                     break;
                 default:
                     break;

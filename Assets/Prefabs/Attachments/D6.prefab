@@ -156,8 +156,9 @@ MonoBehaviour:
   attachmentName: D6
   description: Sneak attack.
   value: 4
+  ammo: 6
   type: 5
-  effects: 
+  effects: 06000000
   slot: {fileID: 0}
 --- !u!114 &8184629659036983219
 MonoBehaviour:

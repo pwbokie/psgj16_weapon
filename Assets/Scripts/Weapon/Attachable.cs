@@ -9,6 +9,8 @@ public class Attachable : MonoBehaviour
     public string attachmentName;
     public string description;
     public int value;
+    // for magazines
+    public int ammo;
 
     public AttachmentType type;
     public List<AttachmentEffect> effects;
@@ -23,7 +25,7 @@ public class Attachable : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         if (!hasGivenBuff) {
             foreach (AttachmentEffect effect in effects) {
-                playerController.AddEffect(effect);
+                playerController.AddEffect(effect, ammo);
             }
         }
     }
