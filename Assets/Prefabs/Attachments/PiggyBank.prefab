@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   attachment: {fileID: 0}
-  parent: {fileID: 0}
 --- !u!1001 &4690313416573926836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,8 +150,11 @@ MonoBehaviour:
   attachmentName: Piggy Bank
   description: It'll help you save. Don't break it!
   value: 4
+  ammo: 0
+  kills: 0
   type: 1
-  effects: 00000000
+  effects: 07000000
+  slot: {fileID: 0}
 --- !u!114 &8184629659036983219
 MonoBehaviour:
   m_ObjectHideFlags: 0

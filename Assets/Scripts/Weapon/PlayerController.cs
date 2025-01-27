@@ -396,6 +396,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void KilledSomething()
+    {
+        foreach (GameObject attachment in allAttachments)
+        {
+            attachment.GetComponent<Attachable>().kills++;
+        }
+    }
+
     [Header("HealthBar")]
     public GameObject HealthBar;
     

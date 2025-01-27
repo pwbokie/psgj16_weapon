@@ -11,6 +11,8 @@ public class Attachable : MonoBehaviour
     public int value;
     // for magazines
     public int ammo;
+    // for anything that needs to track how many kills this attachment was present for
+    public int kills;
 
     public AttachmentType type;
     public List<AttachmentEffect> effects;
@@ -36,7 +38,14 @@ public class Attachable : MonoBehaviour
             return 0;
         }
 
-        return Mathf.RoundToInt(value * 0.5f);
+        int sellValue = Mathf.RoundToInt(value * 0.5f);
+
+        if (effects.Contains(AttachmentEffect.PIGGY_BANK))
+        {
+            sellValue += kills;
+        }
+
+        return sellValue;
     }
 
     // this still isn't exactly right but I'm dying and I need to move on
