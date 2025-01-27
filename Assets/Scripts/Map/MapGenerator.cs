@@ -19,8 +19,8 @@ public class MapGenerator : MonoBehaviour
     [Range(0,1)]
     public float randomFillPercent;
 
-    public int roomWidth = 80;
-    public int roomHeight = 80;
+    public int roomWidth = 40;
+    public int roomHeight = 20;
 
     public List<GameObject> startPrefab;
     public GameObject emptyPrefab;
