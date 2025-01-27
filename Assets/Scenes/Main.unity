@@ -3439,8 +3439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b63390845ecae447bc159b4edd7a0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 6
-  height: 18
+  width: 20
+  height: 20
   seed: 
   useRandomSeed: 1
   randomFillPercent: 0.517
@@ -3451,7 +3451,7 @@ MonoBehaviour:
   - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}
   - {fileID: 9169992006750650871, guid: 42a7d9ddd40eefd46a80003c3eb7ae58, type: 3}
   emptyPrefab: {fileID: 513034326159957349, guid: b1fe05567ad2e1f44bb9d4da53ebf7b5, type: 3}
-  roomCount: 12
+  roomCount: 10
   dungeonParent: {fileID: 0}
 --- !u!4 &2121676455
 Transform:
