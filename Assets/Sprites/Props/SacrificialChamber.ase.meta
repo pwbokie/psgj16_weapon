@@ -161,14 +161,14 @@ ScriptedImporter:
     uvTransform: {x: 743, y: 972}
   - name: SacrificialChamber_Frame_3
     originalName: 
-    pivot: {x: 0.48067635, y: 0.12195125}
+    pivot: {x: 0.48317307, y: 0.12195125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 1380
       y: 972
-      width: 621
+      width: 624
       height: 123
     spriteID: 39305c6ff194f9c449ccf6d1a6826946
     spriteBone: []
@@ -501,9 +501,9 @@ ScriptedImporter:
     - name: SacrificialChamber_Frame_2
       frameIndex: 2
       cellRect:
-        x: 67
+        x: 64
         y: 135
-        width: 621
+        width: 624
         height: 123
       spriteId: 39305c6ff194f9c449ccf6d1a6826946
     - name: SacrificialChamber_Frame_3

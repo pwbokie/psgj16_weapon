@@ -49,14 +49,6 @@ public class ModModeManager : MonoBehaviour
         originalCameraRotation = cinemachineCamera.transform.rotation;
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleModMode();
-        }
-    }
-
     public void ToggleModMode()
     {
         if (!isModModeActive)

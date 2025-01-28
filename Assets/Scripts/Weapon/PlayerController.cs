@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> allAttachments;
 
+    public bool canControl = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,61 +74,69 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
+        if (canControl)
+        {
+            mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = 0;
 
-        // play mode logic
-        if (!modModeManager.isModModeActive)
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
             {
-                TryFire();
+                modModeManager.ToggleModMode();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+
+            // play mode logic
+            if (!modModeManager.isModModeActive)
             {
-                ReloadFromMag();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    TryFire();
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    ReloadFromMag();
+                }
             }
-        }
-        // mod mode logic
-        else
-        {
-            Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
-            if (hit != null && hit.gameObject != hoveredAttachment && hit.gameObject.tag == "Attachment")
-            {  
-                if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
+            // mod mode logic
+            else
+            {
+                Collider2D hit = Physics2D.OverlapPoint(mouseWorldPosition, attachmentLayer);
+                if (hit != null && hit.gameObject != hoveredAttachment && hit.gameObject.tag == "Attachment")
+                {  
+                    if (hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
+                    {
+                        hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                    }
+
+                    hoveredAttachment = hit.gameObject;
+                    
+                    if (modModeManager.selectedAttachment == null)
+                    {
+                        hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    }
+                }
+                else if (hit == null && hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
                 {
                     hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
+                    hoveredAttachment = null;
                 }
 
-                hoveredAttachment = hit.gameObject;
-                
-                if (modModeManager.selectedAttachment == null)
+                if (Input.GetMouseButtonDown(0) && hoveredAttachment != null)
                 {
-                    hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    modModeManager.SelectAttachment(hoveredAttachment);
                 }
             }
-            else if (hit == null && hoveredAttachment != null && hoveredAttachment != modModeManager.selectedAttachment)
-            {
-                hoveredAttachment.GetComponent<SpriteRenderer>().color = Color.white;
-                hoveredAttachment = null;
-            }
+            Vector3 right = new Vector3(1, 20, 0);
+            Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
+            
+            /*Vector2 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            if (Input.GetMouseButtonDown(0) && hoveredAttachment != null)
-            {
-                modModeManager.SelectAttachment(hoveredAttachment);
-            }
+            Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+            transform.up = direction;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/            
         }
-        Vector3 right = new Vector3(1, 20, 0);
-        Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
-        
-        /*Vector2 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = direction;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/
     }
 
     void HandleHitObject(GameObject hitObject)
@@ -153,54 +163,57 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (!submarineModeActive)
+        if (canControl)
         {
-            Vector3 mouseScreenPosition = Input.mousePosition;
-
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-            if(rb2d == null) return; 
-
-            Vector2 direction = (mouseWorldPosition - transform.position).normalized;
-
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            float currentAngle = rb2d.rotation;
-
-            float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-
-            if (Mathf.Abs(angleDifference) > stopThreshold)
+            if (!submarineModeActive)
             {
-                float torque = angleDifference * torqueForce;
+                Vector3 mouseScreenPosition = Input.mousePosition;
 
-                rb2d.AddTorque(torque * rotationDamping);
-            }
-            else
-            {
-                rb2d.angularVelocity = 0f;
-            }
+                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+                if(rb2d == null) return; 
 
-            // clamp angular velocity so we aren't clipping through objects and stuff
-            rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxRotationalVelocity, maxRotationalVelocity);
-        }
-        else {
-            if (Input.GetKey(KeyCode.W))
-            {
-                rb2d.AddForce(transform.up, ForceMode2D.Impulse);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                rb2d.AddForce(-transform.up, ForceMode2D.Impulse);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                rb2d.AddForce(-transform.right, ForceMode2D.Impulse);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb2d.AddForce(transform.right, ForceMode2D.Impulse);
-            }
+                Vector2 direction = (mouseWorldPosition - transform.position).normalized;
 
-            rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, submarineModeMaxMovement);
+                float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                float currentAngle = rb2d.rotation;
+
+                float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+
+                if (Mathf.Abs(angleDifference) > stopThreshold)
+                {
+                    float torque = angleDifference * torqueForce;
+
+                    rb2d.AddTorque(torque * rotationDamping);
+                }
+                else
+                {
+                    rb2d.angularVelocity = 0f;
+                }
+
+                // clamp angular velocity so we aren't clipping through objects and stuff
+                rb2d.angularVelocity = Mathf.Clamp(rb2d.angularVelocity, -maxRotationalVelocity, maxRotationalVelocity);
+            }
+            else {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    rb2d.AddForce(transform.up, ForceMode2D.Impulse);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    rb2d.AddForce(-transform.up, ForceMode2D.Impulse);
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    rb2d.AddForce(-transform.right, ForceMode2D.Impulse);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    rb2d.AddForce(transform.right, ForceMode2D.Impulse);
+                }
+
+                rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, submarineModeMaxMovement);
+            }
         }
     }
 
@@ -479,5 +492,26 @@ public class PlayerController : MonoBehaviour
 
     [Header("HealthBar")]
     public GameObject HealthBar;
+    public Animator goodNightAnimator;
+
+    public void OutOfBounds()
+    {
+        canControl = false;
+        rb2d.simulated = false;
+        StartCoroutine(SlowMusicToStop());
+        goodNightAnimator.SetBool("shown", true);
+    }
+
+    public AudioSource musicAudioSource;
     
+    public IEnumerator SlowMusicToStop()
+    {
+        while (musicAudioSource.pitch > 0)
+        {
+            musicAudioSource.pitch -=  Time.deltaTime / 6;
+            yield return null;
+        }
+
+        musicAudioSource.Stop();
+    }
 }
