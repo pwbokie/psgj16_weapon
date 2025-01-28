@@ -27,9 +27,9 @@ public class Mite : Enemy
         Debug.Log(Vector3.Distance(mitePosition, playerWorldPosition) + "\nVision: " + visionDistance);
         if(Vector2.Distance(mitePosition, playerWorldPosition) < visionDistance)
         {
-            Debug.Log("move");
             Vector2 direction = (playerWorldPosition - mitePosition).normalized;
-
+            if(direction.x < 0.01f && direction.y < 1f)
+                mite.AddForce(new Vector2(0,0));
             if(direction.x > 0)
                 mite.velocity = new Vector2(1 * moveSpeed, 0);
             else
