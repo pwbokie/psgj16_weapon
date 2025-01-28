@@ -24,13 +24,15 @@ public class Mite : Enemy
         
         Vector3 mitePosition = Camera.main.ScreenToWorldPoint(mite.transform.position);
 
-        Debug.Log(Vector3.Distance(mitePosition, playerWorldPosition) + "\nVision: " + visionDistance);
         if(Vector2.Distance(mitePosition, playerWorldPosition) < visionDistance)
         {
             Vector2 direction = (playerWorldPosition - mitePosition).normalized;
-            if(direction.x < 0.01f && direction.y < 1f)
-                mite.AddForce(new Vector2(0,0));
-            if(direction.x > 0)
+
+            Debug.Log("X: " + direction.x + "\nY: " + direction.y);
+            Debug.Log("X Max: " + 0.1f + "\nY Max: " + 1f);
+            if(Math.Abs(direction.x) < 0.1f && Math.Abs(direction.y) < 1f)
+                mite.velocity = Vector2.zero;
+            else if(direction.x > 0)
                 mite.velocity = new Vector2(1 * moveSpeed, 0);
             else
                 mite.velocity = new Vector2(-1 * moveSpeed, 0);
