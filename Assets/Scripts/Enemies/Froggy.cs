@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Froggy : Enemy
@@ -68,6 +69,8 @@ public class Froggy : Enemy
 
         froggy.angularVelocity = 360f;
         yield return new WaitForSeconds(5f);
+        froggy.transform.eulerAngles = Vector3.zero;
+        yield return new WaitForSeconds(2f);
         isLeaping = false;
     }
 }
