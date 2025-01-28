@@ -63,6 +63,7 @@ MonoBehaviour:
   CurrentHealth: 1
   MaxHealth: 1
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
+  visionDistance: 0.085
 --- !u!212 &7780407404785296923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -214,4 +215,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

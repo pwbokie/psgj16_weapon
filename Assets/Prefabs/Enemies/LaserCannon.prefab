@@ -104,7 +104,7 @@ MonoBehaviour:
   MaxHealth: 5
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
   debug: 0
-  visionDistance: 15.5
+  visionDistance: 0.08
 --- !u!58 &8038491766872512454
 CircleCollider2D:
   m_ObjectHideFlags: 0
