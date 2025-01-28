@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -49,6 +50,10 @@ public class PlayerController : MonoBehaviour
 
     public bool canControl = true;
 
+    public CameraMode currentCameraMode;
+    public CinemachineVirtualCamera closeCamera;
+    public CinemachineVirtualCamera farCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape))
             {
+                ForceCloseCamera();
                 modModeManager.ToggleModMode();
             }
 
@@ -94,6 +100,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     ReloadFromMag();
+                }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    ToggleCameraMode();
                 }
             }
             // mod mode logic
@@ -514,4 +524,29 @@ public class PlayerController : MonoBehaviour
 
         musicAudioSource.Stop();
     }
+
+    public void ToggleCameraMode()
+    {
+        if (currentCameraMode == CameraMode.CLOSE)
+        {
+            currentCameraMode = CameraMode.FAR;
+            closeCamera.Priority = 0;
+        }
+        else if (currentCameraMode == CameraMode.FAR)
+        {
+            currentCameraMode = CameraMode.CLOSE;
+            closeCamera.Priority = 10;
+        }
+    }
+
+    public void ForceCloseCamera()
+    {
+        currentCameraMode = CameraMode.CLOSE;
+        closeCamera.Priority = 10;
+    }
+}
+
+public enum CameraMode {
+    CLOSE,
+    FAR
 }
