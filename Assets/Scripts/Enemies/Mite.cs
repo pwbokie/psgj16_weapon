@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Mite : Enemy
 {
     private Rigidbody2D mite;
     private float visionDistance = 0.085f;
     private float moveSpeed = 4f;
+    private float wanderSpeed = 1.5f;
+
+    private bool isWandering = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,18 +28,33 @@ public class Mite : Enemy
         
         Vector3 mitePosition = Camera.main.ScreenToWorldPoint(mite.transform.position);
 
-        Debug.Log(Vector3.Distance(mitePosition, playerWorldPosition) + "\nVision: " + visionDistance);
         if(Vector2.Distance(mitePosition, playerWorldPosition) < visionDistance)
         {
             Vector2 direction = (playerWorldPosition - mitePosition).normalized;
-            if(direction.x < 0.01f && direction.y < 1f)
-                mite.AddForce(new Vector2(0,0));
-            if(direction.x > 0)
+            if(Math.Abs(direction.x) < 0.1f && Math.Abs(direction.y) < 1f)
+                mite.velocity = Vector2.zero;
+            else if(direction.x > 0)
                 mite.velocity = new Vector2(1 * moveSpeed, 0);
             else
                 mite.velocity = new Vector2(-1 * moveSpeed, 0);
 
         }
+        else if(!isWandering)
+        {
+            StartCoroutine(Wander());
+        }
         UpdateEnemy();
+    }
+
+    IEnumerator Wander()
+    {
+        isWandering = true;
+        mite.velocity = new Vector2((Random.Range(0, 2) == 0 ? -1 : 1) * wanderSpeed, 0);
+
+        yield return new WaitForSeconds(4f);
+        mite.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(4f);
+        isWandering = false;
     }
 }
