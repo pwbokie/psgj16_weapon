@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public int maxMagazines = 5;
 
     public AudioClip gunEmptyClickSound;
+    public AudioClip magReloadSound;
 
     private Rigidbody2D rb2d;
     private AudioSource audioSource;
@@ -295,6 +296,8 @@ public class PlayerController : MonoBehaviour
             UpdateAmmoCount();
             magazines--;
             SetMagazines(magazines);
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(magReloadSound);
         }
     }
 
