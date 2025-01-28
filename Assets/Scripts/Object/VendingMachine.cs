@@ -17,7 +17,7 @@ public class VendingMachine : MonoBehaviour
 
     public GameObject vendPreview;
 
-    private bool canVend = true;
+    private bool canVend = false;
 
     private PlayerController player;
 
