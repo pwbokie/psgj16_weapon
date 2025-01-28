@@ -12,6 +12,8 @@ public class Turret : Enemy
     public bool debug = false;
     private Enemy enemy;
 
+    public float visionDistance;
+
     private float maxRotationSpeed = 30f;
 
     // Start is called before the first frame update
@@ -26,36 +28,41 @@ public class Turret : Enemy
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(playerPosition);
 
+        
         Vector3 turretPosition = Camera.main.ScreenToWorldPoint(turret.transform.position);
-
-        Vector2 direction = (mouseWorldPosition - turretPosition).normalized;
-
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        float currentAngle = turret.rotation;
-
-        float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-
-        if(Mathf.Abs(angleDifference) > 1f)
+        Debug.Log(visionDistance);
+        if(Vector3.Distance(playerPosition, turretPosition) < visionDistance)
         {
-            float torque = angleDifference * torqueForce;
+            Vector2 direction = (mouseWorldPosition - turretPosition).normalized;
 
-            if(torque * rotationDamping > maxRotationSpeed)
+            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            float currentAngle = turret.rotation;
+
+            float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
+
+            if(Mathf.Abs(angleDifference) > 1f)
             {
-                turret.AddTorque(maxRotationSpeed);
-            }         
+                float torque = angleDifference * torqueForce;
+
+                if(torque * rotationDamping > maxRotationSpeed)
+                {
+                    turret.AddTorque(maxRotationSpeed);
+                }         
+                else
+                {
+                    turret.AddTorque(torque * rotationDamping);
+                }
+                    
+            }
             else
             {
-                turret.AddTorque(torque * rotationDamping);
+                turret.angularVelocity = 0f;
             }
-                
-        }
-        else
-        {
-            turret.angularVelocity = 0f;
-        }
 
-        UpdateEnemy();    
+            
+        }   
+        UpdateEnemy(); 
         
     }
 
