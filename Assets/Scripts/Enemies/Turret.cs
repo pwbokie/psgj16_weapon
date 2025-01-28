@@ -26,14 +26,14 @@ public class Turret : Enemy
     void Update()
     {
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(playerPosition);
+        Vector3 playerWorldPosition = Camera.main.ScreenToWorldPoint(playerPosition);
 
         
         Vector3 turretPosition = Camera.main.ScreenToWorldPoint(turret.transform.position);
         Debug.Log(visionDistance);
-        if(Vector3.Distance(playerPosition, turretPosition) < visionDistance)
+        if(Vector3.Distance(playerWorldPosition, turretPosition) < visionDistance)
         {
-            Vector2 direction = (mouseWorldPosition - turretPosition).normalized;
+            Vector2 direction = (playerWorldPosition - turretPosition).normalized;
 
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 

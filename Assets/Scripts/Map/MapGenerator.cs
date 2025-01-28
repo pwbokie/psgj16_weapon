@@ -22,7 +22,7 @@ public class MapGenerator : MonoBehaviour
     public int roomWidth = 40;
     public int roomHeight = 20;
 
-    public List<GameObject> startPrefab;
+    public List<GameObject> roomPrefabList;
     public GameObject emptyPrefab;
 
     public int roomCount = 40;
@@ -102,9 +102,9 @@ public class MapGenerator : MonoBehaviour
     {
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
-            int rnd = Random.Range(1, 3);
+            int rnd = Random.Range(3, 5);
             Vector3 roomPosition = new Vector3(entry.Key.x * roomWidth, entry.Key.y * roomHeight, 0);
-            GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? startPrefab[0] : startPrefab[rnd];
+            GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? roomPrefabList[0] : roomPrefabList[rnd];
             Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
         }
     }
