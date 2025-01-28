@@ -3206,7 +3206,7 @@ MonoBehaviour:
   moneyText: {fileID: 94064502}
   maxAmmo: 12
   currentAmmo: 12
-  magazines: 0
+  magazines: 1
   maxMagazines: 5
   gunEmptyClickSound: {fileID: 8300000, guid: 1f95e2bbc45fb3b4d8320642f8f1bc8b, type: 3}
   magReloadSound: {fileID: 0}
@@ -3993,9 +3993,7 @@ MonoBehaviour:
   randomFillPercent: 0.517
   roomWidth: 50
   roomHeight: 30
-  startPrefab:
-  - {fileID: 513034326159957349, guid: c3ca405735d6d244a80d8acd8298d0f4, type: 3}
-  - {fileID: 513034326159957349, guid: ba05fdbded11a3746a178006ad2c8938, type: 3}
+  roomPrefabList: []
   emptyPrefab: {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
   roomCount: 1
   dungeonParent: {fileID: 0}
