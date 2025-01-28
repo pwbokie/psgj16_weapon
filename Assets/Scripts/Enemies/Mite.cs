@@ -8,7 +8,7 @@ public class Mite : Enemy
 {
     private Rigidbody2D mite;
     private float visionDistance = 0.085f;
-    private float moveSpeed = 2f;
+    private float moveSpeed = 4f;
     // Start is called before the first frame update
     void Start()
     {

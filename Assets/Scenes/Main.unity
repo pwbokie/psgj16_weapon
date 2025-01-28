@@ -3209,7 +3209,7 @@ MonoBehaviour:
   magazines: 0
   maxMagazines: 5
   gunEmptyClickSound: {fileID: 8300000, guid: 1f95e2bbc45fb3b4d8320642f8f1bc8b, type: 3}
-  magReloadSound: {fileID: 8300000, guid: 3d996f77ccf1fca498580af924ef3a05, type: 3}
+  magReloadSound: {fileID: 0}
   activeEffects: 
   detectionLayer:
     serializedVersion: 2
@@ -3993,10 +3993,8 @@ MonoBehaviour:
   randomFillPercent: 0.517
   roomWidth: 80
   roomHeight: 80
-  startPrefab:
+  roomPrefabList:
   - {fileID: 8208342676218132634, guid: 81b50cb6d9995cf428d233ae8a070395, type: 3}
-  - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}
-  - {fileID: 9169992006750650871, guid: 42a7d9ddd40eefd46a80003c3eb7ae58, type: 3}
   emptyPrefab: {fileID: 513034326159957349, guid: b1fe05567ad2e1f44bb9d4da53ebf7b5, type: 3}
   roomCount: 1
   dungeonParent: {fileID: 0}
