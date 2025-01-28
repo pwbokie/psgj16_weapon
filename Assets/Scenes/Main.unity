@@ -3991,13 +3991,12 @@ MonoBehaviour:
   seed: 
   useRandomSeed: 1
   randomFillPercent: 0.517
-  roomWidth: 80
-  roomHeight: 80
+  roomWidth: 50
+  roomHeight: 30
   startPrefab:
-  - {fileID: 8208342676218132634, guid: 81b50cb6d9995cf428d233ae8a070395, type: 3}
-  - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}
-  - {fileID: 9169992006750650871, guid: 42a7d9ddd40eefd46a80003c3eb7ae58, type: 3}
-  emptyPrefab: {fileID: 513034326159957349, guid: b1fe05567ad2e1f44bb9d4da53ebf7b5, type: 3}
+  - {fileID: 513034326159957349, guid: c3ca405735d6d244a80d8acd8298d0f4, type: 3}
+  - {fileID: 513034326159957349, guid: ba05fdbded11a3746a178006ad2c8938, type: 3}
+  emptyPrefab: {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
   roomCount: 1
   dungeonParent: {fileID: 0}
 --- !u!4 &2121676455
