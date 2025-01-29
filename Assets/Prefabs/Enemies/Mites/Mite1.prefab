@@ -60,8 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda1b2c9c81461544aa5c00b31d5ea7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 2
-  MaxHealth: 2
+  CurrentHealth: 1
+  MaxHealth: 1
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
 --- !u!212 &7780407404785296923
 SpriteRenderer:
