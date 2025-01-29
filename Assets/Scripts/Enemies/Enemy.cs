@@ -49,9 +49,10 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
-        Destroy(HealthBar);
         FindAnyObjectByType<PlayerController>().KilledSomething();
         GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+        Destroy(gameObject);
+        Destroy(HealthBar);
+        
     }
 }

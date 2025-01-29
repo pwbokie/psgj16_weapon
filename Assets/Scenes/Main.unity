@@ -3489,6 +3489,9 @@ MonoBehaviour:
   currentCameraMode: 0
   closeCamera: {fileID: 367922761}
   farCamera: {fileID: 263775527}
+  healthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
+  currentHealth: 10
+  maxHealth: 10
   maxRotationalVelocity: 100
   submarineModeMaxMovement: 5
   FX_MuzzleFlash: {fileID: 2606096390965036722, guid: 39d7b74972ef74d45bc170bda6cc8f92, type: 3}
@@ -3502,7 +3505,7 @@ MonoBehaviour:
   hasCounterfeitCoin: 0
   magazineDisplayPrefab: {fileID: 6371936860884144342, guid: 2d8e7ada5b19f8f4d820b18870ca4b66, type: 3}
   magazineDisplayParent: {fileID: 1157816612}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
   goodNightAnimator: {fileID: 1843698417}
   musicAudioSource: {fileID: 483670366}
 --- !u!212 &1460620244

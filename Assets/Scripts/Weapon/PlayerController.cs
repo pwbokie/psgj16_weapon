@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +55,12 @@ public class PlayerController : MonoBehaviour
     public CameraMode currentCameraMode;
     public CinemachineVirtualCamera closeCamera;
     public CinemachineVirtualCamera farCamera;
+    private GameObject healthBarParent;
+    private GameObject healthBar;
+    private float parentHeight;
+    public GameObject healthBarPrefab;
+    public int currentHealth;
+    public int maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +73,11 @@ public class PlayerController : MonoBehaviour
 
         achievementManager = FindObjectOfType<AchievementManager>();
         modModeManager = FindObjectOfType<ModModeManager>();
+
+        healthBarParent = GameObject.Find("HealthBars");
+        parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2f * gameObject.transform.localScale.y;
+        HealthBar = Instantiate<GameObject>(healthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), quaternion.identity);
+        HealthBar.transform.localScale = gameObject.transform.localScale;
 
         UpdateAmmoCount();
 
@@ -145,8 +158,18 @@ public class PlayerController : MonoBehaviour
             transform.up = direction;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/            
+            transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));*/    
+                    
         }
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar()
+    {
+        HealthBar.transform.position = new Vector3(transform.position.x, parentHeight + transform.position.y + .3f, 0f);
+        HealthBar.transform.rotation = quaternion.identity;
+
+        HealthBar.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3((float)currentHealth/(float)maxHealth * 2f, 1f, 1f);
     }
 
     void HandleHitObject(GameObject hitObject)
