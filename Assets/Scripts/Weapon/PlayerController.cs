@@ -182,10 +182,14 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        HealthBar.transform.position = new Vector3(transform.position.x, parentHeight + transform.position.y + .3f, 0f);
-        HealthBar.transform.rotation = quaternion.identity;
+        if(HealthBar != null)
+        {
+            HealthBar.transform.position = new Vector3(transform.position.x, parentHeight + transform.position.y + .3f, 0f);
+            HealthBar.transform.rotation = quaternion.identity;
 
-        HealthBar.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3((float)currentHealth/(float)maxHealth * 2f, 1f, 1f);
+            HealthBar.transform.GetChild(0).GetChild(0).transform.localScale = new Vector3((float)currentHealth/(float)maxHealth * 2f, 1f, 1f);
+        }
+        
     }
 
     void HandleHitObject(GameObject hitObject)
@@ -219,6 +223,7 @@ public class PlayerController : MonoBehaviour
     public void Death()
     {
         ResetPlayer();
+        Destroy(HealthBar);
         FindAnyObjectByType<MapGenerator>().ResetMap();
     }
 

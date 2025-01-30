@@ -48,6 +48,8 @@ public class MapGenerator : MonoBehaviour
     {
         Transform ShadowParent = GameObject.Find("Shadows").transform;
         Transform CasingParent = GameObject.Find("Casings").transform;
+        Transform HealthBarParent = GameObject.Find("HealthBars").transform;
+
         foreach(Transform child in CasingParent)
         {
             Destroy(child.gameObject);
