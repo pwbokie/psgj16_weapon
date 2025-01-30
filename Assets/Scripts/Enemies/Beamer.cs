@@ -66,12 +66,12 @@ public class Beamer : Enemy
         gameObject.GetComponent<SpriteRenderer>().sprite = spriter;
         
         yield return new WaitForSeconds(2f);
-        float beamDistance = (distanceToPlayer > beamRange ? beamRange : distanceToPlayer) * (32f/100f);
+        float beamDistance = (distanceToPlayer > beamRange ? beamRange : distanceToPlayer) * 312.5f;
         RaycastHit2D hit = Physics2D.Raycast(beamer.position, direction, beamDistance, LayerMask.GetMask("Foreground"));
-        beam.GetComponent<SpriteRenderer>().size = new Vector2(beamDistance, 4);
+        Debug.Log(hit.distance);
+        beam.GetComponent<SpriteRenderer>().size = new Vector2(Mathf.Ceil(beamDistance + hit.distance), 4);
         beamObject = Instantiate(beam, new Vector3(beamer.position.x, beamer.position.y + 0.2f), Quaternion.Euler(new Vector3(0, 0, targetAngle)), beamer.transform);
 
-        Debug.DrawRay(new Vector3(beamer.position.x, beamer.position.y + 0.2f), direction, Color.cyan,2f);
         
         if(hit.collider != null && hit.collider.gameObject.tag == "Player")
         {

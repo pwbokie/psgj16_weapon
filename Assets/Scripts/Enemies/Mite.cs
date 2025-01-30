@@ -57,4 +57,12 @@ public class Mite : Enemy
         yield return new WaitForSeconds(4f);
         isWandering = false;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DealDamage(collision.gameObject);
+        }
+    }
 }
