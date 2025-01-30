@@ -51,6 +51,13 @@ public class MapGenerator : MonoBehaviour
         Transform CasingParent = GameObject.Find("Casings").transform;
         Transform HealthBarParent = GameObject.Find("HealthBars").transform;
 
+        foreach(Transform child in HealthBarParent)
+        {
+            Debug.Log(child.gameObject.name);
+            if(child.gameObject.name != "PlayerHealthBar")
+                Destroy(child.gameObject);
+        }
+
         foreach(Transform child in CasingParent)
         {
             Destroy(child.gameObject);
@@ -140,6 +147,27 @@ public class MapGenerator : MonoBehaviour
                 Instantiate(roomPrefabList[rnd], roomPosition, quaternion.identity, dungeonParent);
             }
         }
+        PlaceEndRoom();
+    }
+
+    private void PlaceEndRoom()
+    {
+        List<Vector2Int> possibleEndRooms = new List<Vector2Int>(dungeonMap.Keys);
+        possibleEndRooms.Remove(Vector2Int.zero);
+
+        Vector2Int endRoomPos = possibleEndRooms[Random.Range(1, possibleEndRooms.Count)];
+
+        foreach(Transform Child in dungeonParent)
+        {
+            if(Vector2Int.RoundToInt(Child.position) == new Vector2(endRoomPos.x * 50, endRoomPos.y * 30))
+            {
+                Debug.Log(Vector2Int.RoundToInt(Child.position));
+                Destroy(Child.gameObject);
+                break;
+            }
+        }
+
+        Instantiate(endRoomPrefabList[Random.Range(0, endRoomPrefabList.Count())], new Vector3(endRoomPos.x * 50, endRoomPos.y * 30, 0), Quaternion.identity, dungeonParent);
     }
 
     void EmptyRooms()

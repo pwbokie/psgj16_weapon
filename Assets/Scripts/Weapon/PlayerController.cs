@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
 
         healthBarParent = GameObject.Find("HealthBars");
         parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2f * gameObject.transform.localScale.y;
-        HealthBar = Instantiate<GameObject>(healthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), quaternion.identity);
+        HealthBar = Instantiate<GameObject>(healthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), quaternion.identity, healthBarParent.transform);
         HealthBar.transform.localScale = gameObject.transform.localScale;
+        HealthBar.name = "PlayerHealthBar";
 
         UpdateAmmoCount();
 
@@ -121,6 +122,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.C))
                 {
                     ToggleCameraMode();
+                }
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    FindObjectOfType<MapGenerator>().ResetMap();
                 }
             }
             // mod mode logic

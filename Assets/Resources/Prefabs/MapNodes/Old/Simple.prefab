@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 111020067645972573}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.5, y: -21.9994, z: 0}
-  m_LocalScale: {x: 1, y: 35.97595, z: 1}
+  m_LocalPosition: {x: -24.5384, y: -8.2843, z: 0}
+  m_LocalScale: {x: 0.62918097, y: 14.228768, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 518086646258649265}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.01, y: -8.93, z: 0}
+  m_LocalPosition: {x: -9.1292, y: -3.1148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,7 +238,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 20.372038, y: 1}
+  m_Size: {x: 12.8181715, y: 0.3955425}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -281,7 +281,7 @@ BoxCollider2D:
     border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 20.372038, y: 1}
+    newSize: {x: 12.8181715, y: 0.3955425}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -344,8 +344,8 @@ Transform:
   m_GameObject: {fileID: 1946291500696632885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.0056, y: -39.53, z: 0}
-  m_LocalScale: {x: 35.95198, y: 1, z: 1}
+  m_LocalPosition: {x: -13.5308, y: -15.2184, z: 0}
+  m_LocalScale: {x: 22.6203, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -502,8 +502,8 @@ Transform:
   m_GameObject: {fileID: 2131902342808783626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.5103, y: -4.512, z: 0}
-  m_LocalScale: {x: 4.6691995, y: 1, z: 1}
+  m_LocalPosition: {x: -23.2865, y: -1.3673, z: 0}
+  m_LocalScale: {x: 2.9377713, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -660,8 +660,8 @@ Transform:
   m_GameObject: {fileID: 2239630992425492653}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.48, y: 4.503, z: 0}
-  m_LocalScale: {x: 4.6691995, y: 1, z: 1}
+  m_LocalPosition: {x: -23.2675, y: 2.1985, z: 0}
+  m_LocalScale: {x: 2.9377713, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -818,8 +818,8 @@ Transform:
   m_GameObject: {fileID: 3033835275992792577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.983, y: 39.518997, z: 0}
-  m_LocalScale: {x: 36.017, y: 1, z: 1}
+  m_LocalPosition: {x: 14.147, y: 16.0488, z: 0}
+  m_LocalScale: {x: 22.66121, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -976,8 +976,8 @@ Transform:
   m_GameObject: {fileID: 6191863628613805166}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.469, y: -21.9952, z: 0}
-  m_LocalScale: {x: 1, y: 36.006397, z: 1}
+  m_LocalPosition: {x: 25.1492, y: -8.2826, z: 0}
+  m_LocalScale: {x: 0.62918097, y: 14.240812, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -1134,7 +1134,7 @@ Transform:
   m_GameObject: {fileID: 7593425275855325263}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.82, y: -4.45, z: 0}
+  m_LocalPosition: {x: -16.5601, y: -1.3428, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1186,7 +1186,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 6.6653986, y: 1}
+  m_Size: {x: 4.193897, y: 0.3955425}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1229,7 +1229,7 @@ BoxCollider2D:
     border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 6.6653986, y: 1}
+    newSize: {x: 4.193897, y: 0.3955425}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -1335,8 +1335,8 @@ Transform:
   m_GameObject: {fileID: 7814678701256607030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.47, y: 22.0027, z: 0}
-  m_LocalScale: {x: 1, y: 35.96457, z: 1}
+  m_LocalPosition: {x: 25.1498, y: 9.1204, z: 0}
+  m_LocalScale: {x: 0.62918097, y: 14.224268, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -1493,8 +1493,8 @@ Transform:
   m_GameObject: {fileID: 8820969023341419224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.0118, y: 39.494, z: 0}
-  m_LocalScale: {x: 35.950897, y: 1, z: 1}
+  m_LocalPosition: {x: -13.5348, y: 16.039, z: 0}
+  m_LocalScale: {x: 22.61962, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -1651,8 +1651,8 @@ Transform:
   m_GameObject: {fileID: 8837365841491441171}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.0045, y: -39.505, z: 0}
-  m_LocalScale: {x: 35.987617, y: 1, z: 1}
+  m_LocalPosition: {x: 14.1605, y: -15.2085, z: 0}
+  m_LocalScale: {x: 22.642723, y: 0.3955078, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}
@@ -1809,8 +1809,8 @@ Transform:
   m_GameObject: {fileID: 8882880017840248847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.499, y: 22.001, z: 0}
-  m_LocalScale: {x: 1, y: 35.99039, z: 1}
+  m_LocalPosition: {x: -24.5378, y: 9.1197, z: 0}
+  m_LocalScale: {x: 0.62918097, y: 14.234481, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996589588951306743}

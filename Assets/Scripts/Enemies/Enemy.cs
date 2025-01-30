@@ -26,8 +26,9 @@ public class Enemy : MonoBehaviour
     {
         parent = GameObject.Find("HealthBars");
         parentHeight = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.y/2f * gameObject.transform.localScale.y;
-        HealthBar = Instantiate<GameObject>(HealthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), Quaternion.identity);
+        HealthBar = Instantiate<GameObject>(HealthBarPrefab, new Vector3(transform.position.x, parentHeight + transform.position.y + 0.01f, 0f), Quaternion.identity, parent.transform);
         HealthBar.transform.localScale = gameObject.transform.localScale;
+        HealthBar.name = "EnemyHealthBar";
 
     }
 

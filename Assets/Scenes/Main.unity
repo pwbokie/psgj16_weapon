@@ -2215,7 +2215,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2240,7 +2240,7 @@ Transform:
   m_GameObject: {fileID: 1108321574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4073,7 +4073,10 @@ MonoBehaviour:
   - {fileID: 513034326159957349, guid: ba05fdbded11a3746a178006ad2c8938, type: 3}
   - {fileID: 513034326159957349, guid: f5cc9a6de63d4bf4ba62a2764300de78, type: 3}
   - {fileID: 513034326159957349, guid: 9d5b187b855f7a84fb4c9fbce28aeabf, type: 3}
-  endRoomPrefabList: []
+  endRoomPrefabList:
+  - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}
+  - {fileID: 7635016885243151388, guid: 87f4ddc3ace0d4d47a88194865011b76, type: 3}
+  - {fileID: 513034326159957349, guid: b1fe05567ad2e1f44bb9d4da53ebf7b5, type: 3}
   emptyPrefab: {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
   roomCount: 20
   dungeonParent: {fileID: 0}
