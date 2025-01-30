@@ -159,9 +159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23d54769c9ba904f92907e1b309818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachmentName: D6
-  description: Sneak attack.
-  value: 4
+  attachmentName: Rocketshot
+  description: Right click to blast off! Uses ammo.
+  value: 20
   ammo: 6
   kills: 0
   type: 2
