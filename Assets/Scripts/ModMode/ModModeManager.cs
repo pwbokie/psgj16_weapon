@@ -64,7 +64,7 @@ public class ModModeManager : MonoBehaviour
     [ContextMenu("Mod Mode")]
     public void EnableModMode()
     {
-        StopAllCoroutines();
+        StopCoroutine("LerpCamera");
 
         TakeAllAttachments();
         modMode.SetActive(true);
@@ -83,8 +83,8 @@ public class ModModeManager : MonoBehaviour
     [ContextMenu("Exit Mod Mode")]
     public void DisableModMode()
     {
-        StopAllCoroutines();
-
+        StopCoroutine("LerpCamera");
+        
         ResumePhysics();
         modMode.SetActive(false);
         sellButton.SetActive(false);

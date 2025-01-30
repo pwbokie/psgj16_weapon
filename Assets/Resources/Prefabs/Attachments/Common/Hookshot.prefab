@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1993f8f4e19be044ac416c29e72a0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  type: 2
   attachment: {fileID: 0}
 --- !u!1001 &4690313416573926836
 PrefabInstance:
@@ -119,6 +119,9 @@ PrefabInstance:
       addedObject: {fileID: 2568052584050197098}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
+      addedObject: {fileID: -7824951067921170485}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8184629659036983219}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
@@ -132,9 +135,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1408941829924695646}
-    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -7824951067921170485}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 32ee092bf22ab5d43861b6c41cbb5756, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8320492860042396108}
@@ -167,6 +167,22 @@ MonoBehaviour:
   type: 2
   effects: 00000000
   slot: {fileID: 0}
+--- !u!114 &-7824951067921170485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427203133086952156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414a7753044639c4a81e4645fbf87588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chainSegmentPrefab: {fileID: 4233120703054960031, guid: ebe8a5e30ff755149b4ebb2f6d4051a4, type: 3}
+  chainLength: 4
+  extendSpeed: 30
+  retractForce: 20
 --- !u!114 &8184629659036983219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,22 +407,6 @@ PolygonCollider2D:
       - {x: 0.21725641, y: -0.09547463}
       - {x: 0.1531473, y: -0.032112315}
   m_UseDelaunayMesh: 0
---- !u!114 &-7824951067921170485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2427203133086952156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414a7753044639c4a81e4645fbf87588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chainSegmentPrefab: {fileID: 4233120703054960031, guid: ebe8a5e30ff755149b4ebb2f6d4051a4, type: 3}
-  chainLength: 20
-  extendSpeed: 30
-  retractForce: 20
 --- !u!198 &8320492860042396108
 ParticleSystem:
   m_ObjectHideFlags: 0
