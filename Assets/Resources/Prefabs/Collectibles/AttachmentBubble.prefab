@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crateType: 0
+  contents: {fileID: 0}
+  legendaryGuaranteed: 0
 --- !u!1001 &265737142486328569
 PrefabInstance:
   m_ObjectHideFlags: 0
