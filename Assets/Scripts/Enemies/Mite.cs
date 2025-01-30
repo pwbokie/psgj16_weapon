@@ -13,6 +13,7 @@ public class Mite : Enemy
     private float wanderSpeed = 1.5f;
 
     private bool isWandering = false;
+    private bool isChasing = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +32,9 @@ public class Mite : Enemy
         if(Vector2.Distance(mitePosition, playerWorldPosition) < visionDistance)
         {
             Vector2 direction = (playerWorldPosition - mitePosition).normalized;
-            if(Math.Abs(direction.x) < 0.1f && Math.Abs(direction.y) < 1f)
-                mite.velocity = Vector2.zero;
-            else if(direction.x > 0)
-                mite.velocity = new Vector2(1 * moveSpeed, 0);
-            else
-                mite.velocity = new Vector2(-1 * moveSpeed, 0);
+
+            if(!isChasing)
+                StartCoroutine(Chase(direction));
 
         }
         else if(!isWandering)
@@ -46,16 +44,38 @@ public class Mite : Enemy
         UpdateEnemy();
     }
 
+    IEnumerator Chase(Vector2 direction)
+    {
+
+        while(true)
+        {
+            isChasing = true;
+            if(Math.Abs(direction.x) < 0.1f && Math.Abs(direction.y) < 1f)
+                    mite.velocity = Vector2.zero;
+            else if(direction.x > 0)
+                    mite.velocity = new Vector2(1 * moveSpeed, 0);
+            else
+                    mite.velocity = new Vector2(-1 * moveSpeed, 0);
+            yield return new WaitForSeconds(3f);
+            isChasing = false;
+            yield return new WaitForSeconds(4f);
+        }
+        
+    }
+
     IEnumerator Wander()
     {
-        isWandering = true;
-        mite.velocity = new Vector2((Random.Range(0, 2) == 0 ? -1 : 1) * wanderSpeed, 0);
+        while(!isChasing)
+        {
+            isWandering = true;
+            mite.velocity = new Vector2((Random.Range(0, 2) == 0 ? -1 : 1) * wanderSpeed, 0);
 
-        yield return new WaitForSeconds(4f);
-        mite.velocity = Vector2.zero;
+            yield return new WaitForSeconds(4f);
+            mite.velocity = Vector2.zero;
 
-        yield return new WaitForSeconds(4f);
-        isWandering = false;
+            yield return new WaitForSeconds(4f);
+            isWandering = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
