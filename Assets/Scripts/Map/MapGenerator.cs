@@ -130,10 +130,15 @@ public class MapGenerator : MonoBehaviour
     {
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
-            int rnd = Random.Range(3, 5);
+            int rnd = Random.Range(0, roomPrefabList.Count);
             Vector3 roomPosition = new Vector3(entry.Key.x * roomWidth, entry.Key.y * roomHeight, 0);
-            GameObject roomPrefabToUse = entry.Key == Vector2Int.zero ? roomPrefabList[0] : roomPrefabList[rnd];
-            Instantiate(roomPrefabToUse, roomPosition, quaternion.identity, dungeonParent);
+            if (entry.Key == Vector2Int.zero)
+            {
+                Instantiate(startRoomPrefab, roomPosition, quaternion.identity, dungeonParent);
+            }
+            else {
+                Instantiate(roomPrefabList[rnd], roomPosition, quaternion.identity, dungeonParent);
+            }
         }
     }
 
