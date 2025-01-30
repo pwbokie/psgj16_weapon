@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Services.Analytics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour
@@ -40,11 +41,35 @@ public class MapGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public void ResetMap()
+    {
+        Transform ShadowParent = GameObject.Find("Shadows").transform;
+        Transform CasingParent = GameObject.Find("Casings").transform;
+        foreach(Transform child in CasingParent)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach(Transform child in ShadowParent)
+        {
+            if(child.gameObject.name != "Shadow_Gun")
+                Destroy(child.gameObject);
+        }
         
+        foreach(Transform child in dungeonParent)
+        {                
+            Destroy(child.gameObject);
+        }
+        GenerateDungeon();
+        EmptyRooms();
+        FindAnyObjectByType<PlayerController>().Reset();
     }
 
     void GenerateDungeon()
     {
+        dungeonMap.Clear();
         Vector2Int startRoom = Vector2Int.zero;
         dungeonMap[startRoom] = true;
 

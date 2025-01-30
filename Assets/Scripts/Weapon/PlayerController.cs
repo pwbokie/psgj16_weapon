@@ -92,6 +92,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(currentHealth <= 0)
+        {
+            Death();
+        }
         if (canControl)
         {
             mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -164,6 +168,12 @@ public class PlayerController : MonoBehaviour
         UpdateHealthBar();
     }
 
+    void ResetPlayer()
+    {
+        SetMoney(0);
+        currentHealth = maxHealth;
+    }
+
     public void IncreasePlayerMoney(int moneyAmount)
     {
         money += moneyAmount;
@@ -208,7 +218,8 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-
+        ResetPlayer();
+        FindAnyObjectByType<MapGenerator>().ResetMap();
     }
 
     public float maxRotationalVelocity = 10f;
@@ -352,6 +363,11 @@ public class PlayerController : MonoBehaviour
         {
             HandleHitObject(hit.collider.gameObject);
         }
+    }
+
+    public void Reset()
+    {
+        gameObject.transform.position = Vector3.zero;
     }
 
     public void ReloadFromMag()

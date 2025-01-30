@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        FindAnyObjectByType<MapGenerator>().ResetMap();
         FindAnyObjectByType<PlayerController>().IncreasePlayerMoney(SelfWorth);
         FindAnyObjectByType<PlayerController>().KilledSomething();
         GetComponent<ShadowedObject>().DestroyThisAndItsShadow();

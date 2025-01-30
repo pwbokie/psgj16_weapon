@@ -52,11 +52,14 @@ public class ShadowedObject : MonoBehaviour
 
     public void Update()
     {
-        shadow.transform.position = (Vector2)spriteRenderer.transform.position + Global.ShadowOffset;
-        shadow.transform.rotation = spriteRenderer.transform.rotation;
-        shadow.transform.localScale = spriteRenderer.transform.localScale;
-        // for animations
-        shadowRenderer.sprite = spriteRenderer.sprite;
+        if(shadow != null)
+        {
+            shadow.transform.position = (Vector2)spriteRenderer.transform.position + Global.ShadowOffset;
+            shadow.transform.rotation = spriteRenderer.transform.rotation;
+            shadow.transform.localScale = spriteRenderer.transform.localScale;
+            // for animations
+            shadowRenderer.sprite = spriteRenderer.sprite;
+        }
     }
 
     public void DestroyThisAndItsShadow()
