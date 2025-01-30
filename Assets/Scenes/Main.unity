@@ -3266,7 +3266,7 @@ MonoBehaviour:
   torqueForce: 10
   rotationDamping: 0.5
   stopThreshold: 1
-  money: 0
+  money: 3
   moneyText: {fileID: 94064502}
   maxAmmo: 12
   currentAmmo: 12
@@ -4073,7 +4073,8 @@ MonoBehaviour:
   - {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
   - {fileID: 513034326159957349, guid: ba05fdbded11a3746a178006ad2c8938, type: 3}
   - {fileID: 513034326159957349, guid: f5cc9a6de63d4bf4ba62a2764300de78, type: 3}
-  - {fileID: 513034326159957349, guid: 79dc19755a83c4e40ba5d155e0b9464a, type: 3}
+  - {fileID: 513034326159957349, guid: 9d5b187b855f7a84fb4c9fbce28aeabf, type: 3}
+  endRoomPrefabList: []
   emptyPrefab: {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
   roomCount: 20
   dungeonParent: {fileID: 0}
