@@ -70,7 +70,7 @@ public class Attachment_Hookshot : MonoBehaviour
                 segmentRb.transform.localScale = new Vector3(5f, 5f, 5f);   
             }
 
-            yield return new WaitForSeconds(0.02f); // Small delay for smooth extension
+            yield return new WaitForSeconds(0.15f); // Small delay for smooth extension
         }
 
         yield return new WaitForSeconds(0.2f);

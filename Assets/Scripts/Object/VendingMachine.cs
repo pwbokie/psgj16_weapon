@@ -83,7 +83,6 @@ public class VendingMachine : MonoBehaviour
             }
             else if (player.money < totalPrice)
             {
-                StopAllCoroutines();
                 StartCoroutine(ShowNotEnoughMoneyMessage());
             }
         }
