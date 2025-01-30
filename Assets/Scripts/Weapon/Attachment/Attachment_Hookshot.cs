@@ -23,8 +23,6 @@ public class Attachment_Hookshot : MonoBehaviour
         if (Input.GetMouseButton(1) && playerRb.GetComponent<PlayerController>().currentAmmo > 0)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            playerRb.GetComponent<PlayerController>().currentAmmo--;
-            playerRb.GetComponent<PlayerController>().UpdateAmmoCount();
 
             FireGrapple(mousePos);
         }
@@ -34,6 +32,9 @@ public class Attachment_Hookshot : MonoBehaviour
     {
         if (isGrappling) return;
         isGrappling = true;
+
+        playerRb.GetComponent<PlayerController>().currentAmmo--;
+        playerRb.GetComponent<PlayerController>().UpdateAmmoCount();
 
         StartCoroutine(ExtendChain(target));
     }
