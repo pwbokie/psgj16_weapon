@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ac7e671f52d3c3489821b2b8f56cbbf
+guid: 2c031e9f4aa615d41b1b82cd823d897b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -87,7 +87,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 0
+    defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638737793179050415
+  platformSettingsDirtyTick: 638737773749299533
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: chaoscore
+  - name: StoreIslandGuys_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 14
-      height: 14
-    spriteID: 9ce9ee6a36d25e04598f3ff0b6a575f4
+      width: 1037
+      height: 387
+    spriteID: 6b83cbd17e27cf24c8c5e5db612ffe16
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: chaoscore_Frame_1
+  - name: StoreIslandGuys_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 26
-      width: 14
-      height: 14
-    spriteID: b4c6a7fc3a591794897ce3ec4ea843cc
+      y: 399
+      width: 1037
+      height: 387
+    spriteID: 863e59dd926a66744ac1881b81ef2458
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,19 +158,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 26}
-  - name: chaoscore_Frame_2
+    uvTransform: {x: 4, y: 399}
+  - name: StoreIslandGuys_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 26
-      y: 4
-      width: 14
-      height: 14
-    spriteID: de2b01dd3f8185245a9e72cbebec8bd0
+      x: 4
+      y: 794
+      width: 1037
+      height: 387
+    spriteID: 2aa8a42da6550844eb88089a0452ef66
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,40 +178,68 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 26, y: 4}
+    uvTransform: {x: 4, y: 794}
+  - name: StoreIslandGuys_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1189
+      width: 1037
+      height: 387
+    spriteID: 7337cfc30254b0444aa5fa5583edc326
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1189}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1128613209
-    name: chaoscore
+    guid: 382782706
+    name: StoreIslandGuys
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: chaoscore_Frame_0
+    - name: StoreIslandGuys_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
-        width: 14
-        height: 14
-      spriteId: 9ce9ee6a36d25e04598f3ff0b6a575f4
-    - name: chaoscore_Frame_1
+        width: 1037
+        height: 387
+      spriteId: 6b83cbd17e27cf24c8c5e5db612ffe16
+    - name: StoreIslandGuys_Frame_1
       frameIndex: 1
       cellRect:
         x: 0
         y: 0
-        width: 14
-        height: 14
-      spriteId: b4c6a7fc3a591794897ce3ec4ea843cc
-    - name: chaoscore_Frame_2
+        width: 1037
+        height: 387
+      spriteId: 863e59dd926a66744ac1881b81ef2458
+    - name: StoreIslandGuys_Frame_2
       frameIndex: 2
       cellRect:
         x: 0
         y: 0
-        width: 14
-        height: 14
-      spriteId: de2b01dd3f8185245a9e72cbebec8bd0
+        width: 1037
+        height: 387
+      spriteId: 2aa8a42da6550844eb88089a0452ef66
+    - name: StoreIslandGuys_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 0
+        width: 1037
+        height: 387
+      spriteId: 7337cfc30254b0444aa5fa5583edc326
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -253,4 +281,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 14, y: 14}
+  canvasSize: {x: 1037, y: 387}
