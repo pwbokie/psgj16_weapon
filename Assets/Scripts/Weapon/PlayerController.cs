@@ -164,6 +164,12 @@ public class PlayerController : MonoBehaviour
         UpdateHealthBar();
     }
 
+    public void IncreasePlayerMoney(int moneyAmount)
+    {
+        money += moneyAmount;
+        UpdateMoneyDisplay();
+    }
+
     public void UpdateHealthBar()
     {
         HealthBar.transform.position = new Vector3(transform.position.x, parentHeight + transform.position.y + .3f, 0f);

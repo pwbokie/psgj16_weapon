@@ -63,6 +63,7 @@ MonoBehaviour:
   CurrentHealth: 2
   MaxHealth: 2
   Damage: 2
+  SelfWorth: 2
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
   beam: {fileID: 956646175136265325, guid: 5185f3a325f704644a024fab2ddc57b9, type: 3}
   baseBeamer: {fileID: -8174556762491760639, guid: 7c1cb7d687780df42b6552b63827db8c, type: 3}

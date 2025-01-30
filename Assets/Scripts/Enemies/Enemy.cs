@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int CurrentHealth;
     public int MaxHealth;
     public int Damage;
+    public int SelfWorth;
 
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer healthBarRenderer;
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        FindAnyObjectByType<PlayerController>().IncreasePlayerMoney(SelfWorth);
         FindAnyObjectByType<PlayerController>().KilledSomething();
         GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
         Destroy(gameObject);
