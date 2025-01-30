@@ -22,7 +22,7 @@ public class MapGenerator : MonoBehaviour
 
     public int roomWidth = 40;
     public int roomHeight = 20;
-
+    public GameObject startRoomPrefab;
     public List<GameObject> roomPrefabList;
     public List<GameObject> endRoomPrefabList;
     public GameObject emptyPrefab;
