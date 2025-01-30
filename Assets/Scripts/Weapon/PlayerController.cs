@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             Vector3 right = new Vector3(1, 20, 0);
-            Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
+            //Debug.DrawRay(rb2d.position, right, Color.cyan, 0.1f);
             
             /*Vector2 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -188,6 +188,20 @@ public class PlayerController : MonoBehaviour
     void DieDieDie(GameObject item)
     {
         item.GetComponent<Enemy>().TakeDamage();
+
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
 
     }
 

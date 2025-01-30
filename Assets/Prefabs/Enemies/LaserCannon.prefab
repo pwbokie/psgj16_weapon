@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 5
   MaxHealth: 5
+  Damage: 3
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
   debug: 0
   visionDistance: 0.08

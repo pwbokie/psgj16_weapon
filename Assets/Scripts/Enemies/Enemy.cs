@@ -11,10 +11,10 @@ public class Enemy : MonoBehaviour
 {
     public int CurrentHealth;
     public int MaxHealth;
+    public int Damage;
 
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer healthBarRenderer;
-    private Sprite sprite;
     public GameObject HealthBarPrefab;
     private GameObject parent;
 
@@ -44,6 +44,14 @@ public class Enemy : MonoBehaviour
         if(CurrentHealth == 0)
         {
             Die();
+        }
+    }
+
+    public void DealDamage(GameObject thing)
+    {
+        if(thing.tag == "Player")
+        {
+            thing.GetComponent<PlayerController>().TakeDamage(Damage);
         }
     }
 

@@ -15,8 +15,9 @@ public class Beamer : Enemy
     private bool isFiring = false;
     public Sprite baseBeamer;
     private float distanceToPlayer;
-    public Sprite sprite;
+    public Sprite spriter;
     private float targetAngle;
+    private Vector2 direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class Beamer : Enemy
 
         if(distanceToPlayer < visionDistance && !isFiring)
         {
-            Vector2 direction = (playerWorldPosition - beamerPosition).normalized;
+            direction = (playerWorldPosition - beamerPosition).normalized;
 
             targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -62,12 +63,18 @@ public class Beamer : Enemy
         isFiring = true;
         beamer.velocity = Vector2.zero;
 
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        gameObject.GetComponent<SpriteRenderer>().sprite = spriter;
         
         yield return new WaitForSeconds(2f);
-        RaycastHit2D hit = Physics2D.Raycast(beamer.position, transform.right, .065f, LayerMask.GetMask("Shootable"));
+        RaycastHit2D hit = Physics2D.Raycast(beamer.position, direction, .065f * 312.5f, LayerMask.GetMask("Foreground"));
         beam.GetComponent<SpriteRenderer>().size = new Vector2((distanceToPlayer > beamRange ? beamRange : distanceToPlayer) * 312.5f, 4);
         beamObject = Instantiate(beam, new Vector3(beamer.position.x, beamer.position.y + 0.2f), Quaternion.Euler(new Vector3(0, 0, targetAngle)), beamer.transform);
+
+        Debug.DrawRay(new Vector3(beamer.position.x, beamer.position.y + 0.2f), direction, Color.cyan,2f);
+        if(hit.collider != null && hit.collider.gameObject.tag == "Player")
+        {
+            DealDamage(hit.collider.gameObject);
+        }
 
         yield return new WaitForSeconds(1f);
 

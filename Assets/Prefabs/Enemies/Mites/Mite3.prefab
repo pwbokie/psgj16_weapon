@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 1
   MaxHealth: 1
+  Damage: 1
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
 --- !u!212 &4863889419936979475
 SpriteRenderer:

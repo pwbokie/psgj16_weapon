@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Froggy : Enemy
@@ -38,8 +39,17 @@ public class Froggy : Enemy
 
             StartCoroutine(Leap(playerWorldPosition, 2f));
         }
+        
 
         UpdateEnemy();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DealDamage(collision.gameObject);
+        }
     }
 
     IEnumerator Leap(Vector2 targetPosition, float leapHeight)
