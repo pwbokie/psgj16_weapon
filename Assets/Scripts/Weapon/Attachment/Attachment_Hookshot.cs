@@ -20,9 +20,12 @@ public class Attachment_Hookshot : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && playerRb.GetComponent<PlayerController>().currentAmmo > 0)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            playerRb.GetComponent<PlayerController>().currentAmmo--;
+            playerRb.GetComponent<PlayerController>().UpdateAmmoCount();
+
             FireGrapple(mousePos);
         }
     }
@@ -92,7 +95,7 @@ public class Attachment_Hookshot : MonoBehaviour
     private void CleanupChain()
     {
         GetComponent<ParticleSystem>().Stop();
-        
+
         foreach (var segment in chainSegments)
         {
             Destroy(segment);
