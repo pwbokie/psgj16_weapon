@@ -61,17 +61,24 @@ public class VendingMachine : MonoBehaviour
                 {
                     player.SetMagazines(player.magazines + 1);
                 }
-                else if (vendorType == VendorType.Attachment)
+                else if (vendorType == VendorType.Attachment || vendorType == VendorType.Shop)
                 {
                     Instantiate(vendedItem, transform.position + new Vector3(0, -1f, 0), Quaternion.identity, transform.Find("/PlayMode"));
                 }
 
-                GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
-                GetComponent<AudioSource>().Play();
-                if (stock <= 0)
+                if (vendorType == VendorType.Shop)
                 {
-                    vendPreview.SetActive(false);
-                    helpText.text = "out of stock!";
+                    GetComponent<ShadowedObject>().DestroyThisAndItsShadow();
+                }
+                else
+                {
+                    GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+                    GetComponent<AudioSource>().Play();
+                    if (stock <= 0)
+                    {
+                        vendPreview.SetActive(false);
+                        helpText.text = "out of stock!";
+                    }
                 }
             }
             else if (player.money < totalPrice)
@@ -110,5 +117,6 @@ public class VendingMachine : MonoBehaviour
 public enum VendorType
 {
     Attachment,
-    Ammo
+    Ammo,
+    Shop
 }
