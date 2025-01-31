@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateMoneyDisplay();
 
-        SetMagazines(0);
+        SetMagazines(5);
     }
 
     private GameObject hoveredAttachment;
@@ -220,11 +221,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public Animator deathFadeAnimator;
+
     public void Death()
     {
-        ResetPlayer();
+        StartCoroutine(DeathSequence());
+    }
+
+    public IEnumerator DeathSequence() {
+        StartCoroutine(SlowMusicToStop());
         Destroy(HealthBar);
-        FindAnyObjectByType<MapGenerator>().ResetMap();
+        canControl = false;
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(FadeAndReset());
+    }
+
+    public IEnumerator FadeAndReset(float initialDelay = 0f) {
+        yield return new WaitForSeconds(initialDelay);
+
+        deathFadeAnimator.SetBool("screenShown", false);
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene(0);
     }
 
     public float maxRotationalVelocity = 10f;
@@ -574,6 +595,8 @@ public class PlayerController : MonoBehaviour
         rb2d.simulated = false;
         StartCoroutine(SlowMusicToStop());
         goodNightAnimator.SetBool("shown", true);
+
+        StartCoroutine(FadeAndReset(8f));
     }
 
     public AudioSource musicAudioSource;
