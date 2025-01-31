@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     public CinemachineVirtualCamera closeCamera;
     public CinemachineVirtualCamera farCamera;
     private GameObject healthBarParent;
-    private GameObject healthBar;
     private float parentHeight;
     public GameObject healthBarPrefab;
     public int currentHealth;
@@ -174,12 +173,6 @@ public class PlayerController : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void ResetPlayer()
-    {
-        SetMoney(0);
-        currentHealth = maxHealth;
-    }
-
     public void IncreasePlayerMoney(int moneyAmount)
     {
         money += moneyAmount;
@@ -251,6 +244,18 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene(0);
+    }
+
+    public IEnumerator FadeAndNextLevel(float initialDelay = 0f) {
+        yield return new WaitForSeconds(initialDelay);
+
+        deathFadeAnimator.SetBool("screenShown", false);
+
+        yield return new WaitForSeconds(2f);
+
+        FindObjectOfType<MapGenerator>().NextLevel();
+
+        deathFadeAnimator.SetBool("screenShown", true);
     }
 
     public float maxRotationalVelocity = 10f;
@@ -635,6 +640,11 @@ public class PlayerController : MonoBehaviour
     {
         currentCameraMode = CameraMode.CLOSE;
         closeCamera.Priority = 10;
+    }
+
+    public void NextLevel()
+    {
+        StartCoroutine(FadeAndNextLevel());
     }
 }
 

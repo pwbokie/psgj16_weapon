@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4946152996419320451}
   - component: {fileID: 4288662426012534468}
   - component: {fileID: 7780407404785296923}
-  - component: {fileID: 2501104949748102509}
-  - component: {fileID: 2778317448383872017}
+  - component: {fileID: 4149488426300059280}
   m_Layer: 7
   m_Name: Mite1
   m_TagString: Enemy
@@ -63,6 +62,7 @@ MonoBehaviour:
   CurrentHealth: 1
   MaxHealth: 1
   Damage: 1
+  SelfWorth: 0
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
 --- !u!212 &7780407404785296923
 SpriteRenderer:
@@ -116,8 +116,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2501104949748102509
-PolygonCollider2D:
+--- !u!70 &4149488426300059280
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,71 +148,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.6666667}
-    oldSize: {x: 0.8125, y: 0.65625}
-    newSize: {x: 0.8125, y: 0.65625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.27892196, y: 0.1856093}
-      - {x: 0.1529774, y: 0.21488577}
-      - {x: -0.15230921, y: 0.2199628}
-      - {x: -0.28077292, y: 0.18483928}
-      - {x: -0.4050389, y: 0.089639604}
-      - {x: -0.404278, y: -0.057149526}
-      - {x: -0.3738539, y: -0.054785416}
-      - {x: -0.3723998, y: -0.22048673}
-      - {x: -0.40738824, y: -0.2195284}
-      - {x: -0.40261668, y: -0.4007755}
-      - {x: -0.34987906, y: -0.4019038}
-      - {x: -0.32101217, y: -0.12141904}
-      - {x: -0.15829799, y: -0.15422545}
-      - {x: -0.12360741, y: -0.43576318}
-      - {x: -0.067542516, y: -0.4323256}
-      - {x: -0.09903855, y: -0.17729971}
-      - {x: 0.09486579, y: -0.18151888}
-      - {x: 0.062086865, y: -0.439224}
-      - {x: 0.123819634, y: -0.437734}
-      - {x: 0.15408672, y: -0.15065563}
-      - {x: 0.30896807, y: -0.12558122}
-      - {x: 0.34862787, y: -0.40307367}
-      - {x: 0.40261674, y: -0.40601143}
-      - {x: 0.40747553, y: -0.22071037}
-      - {x: 0.37341616, y: -0.2182673}
-      - {x: 0.37372306, y: -0.06509714}
-      - {x: 0.40324056, y: -0.05642962}
-      - {x: 0.40503892, y: 0.08916254}
-  m_UseDelaunayMesh: 0
---- !u!50 &2778317448383872017
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6371872925813246013}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 4
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Offset: {x: 0, y: -0.109375}
+  m_Size: {x: 0.8125, y: 0.65625}
+  m_Direction: 1

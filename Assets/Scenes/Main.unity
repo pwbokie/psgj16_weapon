@@ -1116,7 +1116,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 51
   m_Sprite: {fileID: 939235296108028174, guid: 1b16e8a6cb2d81248a4e8e856df2c2c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1308,7 +1308,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4298,16 +4298,20 @@ MonoBehaviour:
   roomHeight: 30
   startRoomPrefab: {fileID: 513034326159957349, guid: c3ca405735d6d244a80d8acd8298d0f4, type: 3}
   roomPrefabList:
-  - {fileID: 513034326159957349, guid: ba05fdbded11a3746a178006ad2c8938, type: 3}
   - {fileID: 513034326159957349, guid: f5cc9a6de63d4bf4ba62a2764300de78, type: 3}
   - {fileID: 513034326159957349, guid: 9d5b187b855f7a84fb4c9fbce28aeabf, type: 3}
+  - {fileID: 513034326159957349, guid: 09e2901f6fc721842908a21e79978954, type: 3}
+  - {fileID: 513034326159957349, guid: 24fcf2594bdf8c04b9d21ff4604c1e3b, type: 3}
+  - {fileID: 513034326159957349, guid: de39acc5c02ab204fa73d73a5bba90a3, type: 3}
+  - {fileID: 513034326159957349, guid: eb87b3285e138fe4b8b421a756eacb01, type: 3}
+  - {fileID: 513034326159957349, guid: 7b805301b35a3854e98a8c86da2e8a34, type: 3}
   endRoomPrefabList:
-  - {fileID: 5425170870145161266, guid: 764cf9254c1127a4e85efa15ed30714b, type: 3}
-  - {fileID: 7635016885243151388, guid: 87f4ddc3ace0d4d47a88194865011b76, type: 3}
-  - {fileID: 513034326159957349, guid: b1fe05567ad2e1f44bb9d4da53ebf7b5, type: 3}
+  - {fileID: 513034326159957349, guid: b078724425670da45a4470fc043ac019, type: 3}
   emptyPrefab: {fileID: 513034326159957349, guid: 66a94fdb8da828c4db6ab19003158cdb, type: 3}
+  shopRoomPrefab: {fileID: 513034326159957349, guid: 79dc19755a83c4e40ba5d155e0b9464a, type: 3}
   roomCount: 20
   dungeonParent: {fileID: 0}
+  currentLevel: 1
 --- !u!4 &2121676455
 Transform:
   m_ObjectHideFlags: 0
@@ -4363,7 +4367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 50
   m_Sprite: {fileID: 1455823736955472755, guid: 352f4b3b78d410a49b07266449be7413, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

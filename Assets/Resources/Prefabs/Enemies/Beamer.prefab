@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2985331123725283993}
   - component: {fileID: 7233954530773457907}
   - component: {fileID: 5506626358641240187}
-  - component: {fileID: 7383173528010469543}
   - component: {fileID: -4830553529513933127}
+  - component: {fileID: 507575466506247885}
   m_Layer: 7
   m_Name: Beamer
   m_TagString: Enemy
@@ -120,8 +120,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7383173528010469543
-PolygonCollider2D:
+--- !u!50 &-4830553529513933127
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913589356452995364}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &507575466506247885
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -152,81 +179,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.56}
-    oldSize: {x: 0.75, y: 0.78125}
-    newSize: {x: 0.75, y: 0.78125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.18406701, y: 0.34231463}
-      - {x: 0.12937929, y: 0.34150693}
-      - {x: 0.12860163, y: 0.28450632}
-      - {x: 0.25144717, y: 0.19460389}
-      - {x: 0.25265926, y: 0.062310793}
-      - {x: 0.062201306, y: -0.06530087}
-      - {x: -0.05912724, y: -0.064944685}
-      - {x: -0.15791287, y: -0.031758666}
-      - {x: -0.252524, y: 0.06514542}
-      - {x: -0.25685608, y: 0.18288612}
-      - {x: -0.12826067, y: 0.28145197}
-      - {x: -0.13013601, y: 0.34212223}
-      - {x: -0.18456864, y: 0.34190685}
-      - {x: -0.37407845, y: 0.120058864}
-      - {x: -0.37233362, y: -0.060095914}
-      - {x: -0.27668524, y: -0.15814532}
-      - {x: -0.30680394, y: -0.25447896}
-      - {x: -0.375, y: -0.4375}
-      - {x: -0.31515998, y: -0.43472797}
-      - {x: -0.2504741, y: -0.21694167}
-      - {x: -0.21624573, y: -0.21303767}
-      - {x: -0.11996053, y: -0.27806866}
-      - {x: -0.18907817, y: -0.4375}
-      - {x: -0.12825465, y: -0.4375}
-      - {x: -0.09139191, y: -0.31124514}
-      - {x: 0.09501808, y: -0.3135215}
-      - {x: 0.12530838, y: -0.43573055}
-      - {x: 0.18880299, y: -0.4361805}
-      - {x: 0.12053412, y: -0.2796505}
-      - {x: 0.2415334, y: -0.21544336}
-      - {x: 0.31967172, y: -0.4400506}
-      - {x: 0.375, y: -0.4375}
-      - {x: 0.30718425, y: -0.2658968}
-      - {x: 0.27416313, y: -0.15591578}
-      - {x: 0.3724614, y: -0.051744193}
-      - {x: 0.37130648, y: 0.1237553}
-      - {x: 0.33905888, y: 0.11997554}
-      - {x: 0.33746564, y: 0.17971082}
-  m_UseDelaunayMesh: 0
---- !u!50 &-4830553529513933127
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6913589356452995364}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Offset: {x: 0.003525064, y: -0.12331803}
+  m_Size: {x: 0.7570517, y: 0.6283827}
+  m_Direction: 1

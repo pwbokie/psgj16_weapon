@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7051224133596162299}
   - component: {fileID: 7939649467527671217}
   - component: {fileID: 6798884563030925272}
-  - component: {fileID: 2262222208633312798}
+  - component: {fileID: 5391061714754510726}
   m_Layer: 7
   m_Name: Froggy
   m_TagString: Enemy
@@ -63,6 +63,7 @@ MonoBehaviour:
   CurrentHealth: 2
   MaxHealth: 2
   Damage: 1
+  SelfWorth: 0
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
 --- !u!212 &7939649467527671217
 SpriteRenderer:
@@ -143,8 +144,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2262222208633312798
-PolygonCollider2D:
+--- !u!61 &5391061714754510726
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -175,7 +176,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00097319484, y: -0.09261447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.56}
@@ -185,24 +186,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.36525518, y: -0.34231973}
-      - {x: 0.24998397, y: -0.3721917}
-      - {x: 0.24397969, y: -0.15234016}
-      - {x: 0.4372159, y: 0.23245248}
-      - {x: 0.4375, y: 0.34375}
-      - {x: 0.101858854, y: 0.24870461}
-      - {x: -0.079475075, y: 0.24504113}
-      - {x: -0.4375, y: 0.34375}
-      - {x: -0.43521383, y: 0.2223211}
-      - {x: -0.25379178, y: -0.16130787}
-      - {x: -0.24592865, y: -0.36930937}
-      - {x: -0.36608484, y: -0.356869}
-      - {x: -0.3771779, y: -0.4320162}
-      - {x: -0.13155907, y: -0.4338148}
-      - {x: -0.106945604, y: -0.15736294}
-      - {x: 0.093498826, y: -0.15143034}
-      - {x: 0.1324575, y: -0.42359754}
-      - {x: 0.3716941, y: -0.4375}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7484866, y: 0.68977106}
+  m_EdgeRadius: 0

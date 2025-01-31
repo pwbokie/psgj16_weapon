@@ -26,10 +26,12 @@ public class MapGenerator : MonoBehaviour
     public List<GameObject> roomPrefabList;
     public List<GameObject> endRoomPrefabList;
     public GameObject emptyPrefab;
+    public GameObject shopRoomPrefab;
 
     public int roomCount = 40;
     private Dictionary<Vector2Int, bool> dungeonMap = new Dictionary<Vector2Int, bool>();
     public Transform dungeonParent;
+    public int currentLevel = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,12 @@ public class MapGenerator : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void NextLevel()
+    {
+        currentLevel++;
+        ResetMap();
     }
 
     public void ResetMap()
@@ -135,6 +143,14 @@ public class MapGenerator : MonoBehaviour
 
     void InstantiateDungeon()
     {
+        if (currentLevel != 1)
+            startRoomPrefab = shopRoomPrefab;
+
+        List<Vector2Int> possibleEndRooms = new List<Vector2Int>(dungeonMap.Keys);
+        possibleEndRooms.Remove(Vector2Int.zero);
+
+        Vector2Int endRoomPos = possibleEndRooms[Random.Range(1, possibleEndRooms.Count)];
+
         foreach(KeyValuePair<Vector2Int, bool> entry in dungeonMap)
         {
             int rnd = Random.Range(0, roomPrefabList.Count);
@@ -143,20 +159,15 @@ public class MapGenerator : MonoBehaviour
             {
                 Instantiate(startRoomPrefab, roomPosition, quaternion.identity, dungeonParent);
             }
-            else {
+            else if (entry.Key != endRoomPos) {
                 Instantiate(roomPrefabList[rnd], roomPosition, quaternion.identity, dungeonParent);
             }
         }
-        PlaceEndRoom();
+        PlaceEndRoom(endRoomPos);
     }
 
-    private void PlaceEndRoom()
+    private void PlaceEndRoom(Vector2Int endRoomPos)
     {
-        List<Vector2Int> possibleEndRooms = new List<Vector2Int>(dungeonMap.Keys);
-        possibleEndRooms.Remove(Vector2Int.zero);
-
-        Vector2Int endRoomPos = possibleEndRooms[Random.Range(1, possibleEndRooms.Count)];
-
         foreach(Transform Child in dungeonParent)
         {
             if(Vector2Int.RoundToInt(Child.position) == new Vector2(endRoomPos.x * 50, endRoomPos.y * 30))

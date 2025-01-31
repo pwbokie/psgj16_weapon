@@ -176,7 +176,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6471541908415755785, guid: a07f06debecf8ea488b4462f152b65b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4896946
+      value: -2.38
       objectReference: {fileID: 0}
     - target: {fileID: 6471541908415755785, guid: a07f06debecf8ea488b4462f152b65b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -443,6 +443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3272366177436949418}
     m_Modifications:
+    - target: {fileID: 2063663419204544574, guid: 977ab7d23b394894c834f5e82acfcac1, type: 3}
+      propertyPath: vendedItem
+      value: 
+      objectReference: {fileID: 7127511585473486636, guid: a07f06debecf8ea488b4462f152b65b6, type: 3}
     - target: {fileID: 8098862405532778058, guid: 977ab7d23b394894c834f5e82acfcac1, type: 3}
       propertyPath: m_Name
       value: AttachmentVendingMachine

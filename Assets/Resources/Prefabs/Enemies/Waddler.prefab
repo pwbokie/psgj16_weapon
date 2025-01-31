@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4182962135560971102}
   - component: {fileID: 5788249805844788674}
   - component: {fileID: 3888158267930361901}
-  - component: {fileID: 4229793563241242676}
+  - component: {fileID: 3968124977713049831}
   m_Layer: 7
   m_Name: Waddler
   m_TagString: Enemy
@@ -53,7 +53,6 @@ MonoBehaviour:
   Damage: 3
   SelfWorth: 4
   HealthBarPrefab: {fileID: 8456703513910557020, guid: fd0e560bf70b36444b7f1eecfb603c86, type: 3}
-  target: {fileID: 0}
   maxSpeed: 5
   acceleration: 2
   decelerationTime: 0.5
@@ -148,8 +147,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &4229793563241242676
-PolygonCollider2D:
+--- !u!61 &3968124977713049831
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -180,7 +179,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0011962652, y: -0.09367621}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5925926}
@@ -190,32 +189,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.026520142, y: 0.34249213}
-      - {x: -0.027122777, y: 0.34320685}
-      - {x: -0.14997345, y: 0.27575386}
-      - {x: -0.054330863, y: 0.098681234}
-      - {x: -0.02640146, y: 0.09282017}
-      - {x: -0.028130673, y: 0.060180284}
-      - {x: -0.083296165, y: 0.059224613}
-      - {x: -0.15258883, y: -0.0056925453}
-      - {x: -0.18349797, y: -0.09396572}
-      - {x: -0.1823455, y: -0.18616933}
-      - {x: -0.093222074, y: -0.2760622}
-      - {x: -0.09058853, y: -0.4323563}
-      - {x: -0.18560639, y: -0.47152174}
-      - {x: -0.18645391, y: -0.5}
-      - {x: 0.1875, y: -0.5}
-      - {x: 0.18472616, y: -0.46957082}
-      - {x: 0.08758103, y: -0.4327664}
-      - {x: 0.08956237, y: -0.27089697}
-      - {x: 0.18327858, y: -0.1812128}
-      - {x: 0.18277515, y: -0.10186374}
-      - {x: 0.15329571, y: -0.006144851}
-      - {x: 0.08860665, y: 0.05647853}
-      - {x: 0.02510067, y: 0.062332243}
-      - {x: 0.02464456, y: 0.09889635}
-      - {x: 0.05714897, y: 0.098151036}
-      - {x: 0.15088667, y: 0.27784607}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.21948788, y: 0.8126476}
+  m_EdgeRadius: 0

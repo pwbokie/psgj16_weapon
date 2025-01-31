@@ -148,12 +148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachmentName: Long Scope
-  description: You'll never miss again. If you do, skill issue.
+  description: Makes you shoot gooder.
   value: 10
   ammo: 0
   kills: 0
   type: 3
-  effects: 01000000
+  effects: 02000000
   slot: {fileID: 0}
 --- !u!114 &8184629659036983219
 MonoBehaviour:

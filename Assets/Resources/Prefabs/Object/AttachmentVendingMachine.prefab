@@ -436,7 +436,7 @@ MonoBehaviour:
   stock: 1
   helpText: {fileID: 895387128227839056}
   vendorType: 0
-  vendedItem: {fileID: 0}
+  vendedItem: {fileID: 7127511585473486636, guid: a07f06debecf8ea488b4462f152b65b6, type: 3}
   vendPreview: {fileID: 5822850526386846506}
 --- !u!58 &598385964015962650
 CircleCollider2D:
